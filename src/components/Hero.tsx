@@ -1,20 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-
-const stats = [
-  { value: "13+", label: "Trusted Brands" },
-  { value: "8", label: "Expert Specialists" },
-  { value: "360°", label: "Creative & Digital" },
-];
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function Hero() {
+  const { t } = useI18n();
+  const stats = [
+    { value: "13+", label: t.hero.stats.brands },
+    { value: "8", label: t.hero.stats.specialists },
+    { value: "360°", label: t.hero.stats.scope },
+  ];
+
   return (
     <section
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden"
     >
-      {/* Background image + parallax-ish layers */}
       <div className="absolute inset-0">
         <img
           src={heroBg}
@@ -27,7 +28,6 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
       </div>
 
-      {/* Floating accent orbs */}
       <motion.div
         animate={{ y: [0, -24, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -47,7 +47,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
         >
           <Sparkles size={14} className="text-[var(--gold)]" />
-          Premium Creative & Digital Agency
+          {t.hero.badge}
         </motion.span>
 
         <motion.h1
@@ -56,8 +56,8 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.05] sm:text-6xl md:text-7xl"
         >
-          Where Innovation <br className="hidden sm:block" />
-          Builds <span className="text-gradient">Powerful Brands</span>
+          {t.hero.title.lead}{" "}
+          <span className="text-gradient">{t.hero.title.accent}</span>
         </motion.h1>
 
         <motion.p
@@ -66,9 +66,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.22 }}
           className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
         >
-          We help Algerian businesses evolve through innovation, strategy, media
-          and technology — crafting premium creative and digital solutions that
-          drive real growth.
+          {t.hero.subtitle}
         </motion.p>
 
         <motion.div
@@ -81,17 +79,17 @@ export function Hero() {
             href="#contact"
             className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5"
           >
-            Get in Touch
+            {t.hero.ctaPrimary}
             <ArrowRight
               size={16}
-              className="transition-transform group-hover:translate-x-1"
+              className="transition-transform group-hover:translate-x-1 rtl:rotate-180"
             />
           </a>
           <a
             href="#services"
             className="inline-flex items-center gap-2 rounded-full border border-border glass px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
           >
-            View Our Work
+            {t.hero.ctaSecondary}
           </a>
         </motion.div>
 
