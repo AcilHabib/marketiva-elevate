@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Clients", href: "#clients" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
-];
+import { useI18n } from "@/i18n/I18nProvider";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navbar() {
+  const { t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.clients, href: "#clients" },
+    { label: t.nav.team, href: "#team" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -56,20 +59,26 @@ export function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full bg-[image:var(--gradient-primary)] px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5 md:inline-block"
-        >
-          Get in Touch
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher />
+          <a
+            href="#contact"
+            className="rounded-full bg-[image:var(--gradient-primary)] px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5"
+          >
+            {t.nav.cta}
+          </a>
+        </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-lg border border-border text-foreground md:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher compact />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-10 w-10 place-items-center rounded-lg border border-border text-foreground"
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -95,7 +104,7 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
                 className="mt-2 rounded-lg bg-[image:var(--gradient-primary)] px-3 py-2.5 text-center text-sm font-medium text-primary-foreground"
               >
-                Get in Touch
+                {t.nav.cta}
               </a>
             </div>
           </div>
