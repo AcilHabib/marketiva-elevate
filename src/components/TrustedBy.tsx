@@ -1,5 +1,6 @@
-import { Reveal, SectionHeading } from "./primitives";
+import { Reveal, SectionHeading, GradientTitle } from "./primitives";
 import { clients } from "./content";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function ClientCard({ name }: { name: string }) {
   return (
@@ -12,19 +13,15 @@ function ClientCard({ name }: { name: string }) {
 }
 
 export function TrustedBy() {
+  const { t } = useI18n();
   const row = [...clients, ...clients];
   return (
     <section id="clients" className="section-pad relative overflow-hidden">
       <div className="container-px mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Trusted By"
-          title={
-            <>
-              Brands that grow with{" "}
-              <span className="text-gradient">Marketiva</span>
-            </>
-          }
-          subtitle="From retail and sports to logistics and manufacturing — businesses across Algeria and beyond rely on us."
+          eyebrow={t.clientsSection.eyebrow}
+          title={<GradientTitle {...t.clientsSection.title} />}
+          subtitle={t.clientsSection.subtitle}
         />
       </div>
 
