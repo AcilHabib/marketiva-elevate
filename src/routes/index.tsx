@@ -1,29 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Toaster } from "sonner";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Services } from "@/components/Services";
+import { TrustedBy } from "@/components/TrustedBy";
+import { Team } from "@/components/Team";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Algeria Marketiva — Premium Creative & Digital Agency" },
+      {
+        name: "description",
+        content:
+          "Algeria Marketiva is a premium creative and digital agency helping Algerian businesses grow through innovation, strategy, media and technology.",
+      },
+      { property: "og:title", content: "Algeria Marketiva — Premium Creative & Digital Agency" },
+      {
+        property: "og:description",
+        content:
+          "Where innovation builds powerful brands. Premium creative and digital solutions for ambitious Algerian businesses.",
+      },
+      { property: "og:type", content: "website" },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="relative overflow-x-hidden bg-background">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <TrustedBy />
+        <Team />
+        <Contact />
+      </main>
+      <Footer />
+      <Toaster theme="dark" position="top-center" richColors />
     </div>
   );
 }
