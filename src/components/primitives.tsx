@@ -66,6 +66,23 @@ export function SectionHeading({
   );
 }
 
+export function GradientTitle({
+  lead,
+  accent,
+  tail,
+}: {
+  lead: string;
+  accent: string;
+  tail?: string;
+}) {
+  return (
+    <>
+      {lead} <span className="text-gradient">{accent}</span>
+      {tail ? ` ${tail}` : ""}
+    </>
+  );
+}
+
 export function useTilt() {
   return useRef<HTMLDivElement>(null);
 }
