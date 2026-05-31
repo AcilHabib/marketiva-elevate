@@ -10,74 +10,28 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+/**
+ * Service & team text lives in the i18n dictionary (src/i18n/translations.ts),
+ * keyed by the `id` fields below. Here we only keep non-translatable data:
+ * icons, ordering, featured flag, member names and photos.
+ */
+
 export type Service = {
+  id: string;
   icon: LucideIcon;
-  title: string;
-  description: string;
-  items?: string[];
   featured?: boolean;
+  hasItems?: boolean;
 };
 
 export const services: Service[] = [
-  {
-    icon: Code2,
-    title: "Web & App Development",
-    description:
-      "Bespoke, high-performance websites and applications engineered for speed, scale and conversion.",
-    featured: true,
-  },
-  {
-    icon: Palette,
-    title: "Brand Identity & Graphic Design",
-    description:
-      "Distinctive logos, visual systems and brand guidelines that command attention and build trust.",
-  },
-  {
-    icon: Camera,
-    title: "Content Creation",
-    description:
-      "Cinematic photography and videography that tells your brand story with cinematic polish.",
-  },
-  {
-    icon: ShoppingCart,
-    title: "Media Buying for E-commerce",
-    description:
-      "Data-driven paid campaigns that turn ad spend into measurable, profitable growth.",
-  },
-  {
-    icon: Share2,
-    title: "Social Media Management",
-    description:
-      "Strategy, content and community management that keeps your audience engaged and growing.",
-  },
-  {
-    icon: Megaphone,
-    title: "Sponsoring",
-    description:
-      "Strategic sponsorships and partnerships that amplify reach and elevate brand prestige.",
-  },
-  {
-    icon: Printer,
-    title: "Printing Services",
-    description: "Premium print production with refined finishing across every format.",
-    items: [
-      "Business cards",
-      "Trifold brochures",
-      "Folders",
-      "Flyers",
-      "Catalogs",
-      "Notebooks",
-      "Branded shirts",
-      "Badges",
-      "Custom pens",
-    ],
-  },
-  {
-    icon: Store,
-    title: "Storefront Branding",
-    description: "Turn physical spaces into landmark brand experiences.",
-    items: ["Window dressing", "Aluco bond signage"],
-  },
+  { id: "web", icon: Code2, featured: true },
+  { id: "brand", icon: Palette },
+  { id: "content", icon: Camera },
+  { id: "media", icon: ShoppingCart },
+  { id: "social", icon: Share2 },
+  { id: "sponsor", icon: Megaphone },
+  { id: "print", icon: Printer, hasItems: true },
+  { id: "storefront", icon: Store, hasItems: true },
 ];
 
 export const clients: string[] = [
@@ -97,18 +51,18 @@ export const clients: string[] = [
 ];
 
 export type Member = {
+  id: string;
   name: string;
-  role: string;
   photo?: string;
 };
 
 export const team: Member[] = [
-  { name: "Assil Habib", role: "Full Stack Developer" },
-  { name: "Mohamed Derbal", role: "Media Buying" },
-  { name: "Tercha Younes", role: "Commercial Manager & Animator" },
-  { name: "Aichouche Aladdin", role: "Infographist, Designer & 3D Designer" },
-  { name: "Abdenour", role: "Video Editing & Motion Graphics" },
-  { name: "Halla Rdjm", role: "Community Manager" },
-  { name: "Ayoub Nasri", role: "Sponsoring" },
-  { name: "Aymen Gouga", role: "Printing" },
+  { id: "assil", name: "Assil Habib" },
+  { id: "mohamed", name: "Mohamed Derbal" },
+  { id: "younes", name: "Tercha Younes" },
+  { id: "aladdin", name: "Aichouche Aladdin" },
+  { id: "abdenour", name: "Abdenour" },
+  { id: "halla", name: "Halla Rdjm" },
+  { id: "ayoub", name: "Ayoub Nasri" },
+  { id: "aymen", name: "Aymen Gouga" },
 ];

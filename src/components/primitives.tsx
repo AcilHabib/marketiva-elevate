@@ -41,7 +41,7 @@ export function SectionHeading({
       className={
         align === "center"
           ? "mx-auto max-w-2xl text-center"
-          : "max-w-2xl text-left"
+          : "max-w-2xl text-start"
       }
     >
       <Reveal>
@@ -63,6 +63,23 @@ export function SectionHeading({
         </Reveal>
       )}
     </div>
+  );
+}
+
+export function GradientTitle({
+  lead,
+  accent,
+  tail,
+}: {
+  lead: string;
+  accent: string;
+  tail?: string;
+}) {
+  return (
+    <>
+      {lead} <span className="text-gradient">{accent}</span>
+      {tail ? ` ${tail}` : ""}
+    </>
   );
 }
 

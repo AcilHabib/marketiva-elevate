@@ -1,12 +1,15 @@
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Clients", href: "#clients" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
-];
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function Footer() {
+  const { t } = useI18n();
+  const links = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.clients, href: "#clients" },
+    { label: t.nav.team, href: "#team" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
+
   return (
     <footer className="border-t border-border">
       <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 py-10 md:flex-row">
@@ -32,7 +35,7 @@ export function Footer() {
         </nav>
 
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Algeria Marketiva. All rights reserved.
+          © {new Date().getFullYear()} Algeria Marketiva. {t.footer.rights}
         </p>
       </div>
     </footer>
