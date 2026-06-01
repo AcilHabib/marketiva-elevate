@@ -34,9 +34,22 @@ export function Footer() {
           ))}
         </nav>
 
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Algeria Marketiva. {t.footer.rights}
-        </p>
+        <div className="flex flex-col items-center gap-1 text-xs text-muted-foreground md:items-end">
+          <p>
+            © {new Date().getFullYear()} Algeria Marketiva. {t.footer.rights}
+          </p>
+          <p>
+            {t.footer.madeBy}{" "}
+            <a
+              href="https://portfolio-acilhabibs-projects.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground/80 underline-offset-4 transition-colors hover:text-primary hover:underline"
+            >
+              Assil Habib
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

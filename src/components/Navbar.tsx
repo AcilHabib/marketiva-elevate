@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const { t } = useI18n();
@@ -13,6 +14,8 @@ export function Navbar() {
     { label: t.nav.about, href: "#about" },
     { label: t.nav.services, href: "#services" },
     { label: t.nav.clients, href: "#clients" },
+    { label: t.nav.testimonials, href: "#testimonials" },
+    { label: t.nav.faq, href: "#faq" },
     { label: t.nav.team, href: "#team" },
     { label: t.nav.contact, href: "#contact" },
   ];
@@ -47,7 +50,7 @@ export function Navbar() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {links.map((l) => (
             <a
               key={l.href}
@@ -59,7 +62,8 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
           <LanguageSwitcher />
           <a
             href="#contact"
@@ -70,6 +74,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle compact />
           <LanguageSwitcher compact />
           <button
             onClick={() => setOpen((v) => !v)}

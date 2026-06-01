@@ -24,8 +24,8 @@ export function Hero() {
           height={1080}
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[image:var(--gradient-hero)] opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
+        <div className="absolute inset-0 bg-[image:var(--gradient-hero)] opacity-80 dark:opacity-80 light:opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10 dark:via-background/40 light:via-background/70" />
       </div>
 
       <motion.div

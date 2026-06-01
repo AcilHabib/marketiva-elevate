@@ -2,11 +2,13 @@ import {
   Megaphone,
   Code2,
   Camera,
-  ShoppingCart,
+  TrendingUp,
   Share2,
   Palette,
   Printer,
-  Store,
+  Clapperboard,
+  Users,
+  Handshake,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -20,18 +22,18 @@ export type Service = {
   id: string;
   icon: LucideIcon;
   featured?: boolean;
-  hasItems?: boolean;
 };
 
 export const services: Service[] = [
-  { id: "web", icon: Code2, featured: true },
+  { id: "media", icon: TrendingUp, featured: true },
   { id: "brand", icon: Palette },
-  { id: "content", icon: Camera },
-  { id: "media", icon: ShoppingCart },
-  { id: "social", icon: Share2 },
-  { id: "sponsor", icon: Megaphone },
-  { id: "print", icon: Printer, hasItems: true },
-  { id: "storefront", icon: Store, hasItems: true },
+  { id: "content", icon: Clapperboard },
+  { id: "photography", icon: Camera },
+  { id: "platforms", icon: Share2 },
+  { id: "web", icon: Code2 },
+  { id: "community", icon: Users },
+  { id: "print", icon: Printer },
+  { id: "sponsor", icon: Handshake },
 ];
 
 export const clients: string[] = [
@@ -65,4 +67,18 @@ export const team: Member[] = [
   { id: "halla", name: "Halla Rdjm" },
   { id: "ayoub", name: "Ayoub Nasri" },
   { id: "aymen", name: "Aymen Gouga" },
+];
+
+export type TestimonialMeta = {
+  id: string;
+  avatarIndex: number;
+};
+
+export const testimonialsMeta: TestimonialMeta[] = [
+  { id: "t1", avatarIndex: 2 },
+  { id: "t2", avatarIndex: 5 },
+  { id: "t3", avatarIndex: 1 },
+  { id: "t4", avatarIndex: 4 },
+  { id: "t5", avatarIndex: 3 },
+  { id: "t6", avatarIndex: 0 },
 ];
