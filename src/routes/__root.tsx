@@ -83,14 +83,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Where Innovation Builds Powerful Brands. Premium creative and digital agency helping Algerian businesses grow.",
+          "Empowering Algerian Brands. Premium creative and digital agency helping Algerian businesses grow.",
       },
       { name: "author", content: "Algeria Marketiva" },
       { property: "og:title", content: "Algeria Marketiva — Premium Creative & Digital Agency" },
       {
         property: "og:description",
         content:
-          "Where Innovation Builds Powerful Brands. Premium creative and digital solutions for ambitious Algerian businesses.",
+          "Empowering Algerian Brands. Premium creative and digital solutions for ambitious Algerian businesses.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/brand/logo-full.png" },

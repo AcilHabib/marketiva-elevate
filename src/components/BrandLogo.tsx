@@ -2,10 +2,10 @@ import { brand } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
-  /** inline: mark + wordmark for nav/footer · icon: mark only · full: branded asset with background */
+  /** inline: mark + wordmark · icon: mark only · full: original branded asset */
   variant?: "inline" | "icon" | "full";
-  /** brand = primary blue mark · on-primary = light mark for colored surfaces */
-  markTone?: "brand" | "on-primary";
+  /** default = theme colors · nav = white on hero/nav · on-primary = light on colored surfaces */
+  appearance?: "default" | "nav" | "on-primary";
   className?: string;
   markClassName?: string;
   showWordmark?: boolean;
@@ -14,17 +14,19 @@ type BrandLogoProps = {
 
 function LogoMark({
   className,
-  tone = "brand",
+  appearance = "default",
 }: {
   className?: string;
-  tone?: "brand" | "on-primary";
+  appearance?: "default" | "nav" | "on-primary";
 }) {
   return (
     <span
       aria-hidden
       className={cn(
         "inline-block shrink-0",
-        tone === "on-primary" ? "bg-primary-foreground" : "bg-primary",
+        appearance === "nav" && "bg-white",
+        appearance === "on-primary" && "bg-primary-foreground",
+        appearance === "default" && "bg-primary",
         className,
       )}
       style={{
@@ -41,7 +43,26 @@ function LogoMark({
   );
 }
 
-function Wordmark({ className }: { className?: string }) {
+function Wordmark({
+  className,
+  appearance = "default",
+}: {
+  className?: string;
+  appearance?: "default" | "nav" | "on-primary";
+}) {
+  if (appearance === "nav") {
+    return (
+      <span
+        className={cn(
+          "font-display font-bold leading-none tracking-tight text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)]",
+          className,
+        )}
+      >
+        Algeria Marketiva
+      </span>
+    );
+  }
+
   return (
     <span className={cn("font-display font-bold leading-none tracking-tight", className)}>
       <span className="text-foreground">Algeria </span>
@@ -52,7 +73,7 @@ function Wordmark({ className }: { className?: string }) {
 
 export function BrandLogo({
   variant = "inline",
-  markTone = "brand",
+  appearance = "default",
   className,
   markClassName,
   showWordmark = true,
@@ -63,19 +84,26 @@ export function BrandLogo({
       <img
         src={brand.full}
         alt={brand.name}
-        className={cn("h-10 w-auto max-w-[min(100%,220px)] object-contain object-left", className)}
+        className={cn("h-auto w-auto max-w-full object-contain object-left", className)}
       />
     );
   }
 
   if (variant === "icon") {
-    return <LogoMark tone={markTone} className={cn("h-9 w-9", markClassName, className)} />;
+    return (
+      <LogoMark
+        appearance={appearance}
+        className={cn("h-9 w-9", markClassName, className)}
+      />
+    );
   }
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <LogoMark tone={markTone} className={cn("h-9 w-9", markClassName)} />
-      {showWordmark && <Wordmark className={cn("text-base sm:text-lg", wordmarkClassName)} />}
+      <LogoMark appearance={appearance} className={cn("h-9 w-9", markClassName)} />
+      {showWordmark && (
+        <Wordmark appearance={appearance} className={cn("text-base sm:text-lg", wordmarkClassName)} />
+      )}
     </span>
   );
 }

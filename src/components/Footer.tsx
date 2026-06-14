@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 py-10 md:flex-row">
         <div className="flex items-center">
-          <BrandLogo variant="inline" wordmarkClassName="text-sm sm:text-base" />
+          <BrandLogo variant="full" className="h-14 w-auto max-w-[200px]" />
         </div>
 
         <nav className="flex flex-wrap items-center justify-center gap-6">

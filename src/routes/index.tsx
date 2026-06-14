@@ -7,6 +7,7 @@ import { Services } from "@/components/Services";
 import { TrustedBy } from "@/components/TrustedBy";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
+import { Formations } from "@/components/Formations";
 import { Team } from "@/components/Team";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -19,13 +20,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Where Innovation Builds Powerful Brands. Premium creative and digital agency helping Algerian businesses grow.",
+          "Empowering Algerian Brands. Premium creative and digital agency helping Algerian businesses grow.",
       },
       { property: "og:title", content: "Algeria Marketiva — Premium Creative & Digital Agency" },
       {
         property: "og:description",
         content:
-          "Where Innovation Builds Powerful Brands. Premium creative and digital solutions for ambitious Algerian businesses.",
+          "Empowering Algerian Brands. Premium creative and digital solutions for ambitious Algerian businesses.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/brand/logo-full.png" },
@@ -47,6 +48,7 @@ function Index() {
         <TrustedBy />
         <Testimonials />
         <FAQ />
+        <Formations />
         <Team />
         <Contact />
       </main>

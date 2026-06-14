@@ -23,8 +23,10 @@ export type Dict = {
     clients: string;
     testimonials: string;
     faq: string;
+    formations: string;
     team: string;
     contact: string;
+    more: string;
     cta: string;
   };
   hero: {
@@ -62,10 +64,24 @@ export type Dict = {
     items: FaqItem[];
   };
   clientsSection: { eyebrow: string; title: Title; subtitle: string };
+  formations: {
+    eyebrow: string;
+    title: Title;
+    subtitle: string;
+    cta: string;
+    courses: { title: string; description: string; topics: string[] }[];
+  };
   team: {
     eyebrow: string;
     title: Title;
     subtitle: string;
+    experience: string;
+    viewPlan: string;
+    planTitle: string;
+    frameworkTitle: string;
+    deliverablesTitle: string;
+    resultTitle: string;
+    outcomeLabel: string;
     roles: Record<string, string>;
   };
   contact: {
@@ -98,13 +114,15 @@ export const translations: Record<Lang, Dict> = {
       clients: "Clients",
       testimonials: "Témoignages",
       faq: "FAQ",
+      formations: "Formations",
       team: "Équipe",
       contact: "Contact",
+      more: "Plus",
       cta: "Nous contacter",
     },
     hero: {
       badge: "Agence Créative & Digitale Premium",
-      title: { lead: "Là où l'innovation construit des", accent: "marques puissantes." },
+      title: { lead: "Propulser les", accent: "marques algériennes." },
       subtitle:
         "Nous aidons les entreprises algériennes à évoluer grâce à l'innovation, la stratégie, les médias et la technologie — en créant des solutions créatives et digitales premium qui génèrent une croissance réelle.",
       ctaPrimary: "Nous contacter",
@@ -265,7 +283,7 @@ export const translations: Record<Lang, Dict> = {
         t3: {
           quote:
             "Ils ont livré notre site e-commerce en six semaines, avec un dashboard admin clair. Nos commandes en ligne représentent maintenant 40% du chiffre d'affaires.",
-          name: "Abderahman Mousse",
+          name: "Abderahman Koussa",
           role: "Gérant",
           company: "Sami Sport",
         },
@@ -278,10 +296,10 @@ export const translations: Record<Lang, Dict> = {
         },
         t5: {
           quote:
-            "Pour une startup, avoir une équipe qui gère à la fois le site, les ads et le community management, c'est un game-changer. On a pu se concentrer sur le produit.",
-          name: "Amira Khelifi",
-          role: "CEO",
-          company: "AK Agency",
+            "Une collaboration professionnelle qui a renforcé notre image et notre présence digitale. L'équipe comprend les enjeux du marché algérien et livre un travail de qualité.",
+          name: "حمادة العلميين",
+          role: "Responsable",
+          company: "شركة العلميين",
         },
         t6: {
           quote:
@@ -310,8 +328,8 @@ export const translations: Record<Lang, Dict> = {
           a: "Il vous suffit de nous contacter via le formulaire du site, WhatsApp, téléphone ou e-mail. Nous organiserons un premier échange afin de comprendre vos besoins et de vous proposer la solution la plus adaptée.",
         },
         {
-          q: "Que signifie le slogan « Là où l'innovation construit des marques puissantes » ?",
-          a: "Ce slogan reflète notre vision : combiner créativité, innovation, technologies modernes et stratégies performantes pour bâtir des marques fortes, durables et reconnues sur leur marché.",
+          q: "Que signifie le slogan « Propulser les marques algériennes » ?",
+          a: "Ce slogan reflète notre vision : combiner créativité, innovation, technologies modernes et stratégies performantes pour propulser les marques algériennes et les aider à grandir avec confiance.",
         },
         {
           q: "Puis-je demander un devis gratuit ?",
@@ -343,25 +361,76 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "Les talents",
       title: { lead: "Rencontrez l'équipe derrière", accent: "le travail" },
-      subtitle: "Une équipe pluridisciplinaire de spécialistes qui transforment les idées ambitieuses en réalité raffinée.",
+      subtitle: "Dix experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
+      experience: "5+ ans d'expérience",
+      viewPlan: "Voir le plan métier",
+      planTitle: "Plan métier",
+      frameworkTitle: "Notre cadre stratégique",
+      deliverablesTitle: "Ce que vous recevez",
+      resultTitle: "Le résultat",
+      outcomeLabel: "Résultat",
       roles: {
         assil: "Développeur Full Stack",
         mohamed: "Media Buying",
         younes: "Manager Commercial & Animateur",
         aladdin: "Infographiste, Designer & Designer 3D",
+        zaki: "Vidéaste",
         abdenour: "Montage vidéo & Motion Graphics",
+        adem: "Marketing",
         halla: "Community Manager",
         ayoub: "Sponsoring",
         aymen: "Impression",
       },
+    },
+    formations: {
+      eyebrow: "Formations",
+      title: { lead: "Montez en compétences avec nos", accent: "formations pro" },
+      subtitle:
+        "Des parcours pratiques animés par nos experts pour maîtriser les métiers du créatif, du marketing et du digital.",
+      cta: "Demander le programme",
+      courses: [
+        {
+          title: "Création visuelle & audiovisuelle",
+          description:
+            "Maîtrisez la chaîne complète de production — de la prise de vue au montage final.",
+          topics: [
+            "Photographie commerciale & produit",
+            "Vidéographie & tournage pro",
+            "Design graphique & identité visuelle",
+            "Montage vidéo & post-production",
+          ],
+        },
+        {
+          title: "Stratégie marketing",
+          description:
+            "Apprenez à construire des stratégies marketing data-driven qui génèrent une croissance mesurable.",
+          topics: [
+            "Analyse marché & concurrence",
+            "Personas & parcours client",
+            "Stratégie contenu & publicité",
+            "KPIs, ROI & optimisation",
+          ],
+        },
+        {
+          title: "Développement web & mobile",
+          description:
+            "De zéro au déploiement — sites, apps et produits digitaux performants.",
+          topics: [
+            "Sites web & e-commerce",
+            "Applications mobiles iOS & Android",
+            "APIs & intégrations",
+            "Performance, sécurité & déploiement",
+          ],
+        },
+      ],
     },
     contact: {
       eyebrow: "Parlons-en",
       title: { lead: "Prêt à construire quelque chose de", accent: "puissant ?" },
       subtitle: "Parlez-nous de votre projet et notre équipe vous répondra sous 24 heures.",
       cardTitle: "Algeria Marketiva",
-      cardTagline: "Là où l'innovation construit des marques puissantes.",
-      labels: { phone: "Téléphone", email: "Email", location: "Localisation", locationValue: "Voir sur Google Maps" },
+      cardTagline: "Propulser les marques algériennes.",
+      labels: { phone: "Téléphone", email: "Email", location: "Localisation", locationValue: "Skills Center Sétif" },
       form: {
         name: "Nom",
         email: "Email",
@@ -384,13 +453,15 @@ export const translations: Record<Lang, Dict> = {
       clients: "العملاء",
       testimonials: "آراء العملاء",
       faq: "الأسئلة",
+      formations: "التكوينات",
       team: "الفريق",
       contact: "اتصل بنا",
+      more: "المزيد",
       cta: "تواصل معنا",
     },
     hero: {
       badge: "وكالة إبداعية ورقمية متميزة",
-      title: { lead: "حيث يبني الابتكار", accent: "علامات تجارية قوية." },
+      title: { lead: "تمكين", accent: "العلامات التجارية الجزائرية." },
       subtitle:
         "نساعد الشركات الجزائرية على التطور من خلال الابتكار والاستراتيجية والإعلام والتكنولوجيا — عبر صياغة حلول إبداعية ورقمية متميزة تحقق نمواً حقيقياً.",
       ctaPrimary: "تواصل معنا",
@@ -541,7 +612,7 @@ export const translations: Record<Lang, Dict> = {
         t3: {
           quote:
             "سلّموا موقع التجارة الإلكترونية في ستة أسابيع مع لوحة تحكم واضحة. الطلبات أونلاين تمثل الآن 40% من مبيعاتنا.",
-          name: "Abderahman Mousse",
+          name: "Abderahman Koussa",
           role: "المدير",
           company: "Sami Sport",
         },
@@ -554,10 +625,10 @@ export const translations: Record<Lang, Dict> = {
         },
         t5: {
           quote:
-            "للشركة الناشئة، وجود فريق يدير الموقع والإعلانات والمجتمع في آن واحد ميزة حاسمة. استطعنا التركيز على المنتج.",
-          name: "Amira Khelifi",
-          role: "المديرة التنفيذية",
-          company: "AK Agency",
+            "تعاون احترافي عزّز صورتنا وحضورنا الرقمي. الفريق يفهم تحديات السوق الجزائري ويقدّم عملاً عالي الجودة.",
+          name: "حمادة العلميين",
+          role: "مسؤول",
+          company: "شركة العلميين",
         },
         t6: {
           quote:
@@ -586,8 +657,8 @@ export const translations: Record<Lang, Dict> = {
           a: "تواصل معنا عبر نموذج الموقع أو WhatsApp أو الهاتف أو البريد الإلكتروني. سننظم جلسة أولى لفهم احتياجاتك واقتراح الحل الأنسب.",
         },
         {
-          q: "ماذا يعني شعار «حيث يبني الابتكار علامات تجارية قوية»؟",
-          a: "يعكس رؤيتنا: الجمع بين الإبداع والابتكار والتقنيات الحديثة والاستراتيجيات الفعّالة لبناء علامات قوية ومستدامة ومعترف بها في السوق.",
+          q: "ماذا يعني شعار «تمكين العلامات التجارية الجزائرية»؟",
+          a: "يعكس رؤيتنا: الجمع بين الإبداع والابتكار والتقنيات الحديثة والاستراتيجيات الفعّالة لتمكين العلامات الجزائرية ومساعدتها على النمو بثقة.",
         },
         {
           q: "هل يمكنني طلب عرض سعر مجاني؟",
@@ -619,25 +690,57 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "الأشخاص",
       title: { lead: "تعرّف على الفريق وراء", accent: "العمل" },
-      subtitle: "فريق متعدد التخصصات من المختصين يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
+      subtitle: "عشرة خبراء متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
+      experience: "+5 سنوات خبرة",
+      viewPlan: "عرض خطة العمل",
+      planTitle: "خطة العمل",
+      frameworkTitle: "إطارنا الاستراتيجي",
+      deliverablesTitle: "ما ستحصل عليه",
+      resultTitle: "النتيجة",
+      outcomeLabel: "النتيجة",
       roles: {
         assil: "مطور Full Stack",
         mohamed: "شراء الإعلانات",
         younes: "مدير تجاري ومنشّط",
         aladdin: "مصمم جرافيك ومصمم ثلاثي الأبعاد",
+        zaki: "مصوّر فيديو",
         abdenour: "مونتاج فيديو وموشن جرافيك",
+        adem: "تسويق",
         halla: "مديرة مجتمع",
         ayoub: "الرعاية",
         aymen: "الطباعة",
       },
+    },
+    formations: {
+      eyebrow: "التكوينات",
+      title: { lead: "طوّر مهاراتك مع", accent: "تكويناتنا المهنية" },
+      subtitle: "مسارات عملية يقدّمها خبراؤنا لإتقان مهارات الإبداع والتسويق والرقمنة.",
+      cta: "طلب البرنامج",
+      courses: [
+        {
+          title: "الإبداع البصري والسمعي البصري",
+          description: "أتقن سلسلة الإنتاج الكاملة — من التصوير إلى المونتاج النهائي.",
+          topics: ["التصوير التجاري والمنتجات", "التصوير السينمائي والفيديو", "التصميم الجرافيكي والهوية البصرية", "مونتاج الفيديو وما بعد الإنتاج"],
+        },
+        {
+          title: "استراتيجية التسويق",
+          description: "تعلّم بناء استراتيجيات تسويقية مبنية على البيانات تحقق نمواً قابلاً للقياس.",
+          topics: ["تحليل السوق والمنافسين", "شخصيات المشتري ومسار العميل", "استراتيجية المحتوى والإعلان", "مؤشرات الأداء والعائد والتحسين"],
+        },
+        {
+          title: "تطوير الويب والجوال",
+          description: "من الصفر إلى الإطلاق — مواقع وتطبيقات ومنتجات رقمية عالية الأداء.",
+          topics: ["مواقع وتجارة إلكترونية", "تطبيقات iOS وAndroid", "APIs وتكاملات", "الأداء والأمان والنشر"],
+        },
+      ],
     },
     contact: {
       eyebrow: "لنتحدث",
       title: { lead: "مستعد لبناء شيء", accent: "قوي؟" },
       subtitle: "أخبرنا عن مشروعك وسيعاود فريقنا التواصل معك خلال 24 ساعة.",
       cardTitle: "Algeria Marketiva",
-      cardTagline: "حيث يبني الابتكار علامات تجارية قوية.",
-      labels: { phone: "الهاتف", email: "البريد الإلكتروني", location: "الموقع", locationValue: "عرض على خرائط Google" },
+      cardTagline: "تمكين العلامات التجارية الجزائرية.",
+      labels: { phone: "الهاتف", email: "البريد الإلكتروني", location: "الموقع", locationValue: "Skills Center سطيف" },
       form: {
         name: "الاسم",
         email: "البريد الإلكتروني",
@@ -660,13 +763,15 @@ export const translations: Record<Lang, Dict> = {
       clients: "Clients",
       testimonials: "Testimonials",
       faq: "FAQ",
+      formations: "Training",
       team: "Team",
       contact: "Contact",
+      more: "More",
       cta: "Get in Touch",
     },
     hero: {
       badge: "Premium Creative & Digital Agency",
-      title: { lead: "Where Innovation Builds", accent: "Powerful Brands." },
+      title: { lead: "Empowering", accent: "Algerian Brands." },
       subtitle:
         "We help Algerian businesses evolve through innovation, strategy, media and technology — crafting premium creative and digital solutions that drive real growth.",
       ctaPrimary: "Get in Touch",
@@ -827,7 +932,7 @@ export const translations: Record<Lang, Dict> = {
         t3: {
           quote:
             "They delivered our e-commerce site in six weeks with a clear admin dashboard. Online orders now represent 40% of our revenue.",
-          name: "Abderahman Mousse",
+          name: "Abderahman Koussa",
           role: "Manager",
           company: "Sami Sport",
         },
@@ -840,10 +945,10 @@ export const translations: Record<Lang, Dict> = {
         },
         t5: {
           quote:
-            "For a startup, having one team handle the site, ads, and community management is a game-changer. We could focus on the product.",
-          name: "Amira Khelifi",
-          role: "CEO",
-          company: "AK Agency",
+            "A professional collaboration that strengthened our image and digital presence. The team understands the Algerian market and delivers quality work.",
+          name: "حمادة العلميين",
+          role: "Manager",
+          company: "شركة العلميين",
         },
         t6: {
           quote:
@@ -872,8 +977,8 @@ export const translations: Record<Lang, Dict> = {
           a: "Simply contact us via the website form, WhatsApp, phone or email. We'll arrange an initial call to understand your needs and propose the best solution.",
         },
         {
-          q: "What does the slogan « Where Innovation Builds Powerful Brands » mean?",
-          a: "It reflects our vision: combining creativity, innovation, modern technology and high-performance strategies to build strong, lasting brands recognised in their market.",
+          q: "What does the slogan « Empowering Algerian Brands » mean?",
+          a: "It reflects our vision: combining creativity, innovation, modern technology and high-performance strategies to empower Algerian brands and help them grow with confidence.",
         },
         {
           q: "Can I request a free quote?",
@@ -905,25 +1010,58 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "The People",
       title: { lead: "Meet the team behind", accent: "the work" },
-      subtitle: "A multidisciplinary team of specialists turning ambitious ideas into polished reality.",
+      subtitle: "Ten multidisciplinary experts turning ambitious ideas into polished reality.",
+      experience: "5+ years experience",
+      viewPlan: "View business plan",
+      planTitle: "Business plan",
+      frameworkTitle: "Our strategic framework",
+      deliverablesTitle: "What you'll receive",
+      resultTitle: "The result",
+      outcomeLabel: "Outcome",
       roles: {
         assil: "Full Stack Developer",
         mohamed: "Media Buying",
         younes: "Commercial Manager & Animator",
         aladdin: "Infographist, Designer & 3D Designer",
+        zaki: "Videographer",
         abdenour: "Video Editing & Motion Graphics",
+        adem: "Marketing",
         halla: "Community Manager",
         ayoub: "Sponsoring",
         aymen: "Printing",
       },
+    },
+    formations: {
+      eyebrow: "Training",
+      title: { lead: "Level up with our", accent: "pro courses" },
+      subtitle:
+        "Hands-on programmes led by our experts to master creative, marketing and digital skills.",
+      cta: "Request the syllabus",
+      courses: [
+        {
+          title: "Visual & audiovisual creation",
+          description: "Master the full production pipeline — from shooting to final edit.",
+          topics: ["Commercial & product photography", "Videography & pro filming", "Graphic design & brand identity", "Video editing & post-production"],
+        },
+        {
+          title: "Marketing strategy",
+          description: "Learn to build data-driven marketing strategies that deliver measurable growth.",
+          topics: ["Market & competitor analysis", "Personas & customer journey", "Content & advertising strategy", "KPIs, ROI & optimization"],
+        },
+        {
+          title: "Web & mobile development",
+          description: "From zero to launch — high-performance sites, apps and digital products.",
+          topics: ["Websites & e-commerce", "iOS & Android apps", "APIs & integrations", "Performance, security & deployment"],
+        },
+      ],
     },
     contact: {
       eyebrow: "Let's Talk",
       title: { lead: "Ready to build something", accent: "powerful?" },
       subtitle: "Tell us about your project and our team will get back to you within 24 hours.",
       cardTitle: "Algeria Marketiva",
-      cardTagline: "Where Innovation Builds Powerful Brands.",
-      labels: { phone: "Phone", email: "Email", location: "Location", locationValue: "View on Google Maps" },
+      cardTagline: "Empowering Algerian Brands.",
+      labels: { phone: "Phone", email: "Email", location: "Location", locationValue: "Skills Center Setif" },
       form: {
         name: "Name",
         email: "Email",

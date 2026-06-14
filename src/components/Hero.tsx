@@ -7,7 +7,7 @@ export function Hero() {
   const { t } = useI18n();
   const stats = [
     { value: "13+", label: t.hero.stats.brands },
-    { value: "8", label: t.hero.stats.specialists },
+    { value: "10", label: t.hero.stats.specialists },
     { value: "360°", label: t.hero.stats.scope },
   ];
 

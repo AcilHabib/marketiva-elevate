@@ -6,7 +6,9 @@ import { Reveal, SectionHeading, GradientTitle } from "./primitives";
 import { useI18n } from "@/i18n/I18nProvider";
 import { BrandLogo } from "./BrandLogo";
 
-const LOCATION_URL = "https://share.google/Q10G60jOizrqssFbd";
+const LOCATION_URL = "https://maps.app.goo.gl/r7sey2hmJhMT3rUm9";
+const MAP_EMBED_URL =
+  "https://maps.google.com/maps?q=36.1896252,5.4076754&hl=fr&z=16&output=embed";
 
 export function Contact() {
   const { t } = useI18n();
@@ -48,7 +50,7 @@ export function Contact() {
           <Reveal className="lg:col-span-2">
             <div className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-border bg-[image:var(--gradient-primary)] p-8 text-primary-foreground">
               <div>
-                <BrandLogo variant="icon" markTone="on-primary" markClassName="mb-4 h-12 w-12" />
+                <BrandLogo variant="full" className="mb-4 h-16 w-auto max-w-[180px]" />
                 <h3 className="text-xl font-semibold">{t.contact.cardTitle}</h3>
                 <p className="mt-2 text-sm text-primary-foreground/85">
                   {t.contact.cardTagline}
@@ -80,6 +82,16 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.12} className="lg:col-span-3">
+            <div className="mb-6 overflow-hidden rounded-2xl border border-border">
+              <iframe
+                title={t.contact.labels.location}
+                src={MAP_EMBED_URL}
+                className="aspect-[16/10] w-full grayscale-[30%] contrast-[1.05] dark:invert-[0.92] dark:hue-rotate-180"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
             <form
               onSubmit={onSubmit}
               className="space-y-5 rounded-2xl border border-border bg-card/60 p-8 backdrop-blur-sm"

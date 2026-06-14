@@ -73,9 +73,11 @@ export type Member = {
 export const team: Member[] = [
   { id: "assil", name: "Assil Habib", photo: "/images/team/assil-habib.png" },
   { id: "mohamed", name: "Mohamed Derbal", photo: "/images/team/mohamed-derbal.png" },
-  { id: "younes", name: "Tercha Younes", photo: "/images/team/younes-tercha.png" },
+  { id: "younes", name: "Younes Tarcha", photo: "/images/team/younes-tarcha.png" },
   { id: "aladdin", name: "Aichouche Aladdin", photo: "/images/team/aladdin-aichouche.png" },
-  { id: "abdenour", name: "Abdenour", photo: "/images/team/abdenour-zaki.png" },
+  { id: "zaki", name: "Zaki Bellout", photo: "/images/team/zaki-bellout.png" },
+  { id: "abdenour", name: "Douamene Abdenour", photo: "/images/team/douamene-abdenour.png" },
+  { id: "adem", name: "Chefaoui Adem", photo: "/images/team/chefaoui-adem.png" },
   { id: "halla", name: "Halla Rdjm" },
   { id: "ayoub", name: "Ayoub Nasri", photo: "/images/team/ayoub-nasri.png" },
   { id: "aymen", name: "Aymen Gouga", photo: "/images/team/aymen-gouga.png" },
