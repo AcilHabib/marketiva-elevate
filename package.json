@@ -8,7 +8,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "postbuild": "node scripts/patch-wrangler.mjs",
     "deploy": "npm run build && wrangler deploy",
+    "cf:login": "wrangler login",
     "cf-typegen": "wrangler types",
     "lint": "eslint .",
     "format": "prettier --write ."

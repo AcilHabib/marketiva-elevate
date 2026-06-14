@@ -36,20 +36,32 @@ export const services: Service[] = [
   { id: "sponsor", icon: Handshake },
 ];
 
-export const clients: string[] = [
-  "Detaunet",
-  "Afek 2d",
-  "Prestige Setif 19",
-  "شركة العلميين الفلسطينية",
-  "Sami Sport",
-  "Dano Nuts",
-  "El Djaouda Doors Setif",
-  "AK Agency",
-  "Star Ronix",
-  "Hamid Imou",
-  "Tadj Ben Arab",
-  "T'as la Frites",
-  "Emran Logistics",
+export type Client = {
+  id: string;
+  name: string;
+  logo?: string;
+};
+
+export const clients: Client[] = [
+  { id: "detaunet", name: "Detaunet", logo: "/images/clients/detaunet.png" },
+  { id: "afek2d", name: "Afek 2d", logo: "/images/clients/afek-2d.png" },
+  { id: "prestige", name: "Prestige Setif 19" },
+  { id: "alameen", name: "شركة العلميين الفلسطينية", logo: "/images/clients/alameen.png" },
+  { id: "samisport", name: "Sami Sport", logo: "/images/clients/sami-sport.png" },
+  { id: "dano", name: "Dano Nuts", logo: "/images/clients/dano-nuts.png" },
+  { id: "eldjaouda", name: "El Djaouda Doors Setif", logo: "/images/clients/el-djaouda-doors.png" },
+  { id: "starrnix", name: "Star Ronix", logo: "/images/clients/star-ronix.png" },
+  { id: "hamid", name: "Hamid Imou", logo: "/images/clients/hamid-imou.png" },
+  { id: "tadj", name: "Tadj Ben Arab", logo: "/images/clients/tadj-ben-arab.png" },
+  { id: "tasfrites", name: "T'as la Frites", logo: "/images/clients/tas-la-frites.png" },
+  { id: "emran", name: "Emran Logistics", logo: "/images/clients/emran-logistics.png" },
+  { id: "lostacos", name: "Los Tacos", logo: "/images/clients/los-tacos.png" },
+  { id: "novatech", name: "Nova Tech", logo: "/images/clients/nova-tech.png" },
+  { id: "oodeksoo", name: "Oodeksoo", logo: "/images/clients/oodeksoo.png" },
+  { id: "afiri", name: "Afiri", logo: "/images/clients/afiri.png" },
+  { id: "3pindustrie", name: "3P Industrie", logo: "/images/clients/3p-industrie.png" },
+  { id: "pizzaroute66", name: "Pizza Route 66", logo: "/images/clients/pizza-route-66.png" },
+  { id: "benchallal", name: "Benchallal Immobilier", logo: "/images/clients/benchallal-immobilier.png" },
 ];
 
 export type Member = {
@@ -59,14 +71,14 @@ export type Member = {
 };
 
 export const team: Member[] = [
-  { id: "assil", name: "Assil Habib" },
-  { id: "mohamed", name: "Mohamed Derbal" },
-  { id: "younes", name: "Tercha Younes" },
-  { id: "aladdin", name: "Aichouche Aladdin" },
-  { id: "abdenour", name: "Abdenour" },
+  { id: "assil", name: "Assil Habib", photo: "/images/team/assil-habib.png" },
+  { id: "mohamed", name: "Mohamed Derbal", photo: "/images/team/mohamed-derbal.png" },
+  { id: "younes", name: "Tercha Younes", photo: "/images/team/younes-tercha.png" },
+  { id: "aladdin", name: "Aichouche Aladdin", photo: "/images/team/aladdin-aichouche.png" },
+  { id: "abdenour", name: "Abdenour", photo: "/images/team/abdenour-zaki.png" },
   { id: "halla", name: "Halla Rdjm" },
-  { id: "ayoub", name: "Ayoub Nasri" },
-  { id: "aymen", name: "Aymen Gouga" },
+  { id: "ayoub", name: "Ayoub Nasri", photo: "/images/team/ayoub-nasri.png" },
+  { id: "aymen", name: "Aymen Gouga", photo: "/images/team/aymen-gouga.png" },
 ];
 
 export type TestimonialMeta = {

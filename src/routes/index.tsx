@@ -28,6 +28,7 @@ export const Route = createFileRoute("/")({
           "Where Innovation Builds Powerful Brands. Premium creative and digital solutions for ambitious Algerian businesses.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/brand/logo-full.png" },
     ],
   }),
   component: Index,

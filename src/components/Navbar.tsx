@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
+import { BrandLogo } from "./BrandLogo";
+import { brand } from "@/lib/brand";
 
 export function Navbar() {
   const { t } = useI18n();
@@ -41,13 +43,9 @@ export function Navbar() {
             : "py-5"
         }`}
       >
-        <a href="#home" className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-[image:var(--gradient-primary)] font-display text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
-            AM
-          </span>
-          <span className="font-display text-base font-semibold tracking-tight">
-            Algeria <span className="text-gradient">Marketiva</span>
-          </span>
+        <a href="#home" className="flex shrink-0 items-center" aria-label={brand.name}>
+          <BrandLogo variant="inline" className="hidden sm:inline-flex" />
+          <BrandLogo variant="icon" className="sm:hidden" markClassName="h-8 w-8" />
         </a>
 
         <nav className="hidden items-center gap-6 xl:flex">

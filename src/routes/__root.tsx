@@ -79,16 +79,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Algeria Marketiva — Premium Creative & Digital Agency" },
+      {
+        name: "description",
+        content:
+          "Where Innovation Builds Powerful Brands. Premium creative and digital agency helping Algerian businesses grow.",
+      },
+      { name: "author", content: "Algeria Marketiva" },
+      { property: "og:title", content: "Algeria Marketiva — Premium Creative & Digital Agency" },
+      {
+        property: "og:description",
+        content:
+          "Where Innovation Builds Powerful Brands. Premium creative and digital solutions for ambitious Algerian businesses.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:image", content: "/brand/logo-full.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { Reveal, SectionHeading, GradientTitle } from "./primitives";
 import { useI18n } from "@/i18n/I18nProvider";
+import { BrandLogo } from "./BrandLogo";
 
 const LOCATION_URL = "https://share.google/Q10G60jOizrqssFbd";
 
@@ -47,6 +48,7 @@ export function Contact() {
           <Reveal className="lg:col-span-2">
             <div className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-border bg-[image:var(--gradient-primary)] p-8 text-primary-foreground">
               <div>
+                <BrandLogo variant="icon" markTone="on-primary" markClassName="mb-4 h-12 w-12" />
                 <h3 className="text-xl font-semibold">{t.contact.cardTitle}</h3>
                 <p className="mt-2 text-sm text-primary-foreground/85">
                   {t.contact.cardTagline}

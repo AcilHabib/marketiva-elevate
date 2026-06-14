@@ -251,30 +251,30 @@ export const translations: Record<Lang, Dict> = {
         t1: {
           quote:
             "On vendait bien en boutique, mais nos campagnes Meta ne convertissaient pas. En trois mois, l'équipe a restructuré nos funnels et notre ROAS a doublé — sans augmenter le budget de façon folle.",
-          name: "Karim Bensaid",
+          name: "Ayoub Benaid",
           role: "Fondateur",
-          company: "Dano Nuts",
+          company: "Dano",
         },
         t2: {
           quote:
-            "Le rebranding complet — logo, packaging, réseaux — a changé la perception de notre marque à Sétif. Les clients nous disent qu'on a l'air d'une enseigne internationale maintenant.",
-          name: "Nadia Cherifi",
-          role: "Directrice Marketing",
-          company: "Prestige Setif 19",
+            "Une formation très enrichissante qui m'a permis de développer mes compétences en marketing digital et d'acquérir des outils concrets pour améliorer ma stratégie de communication. Merci pour la qualité des contenus proposés.",
+          name: "Sara B",
+          role: "Marketing",
+          company: "3P Industrie",
         },
         t3: {
           quote:
             "Ils ont livré notre site e-commerce en six semaines, avec un dashboard admin clair. Nos commandes en ligne représentent maintenant 40% du chiffre d'affaires.",
-          name: "Yacine Hamidi",
+          name: "Abderahman Mousse",
           role: "Gérant",
           company: "Sami Sport",
         },
         t4: {
           quote:
             "Les vidéos produit qu'ils tournent pour TikTok et Instagram ont vraiment boosté notre notoriété locale. On reçoit des messages de clients qu'on ne connaissait pas avant.",
-          name: "Sofiane Meziane",
+          name: "Khaled",
           role: "Co-fondateur",
-          company: "T'as la Frites",
+          company: "T'as des Frites",
         },
         t5: {
           quote:
@@ -286,9 +286,9 @@ export const translations: Record<Lang, Dict> = {
         t6: {
           quote:
             "L'habillage de notre showroom et les supports print sont d'une qualité rare en Algérie. Chaque détail reflète le positionnement premium qu'on voulait.",
-          name: "Rachid El Djaouda",
+          name: "Younes",
           role: "Directeur Général",
-          company: "El Djaouda Doors Setif",
+          company: "El Djawda",
         },
       },
     },
@@ -298,32 +298,40 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Les réponses aux questions que nos clients nous posent le plus souvent.",
       items: [
         {
-          q: "Combien de temps faut-il pour lancer une campagne ?",
-          a: "Pour une campagne paid media, comptez 1 à 2 semaines pour l'audit, la stratégie et la mise en place du tracking. Les premières optimisations arrivent dès les 7 à 14 premiers jours de diffusion.",
+          q: "Quels sont les tarifs de vos services ?",
+          a: "Nos tarifs sont adaptés à chaque projet. Contactez-nous pour obtenir une offre personnalisée en fonction de vos objectifs et de votre budget.",
         },
         {
-          q: "Quelles plateformes sont les meilleures pour mon activité ?",
-          a: "Cela dépend de votre audience et de votre objectif. Meta convient souvent au B2C et à l'e-commerce, Google au search intent, TikTok aux marques visuelles et jeunes audiences. Nous recommandons après analyse de votre marché.",
+          q: "Travaillez-vous uniquement à Sétif ?",
+          a: "Non. Nous accompagnons des entreprises partout en Algérie et collaborons également à distance avec des clients à l'international.",
         },
         {
-          q: "Proposez-vous la création de contenu ?",
-          a: "Oui — photo, vidéo, motion design, copywriting et créations publicitaires. Nous produisons des contenus adaptés à chaque plateforme et à chaque étape du funnel.",
+          q: "Comment démarrer un projet avec Algeria Marketiva ?",
+          a: "Il vous suffit de nous contacter via le formulaire du site, WhatsApp, téléphone ou e-mail. Nous organiserons un premier échange afin de comprendre vos besoins et de vous proposer la solution la plus adaptée.",
         },
         {
-          q: "Gérez-vous les budgets publicitaires ?",
-          a: "Nous structurons, optimisons et pilotons vos campagnes. Le budget reste sur votre compte publicitaire — vous gardez le contrôle total des dépenses.",
+          q: "Que signifie le slogan « Là où l'innovation construit des marques puissantes » ?",
+          a: "Ce slogan reflète notre vision : combiner créativité, innovation, technologies modernes et stratégies performantes pour bâtir des marques fortes, durables et reconnues sur leur marché.",
         },
         {
-          q: "Pouvez-vous créer des sites web et applications mobiles ?",
-          a: "Absolument. Sites vitrine, e-commerce, SaaS, apps iOS/Android, dashboards admin et intégrations API — conçus pour performer et évoluer avec votre business.",
+          q: "Puis-je demander un devis gratuit ?",
+          a: "Oui. Nous proposons une consultation initiale ainsi qu'un devis personnalisé entièrement gratuits, adaptés aux besoins de votre projet.",
         },
         {
-          q: "Comment mesurez-vous la performance des campagnes ?",
-          a: "Via GA4, GTM, pixels Meta/TikTok/Google et tableaux de bord Looker Studio. Nous suivons ROAS, CPA, CTR, taux de conversion et les KPIs alignés sur vos objectifs business.",
+          q: "Pourquoi choisir Algeria Marketiva ?",
+          a: "Parce que nous associons créativité, innovation et stratégie afin d'aider les entreprises à accroître leur visibilité, renforcer leur image de marque et générer davantage d'opportunités commerciales.",
         },
         {
-          q: "Proposez-vous des packages sur mesure ?",
-          a: "Chaque projet est unique. Nous construisons des offres modulaires selon vos besoins — créatif seul, performance seule, ou accompagnement 360°.",
+          q: "Fournissez-vous des rapports de performance ?",
+          a: "Oui. Nous fournissons des rapports détaillés permettant de suivre les performances des campagnes marketing, des réseaux sociaux et des différentes actions mises en œuvre.",
+        },
+        {
+          q: "Comment obtenez-vous des résultats pour nos campagnes marketing ?",
+          a: "Nous analysons votre marché, votre audience cible et vos objectifs afin de concevoir des stratégies sur mesure, mesurables et orientées résultats.",
+        },
+        {
+          q: "Combien de temps faut-il pour réaliser un projet ?",
+          a: "La durée dépend de la nature et de la complexité du projet. Après l'analyse de vos besoins, nous vous communiquerons un calendrier clair et précis.",
         },
       ],
     },
@@ -519,30 +527,30 @@ export const translations: Record<Lang, Dict> = {
         t1: {
           quote:
             "كنا نبيع جيداً في المتجر لكن حملات Meta لا تحوّل. خلال ثلاثة أشهر، أعاد الفريق بناء مساراتنا وتضاعف ROAS دون زيادة مفرطة في الميزانية.",
-          name: "Karim Bensaid",
+          name: "Ayoub Benaid",
           role: "المؤسس",
-          company: "Dano Nuts",
+          company: "Dano",
         },
         t2: {
           quote:
-            "إعادة الهوية الكاملة — الشعار، التغليف، السوشيال — غيّرت صورة علامتنا في Setif. العملاء يقولون إننا نبدو كعلامة دولية الآن.",
-          name: "Nadia Cherifi",
-          role: "مديرة التسويق",
-          company: "Prestige Setif 19",
+            "تكوين غني جداً سمح لي بتطوير مهاراتي في التسويق الرقمي واكتساب أدوات عملية لتحسين استراتيجية التواصل. شكراً على جودة المحتوى المقدّم.",
+          name: "Sara B",
+          role: "Marketing",
+          company: "3P Industrie",
         },
         t3: {
           quote:
             "سلّموا موقع التجارة الإلكترونية في ستة أسابيع مع لوحة تحكم واضحة. الطلبات أونلاين تمثل الآن 40% من مبيعاتنا.",
-          name: "Yacine Hamidi",
+          name: "Abderahman Mousse",
           role: "المدير",
           company: "Sami Sport",
         },
         t4: {
           quote:
             "فيديوهات المنتج على TikTok وInstagram رفعت حضورنا المحلي فعلاً. نتلقى رسائل من زبائن لم نكن نعرفهم من قبل.",
-          name: "Sofiane Meziane",
+          name: "Khaled",
           role: "الشريك المؤسس",
-          company: "T'as la Frites",
+          company: "T'as des Frites",
         },
         t5: {
           quote:
@@ -554,9 +562,9 @@ export const translations: Record<Lang, Dict> = {
         t6: {
           quote:
             "تزيين صالة العرض والمواد المطبوعة بجودة نادرة في الجزائر. كل تفصيل يعكس التموضع المتميز الذي نريده.",
-          name: "Rachid El Djaouda",
+          name: "Younes",
           role: "المدير العام",
-          company: "El Djaouda Doors Setif",
+          company: "El Djawda",
         },
       },
     },
@@ -566,32 +574,40 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "إجابات على أكثر الأسئلة التي يطرحها عملاؤنا المحتملون.",
       items: [
         {
-          q: "كم يستغرق إطلاق حملة إعلانية؟",
-          a: "لحملة paid media، احسب 1–2 أسبوع للتدقيق والاستراتيجية وإعداد التتبع. أولى التحسينات تبدأ خلال 7–14 يوماً من الإطلاق.",
+          q: "ما هي أسعار خدماتكم؟",
+          a: "أسعارنا مخصّصة لكل مشروع. تواصل معنا للحصول على عرض شخصي وفق أهدافك وميزانيتك.",
         },
         {
-          q: "ما أفضل المنصات لنشاطي؟",
-          a: "يعتمد على جمهورك وهدفك. Meta غالباً للB2C والتجارة الإلكترونية، Google للنية الشرائية، TikTok للعلامات البصرية والجمهور الشاب. نوصي بعد تحليل سوقك.",
+          q: "هل تعملون فقط في Setif؟",
+          a: "لا. نرافق شركات في جميع أنحاء الجزائر ونتعاون عن بُعد مع عملاء دوليين أيضاً.",
         },
         {
-          q: "هل تقدمون صناعة المحتوى؟",
-          a: "نعم — تصوير، فيديو، موشن، كتابة إعلانية وإبداعات. ننتج محتوى مناسباً لكل منصة ومرحلة في مسار الشراء.",
+          q: "كيف أبدأ مشروعاً مع Algeria Marketiva؟",
+          a: "تواصل معنا عبر نموذج الموقع أو WhatsApp أو الهاتف أو البريد الإلكتروني. سننظم جلسة أولى لفهم احتياجاتك واقتراح الحل الأنسب.",
         },
         {
-          q: "هل تديرون ميزانيات الإعلانات؟",
-          a: "نبني ونحسّن وندير حملاتك. الميزانية تبقى في حسابك الإعلاني — تحتفظ بالسيطرة الكاملة على الإنفاق.",
+          q: "ماذا يعني شعار «حيث يبني الابتكار علامات تجارية قوية»؟",
+          a: "يعكس رؤيتنا: الجمع بين الإبداع والابتكار والتقنيات الحديثة والاستراتيجيات الفعّالة لبناء علامات قوية ومستدامة ومعترف بها في السوق.",
         },
         {
-          q: "هل يمكنكم بناء مواقع وتطبيقات جوال؟",
-          a: "بالتأكيد. مواقع، تجارة إلكترونية، SaaS، تطبيقات iOS/Android، لوحات تحكم وتكاملات API — مصممة للأداء والنمو.",
+          q: "هل يمكنني طلب عرض سعر مجاني؟",
+          a: "نعم. نقدّم استشارة أولية وعرض سعر شخصي مجانيين بالكامل، وفق احتياجات مشروعك.",
         },
         {
-          q: "كيف تقيسون أداء الحملات؟",
-          a: "عبر GA4 وGTM وبكسل Meta/TikTok/Google ولوحات Looker Studio. نتابع ROAS وCPA وCTR ومعدلات التحويل ومؤشرات أعمالك.",
+          q: "لماذا تختار Algeria Marketiva؟",
+          a: "لأننا نجمع بين الإبداع والابتكار والاستراتيجية لمساعدة الشركات على زيادة ظهورها وتعزيز صورتها وتوليد المزيد من الفرص التجارية.",
         },
         {
-          q: "هل تقدمون باقات مخصصة؟",
-          a: "كل مشروع فريد. نبني عروضاً مرنة حسب احتياجاتك — إبداع فقط، أداء فقط، أو مرافقة 360°.",
+          q: "هل تقدّمون تقارير أداء؟",
+          a: "نعم. نوفر تقارير مفصّلة لمتابعة أداء الحملات التسويقية ووسائل التواصل والإجراءات المختلفة.",
+        },
+        {
+          q: "كيف تحققون نتائج لحملاتنا التسويقية؟",
+          a: "نحلّل سوقك وجمهورك المستهدف وأهدافك لصياغة استراتيجيات مخصّصة وقابلة للقياس وموجهة نحو النتائج.",
+        },
+        {
+          q: "كم يستغرق إنجاز مشروع؟",
+          a: "تعتمد المدة على طبيعة المشروع وتعقيده. بعد تحليل احتياجاتك، نزوّدك بجدول زمني واضح ودقيق.",
         },
       ],
     },
@@ -797,30 +813,30 @@ export const translations: Record<Lang, Dict> = {
         t1: {
           quote:
             "We sold well in-store, but our Meta campaigns weren't converting. In three months, the team rebuilt our funnels and our ROAS doubled — without blowing up the budget.",
-          name: "Karim Bensaid",
+          name: "Ayoub Benaid",
           role: "Founder",
-          company: "Dano Nuts",
+          company: "Dano",
         },
         t2: {
           quote:
-            "The full rebrand — logo, packaging, social — changed how our brand is perceived in Setif. Clients tell us we look like an international brand now.",
-          name: "Nadia Cherifi",
-          role: "Marketing Director",
-          company: "Prestige Setif 19",
+            "A highly enriching training that helped me develop my digital marketing skills and acquire practical tools to improve my communication strategy. Thank you for the quality of the content provided.",
+          name: "Sara B",
+          role: "Marketing",
+          company: "3P Industrie",
         },
         t3: {
           quote:
             "They delivered our e-commerce site in six weeks with a clear admin dashboard. Online orders now represent 40% of our revenue.",
-          name: "Yacine Hamidi",
+          name: "Abderahman Mousse",
           role: "Manager",
           company: "Sami Sport",
         },
         t4: {
           quote:
             "The product videos they shoot for TikTok and Instagram genuinely boosted our local visibility. We get messages from customers we'd never reached before.",
-          name: "Sofiane Meziane",
+          name: "Khaled",
           role: "Co-founder",
-          company: "T'as la Frites",
+          company: "T'as des Frites",
         },
         t5: {
           quote:
@@ -832,9 +848,9 @@ export const translations: Record<Lang, Dict> = {
         t6: {
           quote:
             "Our showroom fit-out and print materials are a quality you rarely find in Algeria. Every detail reflects the premium positioning we wanted.",
-          name: "Rachid El Djaouda",
+          name: "Younes",
           role: "General Manager",
-          company: "El Djaouda Doors Setif",
+          company: "El Djawda",
         },
       },
     },
@@ -844,32 +860,40 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Answers to the questions potential clients ask us most often.",
       items: [
         {
-          q: "How long does it take to launch a campaign?",
-          a: "For a paid media campaign, expect 1–2 weeks for audit, strategy, and tracking setup. First optimisations typically begin within the first 7–14 days of going live.",
+          q: "What are your service rates?",
+          a: "Our rates are tailored to each project. Contact us for a personalised quote based on your goals and budget.",
         },
         {
-          q: "Which platforms are best for my business?",
-          a: "It depends on your audience and goals. Meta suits B2C and e-commerce, Google captures search intent, TikTok works for visual brands and younger audiences. We recommend after analysing your market.",
+          q: "Do you only work in Setif?",
+          a: "No. We support businesses across Algeria and also work remotely with international clients.",
         },
         {
-          q: "Do you provide content creation?",
-          a: "Yes — photography, video, motion design, copywriting, and ad creatives. We produce content tailored to each platform and funnel stage.",
+          q: "How do I start a project with Algeria Marketiva?",
+          a: "Simply contact us via the website form, WhatsApp, phone or email. We'll arrange an initial call to understand your needs and propose the best solution.",
         },
         {
-          q: "Do you handle advertising budgets?",
-          a: "We structure, optimise, and manage your campaigns. Budget stays in your ad account — you retain full control of spend.",
+          q: "What does the slogan « Where Innovation Builds Powerful Brands » mean?",
+          a: "It reflects our vision: combining creativity, innovation, modern technology and high-performance strategies to build strong, lasting brands recognised in their market.",
         },
         {
-          q: "Can you build websites and mobile apps?",
-          a: "Absolutely. Showcase sites, e-commerce, SaaS, iOS/Android apps, admin dashboards, and API integrations — built to perform and scale with your business.",
+          q: "Can I request a free quote?",
+          a: "Yes. We offer a free initial consultation and a fully personalised quote tailored to your project's needs.",
         },
         {
-          q: "How do you measure campaign performance?",
-          a: "Through GA4, GTM, Meta/TikTok/Google pixels, and Looker Studio dashboards. We track ROAS, CPA, CTR, conversion rates, and KPIs aligned with your business goals.",
+          q: "Why choose Algeria Marketiva?",
+          a: "Because we combine creativity, innovation and strategy to help businesses increase visibility, strengthen their brand image and generate more commercial opportunities.",
         },
         {
-          q: "Do you offer custom packages?",
-          a: "Every project is unique. We build modular offers based on your needs — creative only, performance only, or full 360° support.",
+          q: "Do you provide performance reports?",
+          a: "Yes. We provide detailed reports to track the performance of marketing campaigns, social media and all actions implemented.",
+        },
+        {
+          q: "How do you deliver results for our marketing campaigns?",
+          a: "We analyse your market, target audience and objectives to design bespoke, measurable, results-driven strategies.",
+        },
+        {
+          q: "How long does it take to complete a project?",
+          a: "It depends on the nature and complexity of the project. After analysing your needs, we'll provide a clear and precise timeline.",
         },
       ],
     },
