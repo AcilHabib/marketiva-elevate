@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { useTheme } from "@/i18n/ThemeProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 import { BrandLogo } from "./BrandLogo";
 import { brand } from "@/lib/brand";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -21,21 +15,16 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const primaryLinks = [
+  const links = [
     { label: t.nav.about, href: "#about" },
     { label: t.nav.services, href: "#services" },
-    { label: t.nav.team, href: "#team" },
-    { label: t.nav.contact, href: "#contact" },
-  ];
-
-  const moreLinks = [
     { label: t.nav.clients, href: "#clients" },
     { label: t.nav.testimonials, href: "#testimonials" },
     { label: t.nav.formations, href: "#formations" },
     { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.team, href: "#team" },
+    { label: t.nav.contact, href: "#contact" },
   ];
-
-  const mobileLinks = [...primaryLinks, ...moreLinks];
 
   const logoOnLightBar = scrolled && theme === "light";
   const logoAppearance = logoOnLightBar ? "default" : "nav";
@@ -55,17 +44,10 @@ export function Navbar() {
   }, [open]);
 
   const linkClass = cn(
-    "whitespace-nowrap rounded-md px-2 py-1.5 text-xs font-medium transition-colors lg:text-sm xl:px-2.5",
+    "whitespace-nowrap rounded-md px-1.5 py-1 text-[10px] font-medium tracking-wide transition-colors xl:px-2 xl:text-xs",
     logoOnLightBar
       ? "text-muted-foreground hover:text-foreground"
       : "text-white/75 hover:text-white",
-  );
-
-  const moreTriggerClass = cn(
-    "inline-flex items-center gap-0.5 whitespace-nowrap rounded-md px-2 py-1.5 text-xs font-medium outline-none transition-colors lg:text-sm xl:px-2.5",
-    logoOnLightBar
-      ? "text-muted-foreground hover:text-foreground"
-      : "text-white/75 hover:text-white data-[state=open]:text-white",
   );
 
   return (
@@ -79,61 +61,47 @@ export function Navbar() {
         className={cn(
           "container-px mx-auto max-w-7xl transition-all duration-300",
           scrolled
-            ? "my-2 rounded-2xl border border-border bg-background/80 py-2.5 shadow-[var(--shadow-card)] backdrop-blur-xl lg:my-3 lg:py-3"
-            : "py-4 lg:py-5",
-          !scrolled && "bg-gradient-to-b from-background/40 to-transparent",
+            ? "my-2 rounded-2xl border border-border bg-background/80 py-2 shadow-[var(--shadow-card)] backdrop-blur-xl lg:my-2.5 lg:py-2.5"
+            : "py-3 lg:py-4",
+          !scrolled && "bg-gradient-to-b from-background/50 to-transparent",
         )}
       >
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 lg:gap-3">
           <a href="#home" className="flex shrink-0 items-center" aria-label={brand.name}>
             <BrandLogo
               variant="inline"
               appearance={logoAppearance}
-              className="hidden min-[420px]:inline-flex"
-              wordmarkClassName="text-sm lg:text-base"
-              markClassName="h-8 w-8 lg:h-9 lg:w-9"
+              className="hidden xl:inline-flex"
+              wordmarkClassName="text-sm"
+              markClassName="h-8 w-8"
             />
             <BrandLogo
               variant="icon"
               appearance={logoAppearance}
-              className="min-[420px]:hidden"
+              className="xl:hidden"
               markClassName="h-8 w-8"
             />
           </a>
 
           <nav
-            className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1"
+            className="hidden min-w-0 flex-1 items-center justify-center gap-0 lg:flex xl:gap-0.5"
             aria-label="Main"
           >
-            {primaryLinks.map((l) => (
+            {links.map((l) => (
               <a key={l.href} href={l.href} className={linkClass}>
                 {l.label}
               </a>
             ))}
-
-            <DropdownMenu>
-              <DropdownMenuTrigger className={moreTriggerClass}>
-                {t.nav.more}
-                <ChevronDown size={14} className="opacity-70" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="min-w-[11rem]">
-                {moreLinks.map((l) => (
-                  <DropdownMenuItem key={l.href} asChild>
-                    <a href={l.href}>{l.label}</a>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
 
-          <div className="ms-auto flex shrink-0 items-center gap-1 sm:gap-1.5">
-            <div className="hidden items-center gap-1 sm:flex">
+          <div className="ms-auto flex shrink-0 items-center gap-1">
+            <div className="hidden items-center gap-0.5 sm:flex">
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
             <a
               href="#contact"
-              className="hidden rounded-full bg-[image:var(--gradient-primary)] px-3 py-2 text-xs font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5 sm:inline-flex lg:px-4 lg:py-2.5 lg:text-sm"
+              className="hidden rounded-full bg-[image:var(--gradient-primary)] px-3 py-2 text-[10px] font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5 sm:inline-flex xl:px-4 xl:py-2.5 xl:text-xs"
             >
               {t.nav.cta}
             </a>
@@ -170,7 +138,7 @@ export function Navbar() {
                 <LanguageSwitcher compact />
               </div>
               <div className="grid grid-cols-2 gap-1">
-                {mobileLinks.map((l) => (
+                {links.map((l) => (
                   <a
                     key={l.href}
                     href={l.href}

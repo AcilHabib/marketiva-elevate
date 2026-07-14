@@ -75,7 +75,8 @@ export type Dict = {
     eyebrow: string;
     title: Title;
     subtitle: string;
-    experience: string;
+    experienceDefault: string;
+    experienceByMember: Record<string, string>;
     viewPlan: string;
     planTitle: string;
     frameworkTitle: string;
@@ -361,8 +362,15 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "Les talents",
       title: { lead: "Rencontrez l'équipe derrière", accent: "le travail" },
-      subtitle: "Dix experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
-      experience: "5+ ans d'expérience",
+      subtitle: "Douze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
+      experienceDefault: "5+ ans d'expérience",
+      experienceByMember: {
+        assil: "4+ ans d'expérience",
+        roua: "2+ ans d'expérience",
+        adem: "4+ ans d'expérience",
+        halla: "3+ ans d'expérience",
+        aymen: "10+ ans d'expérience",
+      },
       viewPlan: "Voir le plan métier",
       planTitle: "Plan métier",
       frameworkTitle: "Notre cadre stratégique",
@@ -371,10 +379,12 @@ export const translations: Record<Lang, Dict> = {
       outcomeLabel: "Résultat",
       roles: {
         assil: "Développeur Full Stack",
+        malik: "Développeur d'applications mobiles",
         mohamed: "Media Buying",
         younes: "Manager Commercial & Animateur",
+        roua: "Téléopératrice commerciale",
         aladdin: "Infographiste, Designer & Designer 3D",
-        zaki: "Vidéaste",
+        zaki: "Vidéographe",
         abdenour: "Montage vidéo & Motion Graphics",
         adem: "Marketing",
         halla: "Community Manager",
@@ -430,7 +440,7 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Parlez-nous de votre projet et notre équipe vous répondra sous 24 heures.",
       cardTitle: "Algeria Marketiva",
       cardTagline: "Propulser les marques algériennes.",
-      labels: { phone: "Téléphone", email: "Email", location: "Localisation", locationValue: "Skills Center Sétif" },
+      labels: { phone: "Téléphone", email: "Email", location: "Localisation", locationValue: "Rue Haffad Abdelmadjid, Sétif 19000, Algérie" },
       form: {
         name: "Nom",
         email: "Email",
@@ -690,8 +700,15 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "الأشخاص",
       title: { lead: "تعرّف على الفريق وراء", accent: "العمل" },
-      subtitle: "عشرة خبراء متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
-      experience: "+5 سنوات خبرة",
+      subtitle: "اثنا عشر خبيراً متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
+      experienceDefault: "+5 سنوات خبرة",
+      experienceByMember: {
+        assil: "+4 سنوات خبرة",
+        roua: "+2 سنوات خبرة",
+        adem: "+4 سنوات خبرة",
+        halla: "+3 سنوات خبرة",
+        aymen: "+10 سنوات خبرة",
+      },
       viewPlan: "عرض خطة العمل",
       planTitle: "خطة العمل",
       frameworkTitle: "إطارنا الاستراتيجي",
@@ -700,8 +717,10 @@ export const translations: Record<Lang, Dict> = {
       outcomeLabel: "النتيجة",
       roles: {
         assil: "مطور Full Stack",
+        malik: "مطور تطبيقات الجوال",
         mohamed: "شراء الإعلانات",
         younes: "مدير تجاري ومنشّط",
+        roua: "مشغّلة تجارية",
         aladdin: "مصمم جرافيك ومصمم ثلاثي الأبعاد",
         zaki: "مصوّر فيديو",
         abdenour: "مونتاج فيديو وموشن جرافيك",
@@ -740,7 +759,7 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "أخبرنا عن مشروعك وسيعاود فريقنا التواصل معك خلال 24 ساعة.",
       cardTitle: "Algeria Marketiva",
       cardTagline: "تمكين العلامات التجارية الجزائرية.",
-      labels: { phone: "الهاتف", email: "البريد الإلكتروني", location: "الموقع", locationValue: "Skills Center سطيف" },
+      labels: { phone: "الهاتف", email: "البريد الإلكتروني", location: "الموقع", locationValue: "شارع حافظ عبد المجيد، سطيف 19000، الجزائر" },
       form: {
         name: "الاسم",
         email: "البريد الإلكتروني",
@@ -1010,8 +1029,15 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "The People",
       title: { lead: "Meet the team behind", accent: "the work" },
-      subtitle: "Ten multidisciplinary experts turning ambitious ideas into polished reality.",
-      experience: "5+ years experience",
+      subtitle: "Twelve multidisciplinary experts turning ambitious ideas into polished reality.",
+      experienceDefault: "5+ years experience",
+      experienceByMember: {
+        assil: "4+ years experience",
+        roua: "2+ years experience",
+        adem: "4+ years experience",
+        halla: "3+ years experience",
+        aymen: "10+ years experience",
+      },
       viewPlan: "View business plan",
       planTitle: "Business plan",
       frameworkTitle: "Our strategic framework",
@@ -1020,8 +1046,10 @@ export const translations: Record<Lang, Dict> = {
       outcomeLabel: "Outcome",
       roles: {
         assil: "Full Stack Developer",
+        malik: "Mobile App Developer",
         mohamed: "Media Buying",
         younes: "Commercial Manager & Animator",
+        roua: "Commercial Teleoperator",
         aladdin: "Infographist, Designer & 3D Designer",
         zaki: "Videographer",
         abdenour: "Video Editing & Motion Graphics",
@@ -1061,7 +1089,7 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Tell us about your project and our team will get back to you within 24 hours.",
       cardTitle: "Algeria Marketiva",
       cardTagline: "Empowering Algerian Brands.",
-      labels: { phone: "Phone", email: "Email", location: "Location", locationValue: "Skills Center Setif" },
+      labels: { phone: "Phone", email: "Email", location: "Location", locationValue: "Rue Haffad Abdelmadjid, Setif 19000, Algeria" },
       form: {
         name: "Name",
         email: "Email",

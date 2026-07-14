@@ -8,7 +8,11 @@ import { BrandLogo } from "./BrandLogo";
 
 const LOCATION_URL = "https://maps.app.goo.gl/r7sey2hmJhMT3rUm9";
 const MAP_EMBED_URL =
-  "https://maps.google.com/maps?q=36.1896252,5.4076754&hl=fr&z=16&output=embed";
+  "https://maps.google.com/maps?q=Rue+Haffad+Abdelmadjid,+S%C3%A9tif+19000,+Alg%C3%A9rie&hl=fr&z=16&output=embed";
+const PHONE_DISPLAY = "+213 550 06 45 71";
+const PHONE_TEL = "+213550064571";
+const PHONE_WHATSAPP = "213550064571";
+const EMAIL = "algeriamarketiva@gmail.com";
 
 export function Contact() {
   const { t } = useI18n();
@@ -21,8 +25,8 @@ export function Contact() {
   });
 
   const details = [
-    { icon: Phone, label: t.contact.labels.phone, value: "+213 675 36 78 96", href: "tel:+213675367896", external: false },
-    { icon: Mail, label: t.contact.labels.email, value: "contact@am.com", href: "mailto:contact@am.com", external: false },
+    { icon: Phone, label: t.contact.labels.phone, value: PHONE_DISPLAY, href: `tel:${PHONE_TEL}`, external: false },
+    { icon: Mail, label: t.contact.labels.email, value: EMAIL, href: `mailto:${EMAIL}`, external: false },
     { icon: MapPin, label: t.contact.labels.location, value: t.contact.labels.locationValue, href: LOCATION_URL, external: true },
   ];
 
@@ -33,6 +37,19 @@ export function Contact() {
       toast.error(result.error.issues[0].message);
       return;
     }
+
+    const { name, email, message } = result.data;
+    const whatsappText = [
+      `*${t.contact.form.name}:* ${name}`,
+      `*${t.contact.form.email}:* ${email}`,
+      "",
+      `*${t.contact.form.message}:*`,
+      message,
+    ].join("\n");
+
+    const whatsappUrl = `https://wa.me/${PHONE_WHATSAPP}?text=${encodeURIComponent(whatsappText)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
     toast.success(t.contact.toast.success);
     setForm({ name: "", email: "", message: "" });
   };

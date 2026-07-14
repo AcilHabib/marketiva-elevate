@@ -52,7 +52,9 @@ export function Team() {
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {t.team.roles[m.id]}
                   </p>
-                  <p className="mt-2 text-[11px] font-medium text-primary">{t.team.experience}</p>
+                  <p className="mt-2 text-[11px] font-medium text-primary">
+                    {t.team.experienceByMember[m.id] ?? t.team.experienceDefault}
+                  </p>
                 </div>
               </button>
             </Reveal>
@@ -76,7 +78,8 @@ export function Team() {
                   <div>
                     <DialogTitle className="font-display text-xl">{selected.name}</DialogTitle>
                     <DialogDescription className="mt-1 text-sm text-muted-foreground">
-                      {t.team.roles[selected.id]} · {t.team.experience}
+                      {t.team.roles[selected.id]} ·{" "}
+                      {t.team.experienceByMember[selected.id] ?? t.team.experienceDefault}
                     </DialogDescription>
                   </div>
                 </div>
@@ -87,62 +90,96 @@ export function Team() {
               </DialogHeader>
 
               <div className="space-y-6 pt-2 text-sm leading-relaxed text-muted-foreground">
-                {plan.intro.split("\n\n").map((p) => (
-                  <p key={p.slice(0, 24)}>{p}</p>
+                {plan.intro?.split("\n\n").map((p) => (
+                  <p key={p.slice(0, 32)}>{p}</p>
                 ))}
 
                 <ol className="space-y-5">
                   {plan.steps.map((step, idx) => (
-                    <li key={step.title} className="rounded-xl border border-border bg-card/40 p-4">
+                    <li key={`${step.title}-${idx}`} className="rounded-xl border border-border bg-card/40 p-4">
                       <h4 className="font-display text-sm font-semibold text-foreground">
                         {idx + 1}. {step.title}
                       </h4>
-                      <ul className="mt-3 list-inside list-disc space-y-1 text-xs sm:text-sm">
+                      {step.preamble && <p className="mt-2 text-sm">{step.preamble}</p>}
+                      {step.listLabel && (
+                        <p className="mt-2 text-xs font-medium text-foreground/80">{step.listLabel}</p>
+                      )}
+                      <ul className="mt-2 list-inside list-disc space-y-1.5 text-xs sm:text-sm">
                         {step.items.map((item) => (
-                          <li key={item}>{item}</li>
+                          <li key={item.slice(0, 48)}>{item}</li>
                         ))}
                       </ul>
-                      <p className="mt-3 text-xs font-medium text-primary">
-                        {t.team.outcomeLabel}: {step.outcome}
-                      </p>
+                      {step.outcome && (
+                        <div className="mt-3 border-t border-border/60 pt-3">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-foreground/70">
+                            Outcome
+                          </p>
+                          <p className="mt-1 text-xs font-medium text-primary sm:text-sm">
+                            {step.outcome}
+                          </p>
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ol>
 
-                <div>
-                  <h4 className="font-display text-sm font-semibold text-foreground">
-                    {t.team.frameworkTitle}
-                  </h4>
-                  <div className="mt-3 space-y-1 font-mono text-xs text-muted-foreground">
-                    {plan.framework.map((line, i) => (
-                      <div key={line} className="flex items-center gap-2">
-                        {i > 0 && <span className="text-primary/60">↓</span>}
-                        <span>{line}</span>
-                      </div>
+                {plan.framework && plan.framework.length > 0 && (
+                  <div>
+                    <h4 className="font-display text-sm font-semibold text-foreground">
+                      {plan.frameworkTitle ?? t.team.frameworkTitle}
+                    </h4>
+                    <div className="mt-3 space-y-1 font-mono text-xs text-muted-foreground">
+                      {plan.framework.map((line, i) => (
+                        <div key={line} className="flex items-center gap-2">
+                          {i > 0 && <span className="text-primary/60">↓</span>}
+                          <span>{line}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {plan.deliverables && plan.deliverables.length > 0 && (
+                  <div>
+                    <h4 className="font-display text-sm font-semibold text-foreground">
+                      {plan.deliverablesTitle ?? t.team.deliverablesTitle}
+                    </h4>
+                    <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                      {plan.deliverables.map((d) => (
+                        <li key={d} className="flex items-start gap-2 text-xs sm:text-sm">
+                          <span className="text-primary">✅</span>
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {plan.workflow && plan.workflow.length > 0 && (
+                  <div>
+                    <h4 className="font-display text-sm font-semibold text-foreground">
+                      {plan.workflowTitle ?? "Service Workflow"}
+                    </h4>
+                    <ol className="mt-3 list-inside list-decimal space-y-1.5 text-xs sm:text-sm">
+                      {plan.workflow.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+
+                {plan.result && (
+                  <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+                    <h4 className="font-display text-sm font-semibold text-foreground">
+                      {plan.resultTitle ?? t.team.resultTitle}
+                    </h4>
+                    {plan.result.split("\n\n").map((p) => (
+                      <p key={p.slice(0, 32)} className="mt-2 text-sm">
+                        {p}
+                      </p>
                     ))}
                   </div>
-                </div>
-
-                <div>
-                  <h4 className="font-display text-sm font-semibold text-foreground">
-                    {t.team.deliverablesTitle}
-                  </h4>
-                  <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                    {plan.deliverables.map((d) => (
-                      <li key={d} className="flex items-start gap-2 text-xs sm:text-sm">
-                        <span className="text-primary">✓</span>
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
-                  <h4 className="font-display text-sm font-semibold text-foreground">
-                    {t.team.resultTitle}
-                  </h4>
-                  <p className="mt-2 text-sm">{plan.result}</p>
-                </div>
+                )}
               </div>
             </>
           )}

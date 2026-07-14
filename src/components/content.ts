@@ -62,6 +62,7 @@ export const clients: Client[] = [
   { id: "3pindustrie", name: "3P Industrie", logo: "/images/clients/3p-industrie.png" },
   { id: "pizzaroute66", name: "Pizza Route 66", logo: "/images/clients/pizza-route-66.png" },
   { id: "benchallal", name: "Benchallal Immobilier", logo: "/images/clients/benchallal-immobilier.png" },
+  { id: "g9immo", name: "EURL G9 IMMO Promotion Immobiliere", logo: "/images/clients/g9-immo.png" },
 ];
 
 export type Member = {
@@ -72,13 +73,15 @@ export type Member = {
 
 export const team: Member[] = [
   { id: "assil", name: "Assil Habib", photo: "/images/team/assil-habib.png" },
+  { id: "malik", name: "Malik Benabid", photo: "/images/team/malik-benabid.png" },
   { id: "mohamed", name: "Mohamed Derbal", photo: "/images/team/mohamed-derbal.png" },
   { id: "younes", name: "Younes Tarcha", photo: "/images/team/younes-tarcha.png" },
+  { id: "roua", name: "Kassa Baghedouch Roua", photo: "/images/team/kassa-baghedouch-roua.png" },
   { id: "aladdin", name: "Aichouche Aladdin", photo: "/images/team/aladdin-aichouche.png" },
   { id: "zaki", name: "Zaki Bellout", photo: "/images/team/zaki-bellout.png" },
   { id: "abdenour", name: "Douamene Abdenour", photo: "/images/team/douamene-abdenour.png" },
   { id: "adem", name: "Cherfaoui Adem", photo: "/images/team/cherfaoui-adem.png" },
-  { id: "halla", name: "Halla Rdjm" },
+  { id: "halla", name: "Halla Djamla", photo: "/images/team/halla-djamla.png" },
   { id: "ayoub", name: "Ayoub Nasri", photo: "/images/team/ayoub-nasri.png" },
   { id: "aymen", name: "Aymen Gouga", photo: "/images/team/aymen-gouga.png" },
 ];

@@ -1,36 +1,29 @@
 import { SectionHeading, GradientTitle } from "./primitives";
-import { clients, type Client } from "./content";
+import { clients } from "./content";
 import { useI18n } from "@/i18n/I18nProvider";
 
-function ClientCard({ client }: { client: Client }) {
+function ClientLogo({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="flex h-20 min-w-[260px] items-center gap-4 rounded-xl border border-border bg-card/50 px-6 backdrop-blur-sm transition-colors hover:border-primary/40">
-      {client.logo ? (
-        <>
-          <img
-            src={client.logo}
-            alt=""
-            loading="lazy"
-            className="h-10 w-14 shrink-0 object-contain opacity-90 transition-opacity group-hover:opacity-100"
-          />
-          <span dir="auto" className="font-display text-sm font-medium leading-snug text-foreground/90">
-            {client.name}
-          </span>
-        </>
-      ) : (
-        <span dir="auto" className="font-display text-sm font-medium tracking-wide text-muted-foreground">
-          {client.name}
-        </span>
-      )}
+    <div className="group flex h-28 w-44 shrink-0 items-center justify-center px-6 sm:h-32 sm:w-52 sm:px-8">
+      <img
+        src={logo}
+        alt={name}
+        loading="lazy"
+        className="max-h-14 max-w-[min(100%,160px)] object-contain opacity-70 grayscale-[25%] transition-all duration-500 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0 sm:max-h-[4.5rem] sm:max-w-[180px]"
+      />
     </div>
   );
 }
 
 export function TrustedBy() {
   const { t } = useI18n();
-  const row = [...clients, ...clients];
+  const logoClients = clients.filter((c): c is typeof c & { logo: string } => Boolean(c.logo));
+  const row = [...logoClients, ...logoClients];
+
   return (
-    <section id="clients" className="section-pad relative overflow-hidden">
+    <section id="clients" className="relative overflow-hidden pb-16 pt-[clamp(5rem,10vw,9rem)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
       <div className="container-px mx-auto max-w-7xl">
         <SectionHeading
           eyebrow={t.clientsSection.eyebrow}
@@ -39,11 +32,13 @@ export function TrustedBy() {
         />
       </div>
 
-      {/* Marquee */}
-      <div className="relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="flex w-max animate-[marquee_38s_linear_infinite] gap-5 px-3">
+      <div className="relative mt-10 sm:mt-12">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-24" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-24" />
+
+        <div className="flex w-max animate-[marquee_42s_linear_infinite] items-center gap-2 sm:gap-4">
           {row.map((c, i) => (
-            <ClientCard key={`${c.id}-${i}`} client={c} />
+            <ClientLogo key={`${c.id}-${i}`} name={c.name} logo={c.logo} />
           ))}
         </div>
       </div>
