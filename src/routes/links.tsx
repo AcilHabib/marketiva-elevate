@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 const WEBSITE = "https://algeriamarketiva.com";
 const WHATSAPP = "213550064571";
-const EMAIL = "algeriamarketiva@gmail.com";
+const EMAIL = "contact@algeriamarketiva.com";
 const LOCATION_URL =
   "https://www.google.com/maps/place/Rue+Haffad+Abdelmadid,+Setif/@36.1899798,5.4049042,17z/data=!3m1!4b1!4m6!3m5!1s0x12f3159c7ff9faff:0x951009c80d3b589f!8m2!3d36.1899798!4d5.4074791!16s%2Fg%2F1tx75lmg?entry=ttu&g_ep=EgoyMDI2MDcxMy4wIKXMDSoASAFQAw%3D%3D";
 
