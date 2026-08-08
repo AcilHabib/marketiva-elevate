@@ -305,7 +305,7 @@ export const translations: Record<Lang, Dict> = {
         t6: {
           quote:
             "L'habillage de notre showroom et les supports print sont d'une qualité rare en Algérie. Chaque détail reflète le positionnement premium qu'on voulait.",
-          name: "Younes",
+          name: "Younes Boudraa",
           role: "Directeur Général",
           company: "El Djawda",
         },
@@ -362,7 +362,7 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "Les talents",
       title: { lead: "Rencontrez l'équipe derrière", accent: "le travail" },
-      subtitle: "Douze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
+      subtitle: "Quinze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
       experienceDefault: "5+ ans d'expérience",
       experienceByMember: {
         assil: "4+ ans d'expérience",
@@ -370,6 +370,8 @@ export const translations: Record<Lang, Dict> = {
         adem: "4+ ans d'expérience",
         halla: "3+ ans d'expérience",
         aymen: "10+ ans d'expérience",
+        salma: "2+ ans d'expérience",
+        imene: "2+ ans d'expérience",
       },
       viewPlan: "Voir le plan métier",
       planTitle: "Plan métier",
@@ -385,11 +387,14 @@ export const translations: Record<Lang, Dict> = {
         roua: "Téléopératrice commerciale",
         aladdin: "Infographiste, Designer & Designer 3D",
         zaki: "Vidéographe",
-        abdenour: "Montage vidéo & Motion Graphics",
+        abdenour: "Vidéographie & Montage",
         adem: "Marketing",
         halla: "Community Manager",
         ayoub: "Sponsoring",
         aymen: "Impression",
+        salma: "Animatrice",
+        imene: "Animatrice",
+        amine: "Motion Graphics & Montage Pro",
       },
     },
     formations: {
@@ -643,7 +648,7 @@ export const translations: Record<Lang, Dict> = {
         t6: {
           quote:
             "تزيين صالة العرض والمواد المطبوعة بجودة نادرة في الجزائر. كل تفصيل يعكس التموضع المتميز الذي نريده.",
-          name: "Younes",
+          name: "Younes Boudraa",
           role: "المدير العام",
           company: "El Djawda",
         },
@@ -700,7 +705,7 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "الأشخاص",
       title: { lead: "تعرّف على الفريق وراء", accent: "العمل" },
-      subtitle: "اثنا عشر خبيراً متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
+      subtitle: "خمسة عشر خبيراً متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
       experienceDefault: "+5 سنوات خبرة",
       experienceByMember: {
         assil: "+4 سنوات خبرة",
@@ -708,6 +713,8 @@ export const translations: Record<Lang, Dict> = {
         adem: "+4 سنوات خبرة",
         halla: "+3 سنوات خبرة",
         aymen: "+10 سنوات خبرة",
+        salma: "+2 سنوات خبرة",
+        imene: "+2 سنوات خبرة",
       },
       viewPlan: "عرض خطة العمل",
       planTitle: "خطة العمل",
@@ -723,11 +730,14 @@ export const translations: Record<Lang, Dict> = {
         roua: "مشغّلة تجارية",
         aladdin: "مصمم جرافيك ومصمم ثلاثي الأبعاد",
         zaki: "مصوّر فيديو",
-        abdenour: "مونتاج فيديو وموشن جرافيك",
+        abdenour: "تصوير فيديو ومونتاج",
         adem: "تسويق",
         halla: "مديرة مجتمع",
         ayoub: "الرعاية",
         aymen: "الطباعة",
+        salma: "منشّطة",
+        imene: "منشّطة",
+        amine: "موشن جرافيك ومونتاج احترافي",
       },
     },
     formations: {
@@ -972,7 +982,7 @@ export const translations: Record<Lang, Dict> = {
         t6: {
           quote:
             "Our showroom fit-out and print materials are a quality you rarely find in Algeria. Every detail reflects the premium positioning we wanted.",
-          name: "Younes",
+          name: "Younes Boudraa",
           role: "General Manager",
           company: "El Djawda",
         },
@@ -1029,7 +1039,7 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "The People",
       title: { lead: "Meet the team behind", accent: "the work" },
-      subtitle: "Twelve multidisciplinary experts turning ambitious ideas into polished reality.",
+      subtitle: "Fifteen multidisciplinary experts turning ambitious ideas into polished reality.",
       experienceDefault: "5+ years experience",
       experienceByMember: {
         assil: "4+ years experience",
@@ -1037,6 +1047,8 @@ export const translations: Record<Lang, Dict> = {
         adem: "4+ years experience",
         halla: "3+ years experience",
         aymen: "10+ years experience",
+        salma: "2+ years experience",
+        imene: "2+ years experience",
       },
       viewPlan: "View business plan",
       planTitle: "Business plan",
@@ -1052,11 +1064,14 @@ export const translations: Record<Lang, Dict> = {
         roua: "Commercial Teleoperator",
         aladdin: "Infographist, Designer & 3D Designer",
         zaki: "Videographer",
-        abdenour: "Video Editing & Motion Graphics",
+        abdenour: "Videography & Montage",
         adem: "Marketing",
         halla: "Community Manager",
         ayoub: "Sponsoring",
         aymen: "Printing",
+        salma: "Animator",
+        imene: "Animator",
+        amine: "Motion Graphics & Pro Editing",
       },
     },
     formations: {

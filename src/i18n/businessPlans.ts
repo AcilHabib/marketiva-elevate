@@ -393,8 +393,12 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
       "video production",
     ),
     abdenour: placeholderPlan(
-      "We don't just edit clips—we craft polished video narratives with motion design that drives engagement.",
-      "post-production",
+      "We don't just film and edit—we craft polished video narratives that capture attention and drive engagement.",
+      "videography & montage",
+    ),
+    amine: placeholderPlan(
+      "We don't just animate frames—we craft professional motion graphics and montage that elevate every brand story.",
+      "motion graphics & montage",
     ),
     ayoub: placeholderPlan(
       "We don't just find sponsors—we structure partnerships that expand reach and brand prestige.",
@@ -403,6 +407,14 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
     aymen: placeholderPlan(
       "We don't just print—we deliver premium physical branding that reflects your brand quality.",
       "print",
+    ),
+    salma: placeholderPlan(
+      "We don't just host events—we animate brand experiences that engage audiences and leave a lasting impression.",
+      "animation",
+    ),
+    imene: placeholderPlan(
+      "We don't just host events—we animate brand experiences that engage audiences and leave a lasting impression.",
+      "animation",
     ),
   },
   fr: {
@@ -434,8 +446,12 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
       "vidéo",
     ),
     abdenour: placeholderPlan(
-      "Nous ne montons pas seulement — nous craftons des récits vidéo polis avec motion design orienté engagement.",
-      "post-production",
+      "Nous ne montons pas seulement — nous filmons et craftons des récits vidéo polis orientés engagement.",
+      "vidéographie & montage",
+    ),
+    amine: placeholderPlan(
+      "Nous ne faisons pas que du motion — nous créons des motion graphics et un montage pro qui élèvent chaque histoire de marque.",
+      "motion graphics & montage",
     ),
     ayoub: placeholderPlan(
       "Nous ne trouvons pas seulement des sponsors — nous structurons des partenariats qui étendent la portée et le prestige.",
@@ -444,6 +460,14 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
     aymen: placeholderPlan(
       "Nous n'imprimons pas seulement — nous livrons un branding physique premium à la hauteur de votre marque.",
       "print",
+    ),
+    salma: placeholderPlan(
+      "Nous n'animons pas seulement des événements — nous créons des expériences de marque qui engagent et marquent les esprits.",
+      "animation",
+    ),
+    imene: placeholderPlan(
+      "Nous n'animons pas seulement des événements — nous créons des expériences de marque qui engagent et marquent les esprits.",
+      "animation",
     ),
   },
   ar: {
@@ -475,8 +499,12 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
       "video",
     ),
     abdenour: placeholderPlan(
-      "نحن لا نmontage فقط — بل نصنع سرداً بصرياً مصقولاً مع motion design.",
-      "post-production",
+      "نحن لا نصوّر ونمونتاج فقط — بل نصنع سرداً بصرياً مصقولاً يرفع التفاعل.",
+      "تصوير ومونتاج",
+    ),
+    amine: placeholderPlan(
+      "نحن لا نقدّم موشن فقط — بل نصنع موشن جرافيك ومونتاجاً احترافياً يرفع قصة كل علامة.",
+      "موشن جرافيك ومونتاج",
     ),
     ayoub: placeholderPlan(
       "نحن لا نجد رعاة فقط — بل نهيكل شراكات توسّع الوصول وترفع prestige العلامة.",
@@ -485,6 +513,14 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
     aymen: placeholderPlan(
       "نحن لا نطبع فقط — بل نقدّم branding مادي premium.",
       "print",
+    ),
+    salma: placeholderPlan(
+      "نحن لا نقدّم فعاليات فقط — بل ننشّط تجارب علامة تجارية تلفت الجمهور وتترك انطباعاً دائماً.",
+      "تنشيط",
+    ),
+    imene: placeholderPlan(
+      "نحن لا نقدّم فعاليات فقط — بل ننشّط تجارب علامة تجارية تلفت الجمهور وتترك انطباعاً دائماً.",
+      "تنشيط",
     ),
   },
 };
