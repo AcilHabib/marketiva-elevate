@@ -86,7 +86,7 @@ export const team: Member[] = [
   { id: "ayoub", name: "Ayoub Nasri", photo: "/images/team/ayoub-nasri.png" },
   { id: "aymen", name: "Aymen Gouga", photo: "/images/team/aymen-gouga.png" },
   { id: "salma", name: "Mami Salma", photo: "/images/team/mami-salma.png" },
-  { id: "imene", name: "Imene Hareng", photo: "/images/team/imene-hareng.png" },
+  { id: "imene", name: "Imene Harrag", photo: "/images/team/imene-Harrag.png" },
   { id: "amine", name: "Amine Chettih", photo: "/images/team/amine-chettih.png" },
 ];
 
