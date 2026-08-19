@@ -67,16 +67,18 @@ const links: LinkItem[] = [
   {
     id: "facebook",
     label: "Facebook",
-    description: "Coming Soon",
+    description: "Algeria Marketiva",
     icon: Facebook,
-    disabled: true,
+    href: "https://www.facebook.com/profile.php?id=61593335346325",
+    external: true,
   },
   {
     id: "instagram",
     label: "Instagram",
-    description: "Coming Soon",
+    description: "@algeria_marketiva",
     icon: Instagram,
-    disabled: true,
+    href: "https://www.instagram.com/algeria_marketiva",
+    external: true,
   },
   {
     id: "linkedin",
