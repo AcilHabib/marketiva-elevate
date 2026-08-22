@@ -16,14 +16,15 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.services, href: "#services" },
-    { label: t.nav.clients, href: "#clients" },
-    { label: t.nav.testimonials, href: "#testimonials" },
-    { label: t.nav.formations, href: "#formations" },
-    { label: t.nav.faq, href: "#faq" },
-    { label: t.nav.team, href: "#team" },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.about, href: "/#about" },
+    { label: t.nav.services, href: "/#services" },
+    { label: t.nav.projects, href: "/projects" },
+    { label: t.nav.clients, href: "/#clients" },
+    { label: t.nav.testimonials, href: "/#testimonials" },
+    { label: t.nav.formations, href: "/#formations" },
+    { label: t.nav.faq, href: "/#faq" },
+    { label: t.nav.team, href: "/#team" },
+    { label: t.nav.contact, href: "/#contact" },
   ];
 
   const logoOnLightBar = scrolled && theme === "light";
@@ -67,7 +68,7 @@ export function Navbar() {
         )}
       >
         <div className="flex items-center gap-2 lg:gap-3">
-          <a href="#home" className="flex shrink-0 items-center" aria-label={brand.name}>
+          <a href="/" className="flex shrink-0 items-center" aria-label={brand.name}>
             <BrandLogo
               variant="inline"
               appearance={logoAppearance}
@@ -100,7 +101,7 @@ export function Navbar() {
               <LanguageSwitcher />
             </div>
             <a
-              href="#contact"
+              href="/#contact"
               className="hidden rounded-full bg-[image:var(--gradient-primary)] px-3 py-2 text-[10px] font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5 sm:inline-flex xl:px-4 xl:py-2.5 xl:text-xs"
             >
               {t.nav.cta}
@@ -150,7 +151,7 @@ export function Navbar() {
                 ))}
               </div>
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className="mt-2 block rounded-lg bg-[image:var(--gradient-primary)] px-3 py-2.5 text-center text-sm font-medium text-primary-foreground"
               >

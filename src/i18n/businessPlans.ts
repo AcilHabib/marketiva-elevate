@@ -416,6 +416,10 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
       "We don't just host events—we animate brand experiences that engage audiences and leave a lasting impression.",
       "animation",
     ),
+    sofiane: placeholderPlan(
+      "We don't just take photos—we craft visual stories that capture your brand with precision and style.",
+      "photography",
+    ),
   },
   fr: {
     adem: marketingStrategy,
@@ -469,6 +473,10 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
       "Nous n'animons pas seulement des événements — nous créons des expériences de marque qui engagent et marquent les esprits.",
       "animation",
     ),
+    sofiane: placeholderPlan(
+      "Nous ne prenons pas seulement des photos — nous créons des récits visuels qui capturent votre marque avec précision et style.",
+      "photographie",
+    ),
   },
   ar: {
     adem: marketingStrategy,
@@ -521,6 +529,10 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
     imene: placeholderPlan(
       "نحن لا نقدّم فعاليات فقط — بل ننشّط تجارب علامة تجارية تلفت الجمهور وتترك انطباعاً دائماً.",
       "تنشيط",
+    ),
+    sofiane: placeholderPlan(
+      "نحن لا نلتقط صوراً فقط — بل نصنع سرداً بصرياً يلتقط علامتك بدقة وأناقة.",
+      "تصوير",
     ),
   },
 };

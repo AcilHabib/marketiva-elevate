@@ -7,7 +7,7 @@ export function Hero() {
   const { t } = useI18n();
   const stats = [
     { value: "16+", label: t.hero.stats.brands },
-    { value: "15", label: t.hero.stats.specialists },
+    { value: "14", label: t.hero.stats.specialists },
     { value: "360°", label: t.hero.stats.scope },
   ];
 
@@ -86,7 +86,7 @@ export function Hero() {
             />
           </a>
           <a
-            href="#services"
+            href="/projects"
             className="inline-flex items-center gap-2 rounded-full border border-border glass px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
           >
             {t.hero.ctaSecondary}

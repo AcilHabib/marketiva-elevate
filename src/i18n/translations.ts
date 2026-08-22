@@ -25,6 +25,7 @@ export type Dict = {
     faq: string;
     formations: string;
     team: string;
+    projects: string;
     contact: string;
     more: string;
     cta: string;
@@ -105,6 +106,24 @@ export type Dict = {
     errors: { name: string; email: string; message: string };
   };
   footer: { rights: string; madeBy: string };
+  projectsPage: {
+    eyebrow: string;
+    title: Title;
+    subtitle: string;
+    empty: string;
+    visitSite: string;
+    playVideo: string;
+    comingSoon: string;
+    upcoming: { eyebrow: string; subtitle: string };
+    sections: {
+      software: { title: string; description: string };
+      videography: { title: string; description: string };
+      design: { title: string; description: string };
+      impression: { title: string; description: string };
+      photography: { title: string; description: string };
+      voixOff: { title: string; description: string };
+    };
+  };
 };
 
 export const translations: Record<Lang, Dict> = {
@@ -117,6 +136,7 @@ export const translations: Record<Lang, Dict> = {
       faq: "FAQ",
       formations: "Formations",
       team: "Équipe",
+      projects: "Nos projets",
       contact: "Contact",
       more: "Plus",
       cta: "Nous contacter",
@@ -362,7 +382,7 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "Les talents",
       title: { lead: "Rencontrez l'équipe derrière", accent: "le travail" },
-      subtitle: "Quinze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
+      subtitle: "Quatorze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
       experienceDefault: "5+ ans d'expérience",
       experienceByMember: {
         assil: "4+ ans d'expérience",
@@ -370,8 +390,7 @@ export const translations: Record<Lang, Dict> = {
         adem: "4+ ans d'expérience",
         halla: "3+ ans d'expérience",
         aymen: "10+ ans d'expérience",
-        salma: "2+ ans d'expérience",
-        imene: "2+ ans d'expérience",
+        sofiane: "4+ ans d'expérience",
       },
       viewPlan: "Voir le plan métier",
       planTitle: "Plan métier",
@@ -395,6 +414,7 @@ export const translations: Record<Lang, Dict> = {
         salma: "Animatrice",
         imene: "Animatrice",
         amine: "Motion Graphics & Montage Pro",
+        sofiane: "Photographe",
       },
     },
     formations: {
@@ -459,6 +479,45 @@ export const translations: Record<Lang, Dict> = {
       errors: { name: "Veuillez saisir votre nom", email: "Saisissez un email valide", message: "Donnez-nous un peu plus de détails" },
     },
     footer: { rights: "Tous droits réservés.", madeBy: "Réalisé par" },
+    projectsPage: {
+      eyebrow: "Portfolio",
+      title: { lead: "Nos", accent: "projets" },
+      subtitle: "Un aperçu de nos réalisations — software, vidéographie, et les univers à venir.",
+      empty: "Bientôt disponible — cette section sera mise à jour prochainement.",
+      visitSite: "Visiter le site",
+      playVideo: "Lire la vidéo",
+      comingSoon: "Bientôt",
+      upcoming: {
+        eyebrow: "Prochainement",
+        subtitle: "Ces univers sont en préparation. Le portfolio s’étoffe.",
+      },
+      sections: {
+        software: {
+          title: "Software",
+          description: "Applications, sites web et solutions digitales.",
+        },
+        videography: {
+          title: "Vidéographie",
+          description: "Films, contenus audiovisuels et motion.",
+        },
+        design: {
+          title: "Design",
+          description: "Identités visuelles, branding et créations graphiques.",
+        },
+        impression: {
+          title: "Impression",
+          description: "Supports print, signalétique et production graphique.",
+        },
+        photography: {
+          title: "Photographie",
+          description: "Portraits, produits et reportages d’entreprise.",
+        },
+        voixOff: {
+          title: "Voix off",
+          description: "Narration, publicité et habillage sonore.",
+        },
+      },
+    },
   },
 
   ar: {
@@ -470,6 +529,7 @@ export const translations: Record<Lang, Dict> = {
       faq: "الأسئلة",
       formations: "التكوينات",
       team: "الفريق",
+      projects: "مشاريعنا",
       contact: "اتصل بنا",
       more: "المزيد",
       cta: "تواصل معنا",
@@ -705,7 +765,7 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "الأشخاص",
       title: { lead: "تعرّف على الفريق وراء", accent: "العمل" },
-      subtitle: "خمسة عشر خبيراً متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
+      subtitle: "أربعة عشر خبيراً متعددو التخصصات يحوّلون الأفكار الطموحة إلى واقع راقٍ.",
       experienceDefault: "+5 سنوات خبرة",
       experienceByMember: {
         assil: "+4 سنوات خبرة",
@@ -713,8 +773,7 @@ export const translations: Record<Lang, Dict> = {
         adem: "+4 سنوات خبرة",
         halla: "+3 سنوات خبرة",
         aymen: "+10 سنوات خبرة",
-        salma: "+2 سنوات خبرة",
-        imene: "+2 سنوات خبرة",
+        sofiane: "+4 سنوات خبرة",
       },
       viewPlan: "عرض خطة العمل",
       planTitle: "خطة العمل",
@@ -738,6 +797,7 @@ export const translations: Record<Lang, Dict> = {
         salma: "منشّطة",
         imene: "منشّطة",
         amine: "موشن جرافيك ومونتاج احترافي",
+        sofiane: "مصوّر",
       },
     },
     formations: {
@@ -783,6 +843,45 @@ export const translations: Record<Lang, Dict> = {
       errors: { name: "يرجى إدخال اسمك", email: "أدخل بريداً إلكترونياً صحيحاً", message: "أخبرنا بمزيد من التفاصيل" },
     },
     footer: { rights: "جميع الحقوق محفوظة.", madeBy: "صنع بواسطة" },
+    projectsPage: {
+      eyebrow: "أعمالنا",
+      title: { lead: "تعرّف على", accent: "مشاريعنا" },
+      subtitle: "نظرة على إنجازاتنا في البرمجيات والفيديو، والعوالم القادمة.",
+      empty: "قريباً — سيتم تحديث هذا القسم قريباً.",
+      visitSite: "زيارة الموقع",
+      playVideo: "تشغيل الفيديو",
+      comingSoon: "قريباً",
+      upcoming: {
+        eyebrow: "قريباً",
+        subtitle: "هذه العوالم قيد التحضير. المعرض يتوسّع.",
+      },
+      sections: {
+        software: {
+          title: "البرمجيات",
+          description: "تطبيقات ومواقع وحلول رقمية.",
+        },
+        videography: {
+          title: "الفيديو",
+          description: "أفلام ومحتوى بصري وموشن.",
+        },
+        design: {
+          title: "التصميم",
+          description: "هويات بصرية وعلامات وتصاميم جرافيكية.",
+        },
+        impression: {
+          title: "الطباعة",
+          description: "مطبوعات ولافتات وإنتاج غرافيكي.",
+        },
+        photography: {
+          title: "التصوير",
+          description: "بورتريه ومنتجات وتغطيات للشركات.",
+        },
+        voixOff: {
+          title: "التعليق الصوتي",
+          description: "سرد وإعلانات وهوية صوتية.",
+        },
+      },
+    },
   },
 
   en: {
@@ -794,6 +893,7 @@ export const translations: Record<Lang, Dict> = {
       faq: "FAQ",
       formations: "Training",
       team: "Team",
+      projects: "Our Projects",
       contact: "Contact",
       more: "More",
       cta: "Get in Touch",
@@ -1039,7 +1139,7 @@ export const translations: Record<Lang, Dict> = {
     team: {
       eyebrow: "The People",
       title: { lead: "Meet the team behind", accent: "the work" },
-      subtitle: "Fifteen multidisciplinary experts turning ambitious ideas into polished reality.",
+      subtitle: "Fourteen multidisciplinary experts turning ambitious ideas into polished reality.",
       experienceDefault: "5+ years experience",
       experienceByMember: {
         assil: "4+ years experience",
@@ -1047,8 +1147,7 @@ export const translations: Record<Lang, Dict> = {
         adem: "4+ years experience",
         halla: "3+ years experience",
         aymen: "10+ years experience",
-        salma: "2+ years experience",
-        imene: "2+ years experience",
+        sofiane: "4+ years experience",
       },
       viewPlan: "View business plan",
       planTitle: "Business plan",
@@ -1072,6 +1171,7 @@ export const translations: Record<Lang, Dict> = {
         salma: "Animator",
         imene: "Animator",
         amine: "Motion Graphics & Pro Editing",
+        sofiane: "Photographer",
       },
     },
     formations: {
@@ -1118,5 +1218,44 @@ export const translations: Record<Lang, Dict> = {
       errors: { name: "Please enter your name", email: "Enter a valid email", message: "Tell us a little more" },
     },
     footer: { rights: "All rights reserved.", madeBy: "Made by" },
+    projectsPage: {
+      eyebrow: "Portfolio",
+      title: { lead: "Our", accent: "projects" },
+      subtitle: "A showcase of our work — software, videography, and the studios still to come.",
+      empty: "Coming soon — this section will be updated shortly.",
+      visitSite: "Visit website",
+      playVideo: "Play video",
+      comingSoon: "Coming soon",
+      upcoming: {
+        eyebrow: "Coming next",
+        subtitle: "These studios are in preparation. The portfolio is expanding.",
+      },
+      sections: {
+        software: {
+          title: "Software",
+          description: "Apps, websites and digital solutions.",
+        },
+        videography: {
+          title: "Videography",
+          description: "Films, audiovisual content and motion.",
+        },
+        design: {
+          title: "Design",
+          description: "Visual identities, branding and graphic work.",
+        },
+        impression: {
+          title: "Print",
+          description: "Print collateral, signage and graphic production.",
+        },
+        photography: {
+          title: "Photography",
+          description: "Portraits, product and corporate reportage.",
+        },
+        voixOff: {
+          title: "Voice-over",
+          description: "Narration, advertising and sonic identity.",
+        },
+      },
+    },
   },
 };

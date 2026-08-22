@@ -88,6 +88,7 @@ export const team: Member[] = [
   { id: "salma", name: "Mami Salma", photo: "/images/team/mami-salma.png" },
   { id: "imene", name: "Imene Harrag", photo: "/images/team/imene-harrag.png" },
   { id: "amine", name: "Amine Chettih", photo: "/images/team/amine-chettih.png" },
+  { id: "sofiane", name: "Lanani Sofiane Samir", photo: "/images/team/lanani-sofiane-samir.png" },
 ];
 
 export type TestimonialMeta = {

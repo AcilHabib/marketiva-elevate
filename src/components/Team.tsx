@@ -52,9 +52,11 @@ export function Team() {
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {t.team.roles[m.id]}
                   </p>
-                  <p className="mt-2 text-[11px] font-medium text-primary">
-                    {t.team.experienceByMember[m.id] ?? t.team.experienceDefault}
-                  </p>
+                  {t.team.experienceByMember[m.id] && (
+                    <p className="mt-2 text-[11px] font-medium text-primary">
+                      {t.team.experienceByMember[m.id]}
+                    </p>
+                  )}
                 </div>
               </button>
             </Reveal>
@@ -78,8 +80,10 @@ export function Team() {
                   <div>
                     <DialogTitle className="font-display text-xl">{selected.name}</DialogTitle>
                     <DialogDescription className="mt-1 text-sm text-muted-foreground">
-                      {t.team.roles[selected.id]} ·{" "}
-                      {t.team.experienceByMember[selected.id] ?? t.team.experienceDefault}
+                      {t.team.roles[selected.id]}
+                      {t.team.experienceByMember[selected.id]
+                        ? ` · ${t.team.experienceByMember[selected.id]}`
+                        : ""}
                     </DialogDescription>
                   </div>
                 </div>

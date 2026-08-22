@@ -4,11 +4,11 @@ import { BrandLogo } from "./BrandLogo";
 export function Footer() {
   const { t } = useI18n();
   const links = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.services, href: "#services" },
-    { label: t.nav.clients, href: "#clients" },
-    { label: t.nav.team, href: "#team" },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.about, href: "/#about" },
+    { label: t.nav.services, href: "/#services" },
+    { label: t.nav.projects, href: "/projects" },
+    { label: t.nav.team, href: "/#team" },
+    { label: t.nav.contact, href: "/#contact" },
   ];
 
   return (
