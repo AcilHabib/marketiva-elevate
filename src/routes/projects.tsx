@@ -16,8 +16,13 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Reveal, SectionHeading, GradientTitle } from "@/components/primitives";
 import {
+  designProjects,
+  photographyProjects,
   softwareProjects,
   videographyProjects,
+  voixOffProjects,
+  type DesignProject,
+  type PhotoProject,
   type ProjectItem,
   type VideoProject,
 } from "@/components/projects";
@@ -34,17 +39,15 @@ import { cn } from "@/lib/utils";
 const liveSections = [
   { id: "software" as const, icon: Code2 },
   { id: "videography" as const, icon: Clapperboard },
+  { id: "design" as const, icon: Palette },
+  { id: "photography" as const, icon: Camera },
+  { id: "voixOff" as const, icon: AudioLines },
 ];
 
 const upcomingSections: {
-  id: "design" | "impression" | "photography" | "voixOff";
+  id: "impression";
   icon: LucideIcon;
-}[] = [
-  { id: "design", icon: Palette },
-  { id: "impression", icon: Printer },
-  { id: "photography", icon: Camera },
-  { id: "voixOff", icon: AudioLines },
-];
+}[] = [{ id: "impression", icon: Printer }];
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -72,6 +75,8 @@ function ProjectsPage() {
   const { t } = useI18n();
   const { theme } = useTheme();
   const [activeVideo, setActiveVideo] = useState<VideoProject | null>(null);
+  const [activeDesign, setActiveDesign] = useState<DesignProject | null>(null);
+  const [activePhoto, setActivePhoto] = useState<PhotoProject | null>(null);
 
   return (
     <div className="relative overflow-x-hidden bg-background">
@@ -120,10 +125,25 @@ function ProjectsPage() {
                           </Reveal>
                         ))}
                       </div>
-                    ) : (
+                    ) : section.id === "videography" ? (
                       <VideographyGrid
                         playLabel={t.projectsPage.playVideo}
                         onPlay={setActiveVideo}
+                      />
+                    ) : section.id === "voixOff" ? (
+                      <VoixOffGrid
+                        playLabel={t.projectsPage.playVideo}
+                        onPlay={setActiveVideo}
+                      />
+                    ) : section.id === "photography" ? (
+                      <PhotographyGrid
+                        viewLabel={t.projectsPage.viewPhoto}
+                        onOpen={setActivePhoto}
+                      />
+                    ) : (
+                      <DesignGrid
+                        viewLabel={t.projectsPage.viewDesign}
+                        onOpen={setActiveDesign}
                       />
                     )}
                   </section>
@@ -186,6 +206,90 @@ function ProjectsPage() {
           ) : null}
         </DialogContent>
       </Dialog>
+
+      <Dialog
+        open={activeDesign !== null}
+        onOpenChange={(open) => {
+          if (!open) setActiveDesign(null);
+        }}
+      >
+        <DialogContent
+          className={cn(
+            "gap-0 overflow-hidden border-border bg-background p-0 shadow-[var(--shadow-elegant)] sm:rounded-2xl",
+            activeDesign?.orientation === "portrait"
+              ? "w-[min(92vw,26rem)] max-w-[26rem]"
+              : "w-[min(92vw,34rem)] max-w-[34rem]",
+          )}
+        >
+          <DialogTitle className="sr-only">
+            {activeDesign?.name ?? t.projectsPage.viewDesign}
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            {activeDesign
+              ? `${activeDesign.client} — ${activeDesign.name}`
+              : t.projectsPage.viewDesign}
+          </DialogDescription>
+          {activeDesign ? (
+            <div>
+              <img
+                src={activeDesign.src}
+                alt={activeDesign.name}
+                className="max-h-[80vh] w-full object-contain bg-secondary/30"
+              />
+              <div className="border-t border-border px-5 py-4">
+                <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                  {activeDesign.client}
+                </p>
+                <p className="mt-1 font-display text-lg font-semibold tracking-tight">
+                  {activeDesign.name}
+                </p>
+              </div>
+            </div>
+          ) : null}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={activePhoto !== null}
+        onOpenChange={(open) => {
+          if (!open) setActivePhoto(null);
+        }}
+      >
+        <DialogContent
+          className={cn(
+            "gap-0 overflow-hidden border-border bg-background p-0 shadow-[var(--shadow-elegant)] sm:rounded-2xl",
+            activePhoto?.orientation === "portrait"
+              ? "w-[min(92vw,26rem)] max-w-[26rem]"
+              : "w-[min(94vw,48rem)] max-w-[48rem]",
+          )}
+        >
+          <DialogTitle className="sr-only">
+            {activePhoto?.name ?? t.projectsPage.viewPhoto}
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            {activePhoto
+              ? `${activePhoto.client} — ${activePhoto.name}`
+              : t.projectsPage.viewPhoto}
+          </DialogDescription>
+          {activePhoto ? (
+            <div>
+              <img
+                src={activePhoto.src}
+                alt={activePhoto.name}
+                className="max-h-[80vh] w-full object-contain bg-black"
+              />
+              <div className="border-t border-border px-5 py-4">
+                <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                  {activePhoto.client}
+                </p>
+                <p className="mt-1 font-display text-lg font-semibold tracking-tight">
+                  {activePhoto.name}
+                </p>
+              </div>
+            </div>
+          ) : null}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
@@ -209,7 +313,7 @@ function UpcomingStudios() {
           <div className="pointer-events-none absolute -left-24 top-0 h-56 w-56 rounded-full bg-primary/15 blur-3xl soon-glow" />
           <div className="pointer-events-none absolute -right-16 bottom-0 h-48 w-48 rounded-full bg-[var(--gold)]/15 blur-3xl soon-glow [animation-delay:-4s]" />
 
-          <div className="relative grid sm:grid-cols-2">
+          <div className="relative grid">
             {upcomingSections.map((section, i) => {
               const copy = t.projectsPage.sections[section.id];
               const Icon = section.icon;
@@ -219,11 +323,7 @@ function UpcomingStudios() {
                 <section
                   key={section.id}
                   id={section.id}
-                  className={cn(
-                    "group relative min-h-[15.5rem] overflow-hidden scroll-mt-28 p-7 sm:min-h-[17rem] sm:p-8",
-                    i % 2 === 0 && "sm:border-e sm:border-border",
-                    i < 2 && "border-b border-border",
-                  )}
+                  className="group relative min-h-[15.5rem] overflow-hidden scroll-mt-28 p-7 sm:min-h-[17rem] sm:p-8"
                 >
                   <span
                     aria-hidden
@@ -289,6 +389,72 @@ function VideographyGrid({
         {portrait.map((video, i) => (
           <Reveal key={video.id} delay={0.08 + i * 0.05}>
             <VideoCard video={video} playLabel={playLabel} onPlay={() => onPlay(video)} />
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function VoixOffGrid({
+  playLabel,
+  onPlay,
+}: {
+  playLabel: string;
+  onPlay: (video: VideoProject) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+      {voixOffProjects.map((video, i) => (
+        <Reveal key={video.id} delay={0.04 + i * 0.06}>
+          <VideoCard video={video} playLabel={playLabel} onPlay={() => onPlay(video)} />
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function DesignGrid({
+  viewLabel,
+  onOpen,
+}: {
+  viewLabel: string;
+  onOpen: (design: DesignProject) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+      {designProjects.map((design, i) => (
+        <Reveal key={design.id} delay={0.03 + (i % 8) * 0.04}>
+          <DesignCard design={design} viewLabel={viewLabel} onOpen={() => onOpen(design)} />
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function PhotographyGrid({
+  viewLabel,
+  onOpen,
+}: {
+  viewLabel: string;
+  onOpen: (photo: PhotoProject) => void;
+}) {
+  const portraits = photographyProjects.filter((p) => p.orientation === "portrait");
+  const landscapes = photographyProjects.filter((p) => p.orientation === "landscape");
+
+  return (
+    <div className="space-y-3 sm:space-y-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5">
+        {portraits.map((photo, i) => (
+          <Reveal key={photo.id} delay={0.03 + (i % 8) * 0.04}>
+            <PhotoCard photo={photo} viewLabel={viewLabel} onOpen={() => onOpen(photo)} />
+          </Reveal>
+        ))}
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+        {landscapes.map((photo, i) => (
+          <Reveal key={photo.id} delay={0.08 + i * 0.05}>
+            <PhotoCard photo={photo} viewLabel={viewLabel} onOpen={() => onOpen(photo)} />
           </Reveal>
         ))}
       </div>
@@ -370,6 +536,82 @@ function VideoCard({
           <span className="font-display text-base font-semibold tracking-tight text-white sm:text-lg">
             {video.name}
           </span>
+        </span>
+      </span>
+    </button>
+  );
+}
+
+function DesignCard({
+  design,
+  viewLabel,
+  onOpen,
+}: {
+  design: DesignProject;
+  viewLabel: string;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`${viewLabel}: ${design.name}`}
+      className="group relative block w-full overflow-hidden rounded-2xl text-start shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-0.5"
+    >
+      <img
+        src={design.src}
+        alt={design.name}
+        loading="lazy"
+        className={cn(
+          "w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]",
+          design.orientation === "portrait" ? "aspect-[4/5]" : "aspect-square",
+        )}
+      />
+      <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+      <span className="absolute inset-x-0 bottom-0 p-4">
+        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70">
+          {design.client}
+        </span>
+        <span className="mt-1 block font-display text-base font-semibold tracking-tight text-white">
+          {design.name}
+        </span>
+      </span>
+    </button>
+  );
+}
+
+function PhotoCard({
+  photo,
+  viewLabel,
+  onOpen,
+}: {
+  photo: PhotoProject;
+  viewLabel: string;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`${viewLabel}: ${photo.name}`}
+      className="group relative block w-full overflow-hidden rounded-2xl bg-black text-start shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-0.5"
+    >
+      <img
+        src={photo.src}
+        alt={photo.name}
+        loading="lazy"
+        className={cn(
+          "w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]",
+          photo.orientation === "portrait" ? "aspect-[3/5]" : "aspect-video",
+        )}
+      />
+      <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+      <span className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70">
+          {photo.client}
+        </span>
+        <span className="mt-1 block font-display text-sm font-semibold tracking-tight text-white sm:text-base">
+          {photo.name}
         </span>
       </span>
     </button>

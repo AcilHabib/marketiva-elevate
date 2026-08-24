@@ -113,6 +113,8 @@ export type Dict = {
     empty: string;
     visitSite: string;
     playVideo: string;
+    viewDesign: string;
+    viewPhoto: string;
     comingSoon: string;
     upcoming: { eyebrow: string; subtitle: string };
     sections: {
@@ -415,6 +417,7 @@ export const translations: Record<Lang, Dict> = {
         imene: "Animatrice",
         amine: "Motion Graphics & Montage Pro",
         sofiane: "Photographe",
+        dhouha: "Animatrice",
       },
     },
     formations: {
@@ -486,6 +489,8 @@ export const translations: Record<Lang, Dict> = {
       empty: "Bientôt disponible — cette section sera mise à jour prochainement.",
       visitSite: "Visiter le site",
       playVideo: "Lire la vidéo",
+      viewDesign: "Voir le design",
+      viewPhoto: "Voir la photo",
       comingSoon: "Bientôt",
       upcoming: {
         eyebrow: "Prochainement",
@@ -798,6 +803,7 @@ export const translations: Record<Lang, Dict> = {
         imene: "منشّطة",
         amine: "موشن جرافيك ومونتاج احترافي",
         sofiane: "مصوّر",
+        dhouha: "منشّطة",
       },
     },
     formations: {
@@ -850,6 +856,8 @@ export const translations: Record<Lang, Dict> = {
       empty: "قريباً — سيتم تحديث هذا القسم قريباً.",
       visitSite: "زيارة الموقع",
       playVideo: "تشغيل الفيديو",
+      viewDesign: "عرض التصميم",
+      viewPhoto: "عرض الصورة",
       comingSoon: "قريباً",
       upcoming: {
         eyebrow: "قريباً",
@@ -1172,6 +1180,7 @@ export const translations: Record<Lang, Dict> = {
         imene: "Animator",
         amine: "Motion Graphics & Pro Editing",
         sofiane: "Photographer",
+        dhouha: "Animator",
       },
     },
     formations: {
@@ -1225,6 +1234,8 @@ export const translations: Record<Lang, Dict> = {
       empty: "Coming soon — this section will be updated shortly.",
       visitSite: "Visit website",
       playVideo: "Play video",
+      viewDesign: "View design",
+      viewPhoto: "View photo",
       comingSoon: "Coming soon",
       upcoming: {
         eyebrow: "Coming next",
