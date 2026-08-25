@@ -1,115 +1,90 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useI18n } from "@/i18n/I18nProvider";
+import type { Lang } from "@/i18n/translations";
+
+const heroCopy: Record<
+  Lang,
+  { line1: string; line2: string; accent: string; positioning: string }
+> = {
+  fr: {
+    line1: "Marketing intelligent.",
+    line2: "Croissance",
+    accent: "réelle.",
+    positioning: "STRATÉGIE · CRÉATIVITÉ · PERFORMANCE",
+  },
+  en: {
+    line1: "Intelligent marketing.",
+    line2: "Real",
+    accent: "growth.",
+    positioning: "STRATEGY · CREATIVITY · PERFORMANCE",
+  },
+  ar: {
+    line1: "تسويق ذكي.",
+    line2: "نمو",
+    accent: "حقيقي.",
+    positioning: "استراتيجية · إبداع · أداء",
+  },
+};
 
 export function Hero() {
-  const { t } = useI18n();
-  const stats = [
-    { value: "16+", label: t.hero.stats.brands },
-    { value: "14", label: t.hero.stats.specialists },
-    { value: "360°", label: t.hero.stats.scope },
-  ];
+  const { lang } = useI18n();
+  const copy = heroCopy[lang];
 
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0">
         <img
           src={heroBg}
           alt=""
-          width={1920}
-          height={1080}
-          className="h-full w-full object-cover"
+          width={1536}
+          height={1024}
+          className="h-full w-full scale-105 object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[image:var(--gradient-hero)] opacity-80 dark:opacity-80 light:opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10 dark:via-background/40 light:via-background/70" />
+        {/* Deep navy / brand-blue overlay — readable text, photo still present */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(160deg, oklch(0.18 0.06 255 / 0.82) 0%, oklch(0.12 0.05 258 / 0.88) 45%, oklch(0.08 0.03 255 / 0.92) 100%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,oklch(0.08_0.03_255/0.45)_100%)]" />
       </div>
 
-      <motion.div
-        animate={{ y: [0, -24, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -right-20 top-1/4 h-72 w-72 rounded-full bg-primary/20 blur-3xl"
-      />
-      <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-16 bottom-1/4 h-64 w-64 rounded-full bg-[oklch(0.55_0.16_262)]/20 blur-3xl"
-      />
-
-      <div className="container-px relative z-10 mx-auto max-w-7xl pt-28">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
-        >
-          <Sparkles size={14} className="text-[var(--gold)]" />
-          {t.hero.badge}
-        </motion.span>
-
+      <div className="container-px relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 pt-20 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.05] sm:text-6xl md:text-7xl"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-[clamp(2.35rem,6.5vw,4.75rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-white"
         >
-          {t.hero.title.lead}{" "}
-          <span className="text-gradient">{t.hero.title.accent}</span>
+          <span className="block">{copy.line1}</span>
+          <span className="mt-1 block sm:mt-2">
+            {copy.line2}{" "}
+            <span className="text-[oklch(0.72_0.14_252)]">{copy.accent}</span>
+          </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.22 }}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
+          transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 text-[11px] font-medium uppercase tracking-[0.32em] text-white/70 sm:mt-10 sm:text-xs sm:tracking-[0.38em]"
         >
-          {t.hero.subtitle}
+          {copy.positioning}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.34 }}
-          className="mt-9 flex flex-wrap items-center gap-4"
-        >
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5"
-          >
-            {t.hero.ctaPrimary}
-            <ArrowRight
-              size={16}
-              className="transition-transform group-hover:translate-x-1 rtl:rotate-180"
-            />
-          </a>
-          <a
-            href="/projects"
-            className="inline-flex items-center gap-2 rounded-full border border-border glass px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
-          >
-            {t.hero.ctaSecondary}
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.46 }}
-          className="mt-16 flex max-w-lg gap-10 border-t border-border pt-8"
-        >
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="font-display text-3xl font-semibold text-foreground">
-                {s.value}
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+          initial={{ opacity: 0, scaleX: 0.4 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.85, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-7 h-px w-16 origin-center bg-[oklch(0.66_0.14_252/0.85)] sm:mt-8 sm:w-20"
+          aria-hidden
+        />
       </div>
     </section>
   );

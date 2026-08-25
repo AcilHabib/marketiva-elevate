@@ -13,12 +13,20 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 
+const NO_EXPERIENCE = new Set(["salma", "imene", "dhouha"]);
+
 export function Team() {
   const { t, lang } = useI18n();
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
+  const experienceOf = (id: string) =>
+    NO_EXPERIENCE.has(id)
+      ? undefined
+      : t.team.experienceByMember[id] ?? t.team.experienceDefault;
+
   const selected = team.find((m) => m.id === selectedId);
   const plan = selectedId ? getBusinessPlan(lang, selectedId) : undefined;
+  const selectedExperience = selected ? experienceOf(selected.id) : undefined;
 
   return (
     <section id="team" className="section-pad container-px relative">
@@ -30,7 +38,9 @@ export function Team() {
         />
 
         <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
-          {team.map((m, i) => (
+          {team.map((m, i) => {
+            const experience = experienceOf(m.id);
+            return (
             <Reveal key={m.id} delay={(i % 5) * 0.06}>
               <button
                 type="button"
@@ -52,15 +62,16 @@ export function Team() {
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {t.team.roles[m.id]}
                   </p>
-                  {t.team.experienceByMember[m.id] && (
+                  {experience ? (
                     <p className="mt-2 text-[11px] font-medium text-primary">
-                      {t.team.experienceByMember[m.id]}
+                      {experience}
                     </p>
-                  )}
+                  ) : null}
                 </div>
               </button>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -81,9 +92,7 @@ export function Team() {
                     <DialogTitle className="font-display text-xl">{selected.name}</DialogTitle>
                     <DialogDescription className="mt-1 text-sm text-muted-foreground">
                       {t.team.roles[selected.id]}
-                      {t.team.experienceByMember[selected.id]
-                        ? ` · ${t.team.experienceByMember[selected.id]}`
-                        : ""}
+                      {selectedExperience ? ` · ${selectedExperience}` : ""}
                     </DialogDescription>
                   </div>
                 </div>

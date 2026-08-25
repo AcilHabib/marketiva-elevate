@@ -50,6 +50,7 @@ export type Dict = {
     title: Title;
     subtitle: string;
     tapHint: string;
+    seeProjects: string;
     items: Record<string, ServiceText>;
   };
   testimonials: {
@@ -116,6 +117,7 @@ export type Dict = {
     viewDesign: string;
     viewPhoto: string;
     comingSoon: string;
+    viewAll: string;
     upcoming: { eyebrow: string; subtitle: string };
     sections: {
       software: { title: string; description: string };
@@ -170,6 +172,7 @@ export const translations: Record<Lang, Dict> = {
       subtitle:
         "Une agence à spectre complet — cliquez sur une carte pour explorer chaque expertise en détail.",
       tapHint: "Cliquez pour explorer",
+      seeProjects: "Voir nos projets {{name}}",
       items: {
         media: {
           title: "Media Buying & Performance Marketing",
@@ -239,7 +242,7 @@ export const translations: Record<Lang, Dict> = {
           ],
         },
         web: {
-          title: "Développement Full Stack & Apps Mobiles",
+          title: "Développement Web & Applications",
           description:
             "Digitisez et scalez votre activité avec des solutions web et mobile sur mesure.",
           highlights: [
@@ -492,6 +495,7 @@ export const translations: Record<Lang, Dict> = {
       viewDesign: "Voir le design",
       viewPhoto: "Voir la photo",
       comingSoon: "Bientôt",
+      viewAll: "Voir tous les projets",
       upcoming: {
         eyebrow: "Prochainement",
         subtitle: "Ces univers sont en préparation. Le portfolio s’étoffe.",
@@ -565,6 +569,7 @@ export const translations: Record<Lang, Dict> = {
       title: { lead: "حلول متميزة في", accent: "الإبداع والرقمنة" },
       subtitle: "وكالة متكاملة — انقر على أي بطاقة لاستكشاف كل خدمة بالتفصيل.",
       tapHint: "انقر للاستكشاف",
+      seeProjects: "شاهد مشاريع {{name}}",
       items: {
         media: {
           title: "شراء الإعلانات والتسويق بالأداء",
@@ -629,7 +634,7 @@ export const translations: Record<Lang, Dict> = {
           ],
         },
         web: {
-          title: "تطوير Full Stack وتطبيقات الجوال",
+          title: "تطوير الويب والتطبيقات",
           description: "رقمنة وتوسيع أعمالك بحلول ويب وموبايل مخصصة.",
           highlights: [
             "مواقع ومنصات تجارة إلكترونية مخصصة",
@@ -859,6 +864,7 @@ export const translations: Record<Lang, Dict> = {
       viewDesign: "عرض التصميم",
       viewPhoto: "عرض الصورة",
       comingSoon: "قريباً",
+      viewAll: "عرض كل المشاريع",
       upcoming: {
         eyebrow: "قريباً",
         subtitle: "هذه العوالم قيد التحضير. المعرض يتوسّع.",
@@ -933,6 +939,7 @@ export const translations: Record<Lang, Dict> = {
       subtitle:
         "A full-spectrum agency — click any card to explore each expertise in detail.",
       tapHint: "Click to explore",
+      seeProjects: "See our {{name}} projects",
       items: {
         media: {
           title: "Media Buying & Performance Marketing",
@@ -1002,7 +1009,7 @@ export const translations: Record<Lang, Dict> = {
           ],
         },
         web: {
-          title: "Full Stack Development & Mobile Apps",
+          title: "Web & Application Development",
           description:
             "Digitise and scale your business with bespoke web and mobile solutions.",
           highlights: [
@@ -1237,6 +1244,7 @@ export const translations: Record<Lang, Dict> = {
       viewDesign: "View design",
       viewPhoto: "View photo",
       comingSoon: "Coming soon",
+      viewAll: "View all projects",
       upcoming: {
         eyebrow: "Coming next",
         subtitle: "These studios are in preparation. The portfolio is expanding.",

@@ -1,10 +1,21 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Sparkles } from "lucide-react";
 import { Reveal, SectionHeading, GradientTitle } from "./primitives";
 import { services } from "./content";
 import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
+
+const PROJECT_LINKED_SERVICES: Record<
+  string,
+  "design" | "videography" | "software" | "photography" | "impression"
+> = {
+  brand: "design",
+  content: "videography",
+  web: "software",
+  photography: "photography",
+  print: "impression",
+};
 
 export function Services() {
   const { t } = useI18n();
@@ -38,6 +49,10 @@ export function Services() {
             const text = t.services.items[s.id];
             const isOpen = expanded === s.id;
             const Icon = s.icon;
+            const projectsSection = PROJECT_LINKED_SERVICES[s.id];
+            const projectsLabel = projectsSection
+              ? t.projectsPage.sections[projectsSection].title
+              : null;
 
             return (
               <Reveal key={s.id} delay={(i % 3) * 0.06} className={cn(isOpen && "sm:col-span-2 lg:col-span-3")}>
@@ -136,6 +151,18 @@ export function Services() {
                         </motion.div>
                       )}
                     </AnimatePresence>
+
+                    {projectsLabel && (
+                      <a
+                        href={`/projects?service=${s.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => e.stopPropagation()}
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                      >
+                        {t.services.seeProjects.replace("{{name}}", projectsLabel)}
+                        <ArrowUpRight size={15} strokeWidth={2} />
+                      </a>
+                    )}
                   </div>
 
                   {!isOpen && (

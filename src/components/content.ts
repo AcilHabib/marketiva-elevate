@@ -64,6 +64,7 @@ export const clients: Client[] = [
   { id: "benchallal", name: "Benchallal Immobilier", logo: "/images/clients/benchallal-immobilier.png" },
   { id: "g9immo", name: "EURL G9 IMMO Promotion Immobiliere", logo: "/images/clients/g9-immo.png" },
   { id: "liazidamrani", name: "Liazid Amrani Promotion Immobiliere", logo: "/images/clients/liazid-amrani.png" },
+  { id: "gkdoors", name: "GK Doors", logo: "/images/clients/gk-doors.png" },
 ];
 
 export type Member = {

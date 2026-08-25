@@ -12,7 +12,7 @@ const MAP_EMBED_URL =
 const PHONE_DISPLAY = "+213 550 06 45 71";
 const PHONE_TEL = "+213550064571";
 const PHONE_WHATSAPP = "213550064571";
-const EMAIL = "algeriamarketiva@gmail.com";
+const EMAIL = "contact@algeriamarketiva.com";
 
 export function Contact() {
   const { t } = useI18n();

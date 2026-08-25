@@ -18,4 +18,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      // Allow Cloudflare quick tunnels (*.trycloudflare.com) for customer previews
+      allowedHosts: [".trycloudflare.com"],
+    },
+  },
 });

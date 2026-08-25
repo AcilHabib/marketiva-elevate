@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
   AudioLines,
@@ -36,12 +36,19 @@ import { useI18n } from "@/i18n/I18nProvider";
 import { useTheme } from "@/i18n/ThemeProvider";
 import { cn } from "@/lib/utils";
 
-const liveSections = [
-  { id: "software" as const, icon: Code2 },
-  { id: "videography" as const, icon: Clapperboard },
-  { id: "design" as const, icon: Palette },
-  { id: "photography" as const, icon: Camera },
-  { id: "voixOff" as const, icon: AudioLines },
+type LiveSectionId =
+  | "software"
+  | "videography"
+  | "design"
+  | "photography"
+  | "voixOff";
+
+const liveSections: { id: LiveSectionId; icon: LucideIcon }[] = [
+  { id: "software", icon: Code2 },
+  { id: "videography", icon: Clapperboard },
+  { id: "design", icon: Palette },
+  { id: "photography", icon: Camera },
+  { id: "voixOff", icon: AudioLines },
 ];
 
 const upcomingSections: {
@@ -49,7 +56,27 @@ const upcomingSections: {
   icon: LucideIcon;
 }[] = [{ id: "impression", icon: Printer }];
 
+const SERVICE_FILTERS: Record<
+  string,
+  { live: LiveSectionId[]; showUpcoming: boolean }
+> = {
+  brand: { live: ["design"], showUpcoming: false },
+  content: { live: ["videography", "voixOff"], showUpcoming: false },
+  web: { live: ["software"], showUpcoming: false },
+  photography: { live: ["photography"], showUpcoming: false },
+  print: { live: [], showUpcoming: true },
+};
+
+type ProjectsSearch = { service?: string };
+
 export const Route = createFileRoute("/projects")({
+  validateSearch: (search: Record<string, unknown>): ProjectsSearch => {
+    const service =
+      typeof search.service === "string" && search.service in SERVICE_FILTERS
+        ? search.service
+        : undefined;
+    return service ? { service } : {};
+  },
   head: () => ({
     meta: [
       { title: "Algeria Marketiva — Our Projects" },
@@ -74,6 +101,12 @@ export const Route = createFileRoute("/projects")({
 function ProjectsPage() {
   const { t } = useI18n();
   const { theme } = useTheme();
+  const { service } = Route.useSearch();
+  const filter = service ? SERVICE_FILTERS[service] : null;
+  const visibleLive = filter
+    ? liveSections.filter((s) => filter.live.includes(s.id))
+    : liveSections;
+  const showUpcoming = filter ? filter.showUpcoming : true;
   const [activeVideo, setActiveVideo] = useState<VideoProject | null>(null);
   const [activeDesign, setActiveDesign] = useState<DesignProject | null>(null);
   const [activePhoto, setActivePhoto] = useState<PhotoProject | null>(null);
@@ -92,8 +125,20 @@ function ProjectsPage() {
             subtitle={t.projectsPage.subtitle}
           />
 
+          {service ? (
+            <Reveal delay={0.05} className="mt-6 flex justify-center">
+              <Link
+                to="/projects"
+                search={{}}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+              >
+                {t.projectsPage.viewAll}
+              </Link>
+            </Reveal>
+          ) : null}
+
           <div className="mt-14 space-y-16 sm:mt-16 sm:space-y-20">
-            {liveSections.map((section, i) => {
+            {visibleLive.map((section, i) => {
               const copy = t.projectsPage.sections[section.id];
               const Icon = section.icon;
 
@@ -151,7 +196,7 @@ function ProjectsPage() {
               );
             })}
 
-            <UpcomingStudios />
+            {showUpcoming ? <UpcomingStudios /> : null}
           </div>
 
           <Reveal delay={0.3} className="mt-16 text-center sm:mt-20">
@@ -182,7 +227,7 @@ function ProjectsPage() {
           )}
         >
           <DialogTitle className="sr-only">
-            {activeVideo?.name ?? t.projectsPage.playVideo}
+            {t.projectsPage.playVideo}
           </DialogTitle>
           <DialogDescription className="sr-only">
             {t.projectsPage.playVideo}
@@ -222,29 +267,17 @@ function ProjectsPage() {
           )}
         >
           <DialogTitle className="sr-only">
-            {activeDesign?.name ?? t.projectsPage.viewDesign}
+            {t.projectsPage.viewDesign}
           </DialogTitle>
           <DialogDescription className="sr-only">
-            {activeDesign
-              ? `${activeDesign.client} — ${activeDesign.name}`
-              : t.projectsPage.viewDesign}
+            {t.projectsPage.viewDesign}
           </DialogDescription>
           {activeDesign ? (
-            <div>
-              <img
-                src={activeDesign.src}
-                alt={activeDesign.name}
-                className="max-h-[80vh] w-full object-contain bg-secondary/30"
-              />
-              <div className="border-t border-border px-5 py-4">
-                <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                  {activeDesign.client}
-                </p>
-                <p className="mt-1 font-display text-lg font-semibold tracking-tight">
-                  {activeDesign.name}
-                </p>
-              </div>
-            </div>
+            <img
+              src={activeDesign.src}
+              alt=""
+              className="max-h-[80vh] w-full object-contain bg-secondary/30"
+            />
           ) : null}
         </DialogContent>
       </Dialog>
@@ -264,29 +297,17 @@ function ProjectsPage() {
           )}
         >
           <DialogTitle className="sr-only">
-            {activePhoto?.name ?? t.projectsPage.viewPhoto}
+            {t.projectsPage.viewPhoto}
           </DialogTitle>
           <DialogDescription className="sr-only">
-            {activePhoto
-              ? `${activePhoto.client} — ${activePhoto.name}`
-              : t.projectsPage.viewPhoto}
+            {t.projectsPage.viewPhoto}
           </DialogDescription>
           {activePhoto ? (
-            <div>
-              <img
-                src={activePhoto.src}
-                alt={activePhoto.name}
-                className="max-h-[80vh] w-full object-contain bg-black"
-              />
-              <div className="border-t border-border px-5 py-4">
-                <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                  {activePhoto.client}
-                </p>
-                <p className="mt-1 font-display text-lg font-semibold tracking-tight">
-                  {activePhoto.name}
-                </p>
-              </div>
-            </div>
+            <img
+              src={activePhoto.src}
+              alt=""
+              className="max-h-[80vh] w-full object-contain bg-black"
+            />
           ) : null}
         </DialogContent>
       </Dialog>
@@ -513,7 +534,7 @@ function VideoCard({
     <button
       type="button"
       onClick={onPlay}
-      aria-label={`${playLabel}: ${video.name}`}
+      aria-label={playLabel}
       className="group relative block w-full overflow-hidden rounded-2xl text-start"
     >
       <span
@@ -528,14 +549,9 @@ function VideoCard({
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
-        <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+        <span className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
         <span className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/95 text-foreground shadow-[var(--shadow-elegant)] transition-transform duration-300 group-hover:scale-110">
           <Play size={22} fill="currentColor" className="ml-0.5" />
-        </span>
-        <span className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-          <span className="font-display text-base font-semibold tracking-tight text-white sm:text-lg">
-            {video.name}
-          </span>
         </span>
       </span>
     </button>
@@ -555,27 +571,19 @@ function DesignCard({
     <button
       type="button"
       onClick={onOpen}
-      aria-label={`${viewLabel}: ${design.name}`}
+      aria-label={viewLabel}
       className="group relative block w-full overflow-hidden rounded-2xl text-start shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-0.5"
     >
       <img
         src={design.src}
-        alt={design.name}
+        alt=""
         loading="lazy"
         className={cn(
           "w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]",
           design.orientation === "portrait" ? "aspect-[4/5]" : "aspect-square",
         )}
       />
-      <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-      <span className="absolute inset-x-0 bottom-0 p-4">
-        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70">
-          {design.client}
-        </span>
-        <span className="mt-1 block font-display text-base font-semibold tracking-tight text-white">
-          {design.name}
-        </span>
-      </span>
+      <span className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </button>
   );
 }
@@ -593,27 +601,19 @@ function PhotoCard({
     <button
       type="button"
       onClick={onOpen}
-      aria-label={`${viewLabel}: ${photo.name}`}
+      aria-label={viewLabel}
       className="group relative block w-full overflow-hidden rounded-2xl bg-black text-start shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-0.5"
     >
       <img
         src={photo.src}
-        alt={photo.name}
+        alt=""
         loading="lazy"
         className={cn(
           "w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]",
           photo.orientation === "portrait" ? "aspect-[3/5]" : "aspect-video",
         )}
       />
-      <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-      <span className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
-        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70">
-          {photo.client}
-        </span>
-        <span className="mt-1 block font-display text-sm font-semibold tracking-tight text-white sm:text-base">
-          {photo.name}
-        </span>
-      </span>
+      <span className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </button>
   );
 }

@@ -273,6 +273,34 @@ export const photographyProjects: PhotoProject[] = [
     src: "/images/projects/photography/pom-dor-back.jpg",
     orientation: "portrait",
   },
+  {
+    id: "gk-doors-1",
+    name: "Porte design",
+    client: "GK Doors",
+    src: "/images/projects/photography/gk-doors-1.jpg",
+    orientation: "portrait",
+  },
+  {
+    id: "gk-doors-2",
+    name: "Porte contemporaine",
+    client: "GK Doors",
+    src: "/images/projects/photography/gk-doors-2.jpg",
+    orientation: "portrait",
+  },
+  {
+    id: "gk-doors-3",
+    name: "Porte vert sauge",
+    client: "GK Doors",
+    src: "/images/projects/photography/gk-doors-3.jpg",
+    orientation: "portrait",
+  },
+  {
+    id: "gk-doors-4",
+    name: "Porte marbre & or",
+    client: "GK Doors",
+    src: "/images/projects/photography/gk-doors-4.jpg",
+    orientation: "portrait",
+  },
 ];
 
 export const designProjects: DesignProject[] = [
