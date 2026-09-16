@@ -9,7 +9,6 @@ export type ProjectItem = {
 
 export type VideoProject = {
   id: string;
-  name: string;
   src: string;
   poster: string;
   orientation: "portrait" | "landscape";
@@ -18,21 +17,18 @@ export type VideoProject = {
 export const voixOffProjects: VideoProject[] = [
   {
     id: "creme-hydratante",
-    name: "Crème hydratante",
     src: "/videos/projects/creme-hydratante.mp4",
     poster: "/images/projects/video/creme-hydratante.jpg",
     orientation: "portrait",
   },
   {
     id: "kit-5-en-1",
-    name: "Kit 5 en 1",
     src: "/videos/projects/kit-5-en-1.mp4",
     poster: "/images/projects/video/kit-5-en-1.jpg",
     orientation: "portrait",
   },
   {
     id: "invention-marketing",
-    name: "Invention marketing",
     src: "/videos/projects/invention-marketing.mp4",
     poster: "/images/projects/video/invention-marketing.jpg",
     orientation: "portrait",
@@ -449,77 +445,66 @@ export const designProjects: DesignProject[] = [
 export const videographyProjects: VideoProject[] = [
   {
     id: "design-interieur",
-    name: "Design intérieur",
     src: "/videos/projects/design-interieur.mp4",
     poster: "/images/projects/video/design-interieur.jpg",
     orientation: "portrait",
   },
   {
     id: "ak-agency",
-    name: "AK Agency",
     src: "/videos/projects/ak-agency.mp4",
     poster: "/images/projects/video/ak-agency.jpg",
     orientation: "landscape",
   },
   {
     id: "costa-azhar",
-    name: "Costa Azhar",
     src: "/videos/projects/costa-azhar.mp4",
     poster: "/images/projects/video/costa-azhar.jpg",
     orientation: "landscape",
   },
   {
     id: "drone-voix-off",
-    name: "Drone & voix off",
     src: "/videos/projects/drone-voix-off.mp4",
     poster: "/images/projects/video/drone-voix-off.jpg",
     orientation: "landscape",
   },
   {
     id: "detaunet",
-    name: "Detaunet",
     src: "/videos/projects/detaunet.mp4",
     poster: "/images/projects/video/detaunet.jpg",
     orientation: "landscape",
   },
   {
     id: "valise-musculation",
-    name: "Valise de musculation",
     src: "/videos/projects/valise-musculation.mp4",
     poster: "/images/projects/video/valise-musculation.jpg",
     orientation: "portrait",
   },
   {
     id: "tadj-ben-aarab",
-    name: "Tadj Ben Aarab",
     src: "/videos/projects/tadj-ben-aarab.mp4",
     poster: "/images/projects/video/tadj-ben-aarab.jpg",
     orientation: "portrait",
   },
   {
     id: "burger",
-    name: "Burger",
     src: "/videos/projects/burger.mp4",
     poster: "/images/projects/video/burger.jpg",
     orientation: "portrait",
   },
   {
     id: "video-global",
-    name: "Vidéo globale",
     src: "/videos/projects/video-global.mp4",
     poster: "/images/projects/video/video-global.jpg",
     orientation: "portrait",
   },
   {
     id: "gs-immo",
-    name: "GS Immo",
     src: "/videos/projects/gs-immo.mp4",
     poster: "/images/projects/video/gs-immo.jpg",
     orientation: "portrait",
   },
   {
     id: "reel-1",
-    name: "Reel 1",
     src: "/videos/projects/reel-1.mp4",
     poster: "/images/projects/video/reel-1.jpg",
     orientation: "portrait",
@@ -561,5 +546,12 @@ export const softwareProjects: ProjectItem[] = [
     domain: "novabaiesdz.com",
     url: "https://novabaiesdz.com",
     logo: "/images/projects/nova-baies.png",
+  },
+  {
+    id: "novatech",
+    name: "Nova Tech",
+    domain: "dz-novatech.com",
+    url: "https://www.dz-novatech.com/en",
+    logo: "/images/projects/nova-tech.png",
   },
 ];

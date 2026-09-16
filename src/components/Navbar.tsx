@@ -4,6 +4,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useRouterState } from "@tanstack/react-router";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 import { BrandLogo } from "./BrandLogo";
 import { brand } from "@/lib/brand";
 import type { Lang } from "@/i18n/translations";
@@ -15,7 +16,7 @@ const navCopy: Record<
     services: string;
     work: string;
     about: string;
-    resources: string;
+    formations: string;
     cta: string;
   }
 > = {
@@ -23,21 +24,21 @@ const navCopy: Record<
     services: "Services",
     work: "Réalisations",
     about: "À propos",
-    resources: "Ressources",
+    formations: "Formations",
     cta: "Contactez-nous",
   },
   en: {
     services: "Services",
     work: "Work",
     about: "About",
-    resources: "Resources",
+    formations: "Courses",
     cta: "Contact us",
   },
   ar: {
     services: "الخدمات",
     work: "أعمالنا",
     about: "من نحن",
-    resources: "الموارد",
+    formations: "التكوينات",
     cta: "تواصل معنا",
   },
 };
@@ -54,7 +55,7 @@ export function Navbar() {
     { label: copy.services, href: "/#services" },
     { label: copy.work, href: "/projects" },
     { label: copy.about, href: "/#about" },
-    { label: copy.resources, href: "/#formations" },
+    { label: copy.formations, href: "/#formations" },
   ];
 
   const solid = scrolled || !isHome || open;
@@ -73,6 +74,9 @@ export function Navbar() {
     };
   }, [open]);
 
+  const controlTone =
+    "[&_button]:rounded-none [&_button]:border-0 [&_button]:bg-transparent [&_button]:shadow-none [&_button]:hover:bg-transparent [&_button]:hover:border-transparent";
+
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
@@ -88,20 +92,20 @@ export function Navbar() {
             : "border-b border-transparent bg-transparent",
         )}
       >
-        <div className="container-px mx-auto flex h-[4.25rem] max-w-7xl items-center gap-6 lg:h-[4.75rem] lg:gap-10">
+        <div className="container-px mx-auto flex h-[4.75rem] max-w-7xl items-center gap-6 lg:h-[5.25rem] lg:gap-10">
           <a href="/" className="flex shrink-0 items-center" aria-label={brand.name}>
             <BrandLogo
               variant="inline"
               appearance="nav"
-              className="hidden sm:inline-flex"
-              wordmarkClassName="text-[0.95rem] tracking-[-0.01em]"
-              markClassName="h-8 w-8"
+              className="hidden sm:inline-flex gap-3"
+              wordmarkClassName="text-lg tracking-[-0.02em] sm:text-xl"
+              markClassName="h-14 w-14 sm:h-16 sm:w-16"
             />
             <BrandLogo
               variant="icon"
               appearance="nav"
               className="sm:hidden"
-              markClassName="h-8 w-8"
+              markClassName="h-14 w-14"
             />
           </a>
 
@@ -120,16 +124,18 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="ms-auto flex shrink-0 items-center gap-3 sm:gap-4">
+          <div className="ms-auto flex shrink-0 items-center gap-2 sm:gap-3">
             <div
               className={cn(
-                "hidden sm:block",
-                "[&_button]:rounded-none [&_button]:border-0 [&_button]:bg-transparent [&_button]:px-2 [&_button]:py-1.5",
+                "hidden items-center gap-1 sm:flex",
+                controlTone,
+                "[&_button]:h-9 [&_button]:w-auto [&_button]:px-2 [&_button]:py-1.5",
                 "[&_button]:text-[13px] [&_button]:font-medium [&_button]:tracking-[0.04em] [&_button]:text-white/70",
-                "[&_button]:hover:bg-transparent [&_button]:hover:text-white",
-                "[&_svg]:text-white/55",
+                "[&_button]:hover:text-white",
+                "[&_svg]:text-white/70",
               )}
             >
+              <ThemeToggle />
               <LanguageSwitcher />
             </div>
 
@@ -165,7 +171,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-[4.25rem] z-40 bg-[oklch(0.1_0.035_255/0.96)] backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 top-[4.75rem] z-40 bg-[oklch(0.1_0.035_255/0.96)] backdrop-blur-xl lg:hidden"
           >
             <div className="container-px mx-auto flex h-full max-w-7xl flex-col px-6 py-10">
               <nav className="flex flex-col gap-1" aria-label="Mobile">
@@ -187,12 +193,15 @@ export function Navbar() {
               <div className="mt-auto space-y-6 pb-8">
                 <div
                   className={cn(
-                    "[&_button]:rounded-none [&_button]:border-0 [&_button]:bg-transparent [&_button]:px-0",
-                    "[&_button]:text-base [&_button]:text-white/70 [&_button]:hover:bg-transparent [&_button]:hover:text-white",
-                    "[&_svg]:text-white/55",
+                    "flex items-center gap-3",
+                    controlTone,
+                    "[&_button]:h-10 [&_button]:w-auto [&_button]:px-0",
+                    "[&_button]:text-base [&_button]:text-white/70 [&_button]:hover:text-white",
+                    "[&_svg]:text-white/70",
                   )}
                 >
-                  <LanguageSwitcher />
+                  <ThemeToggle compact />
+                  <LanguageSwitcher compact />
                 </div>
                 <a
                   href="/#contact"

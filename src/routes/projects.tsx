@@ -173,11 +173,13 @@ function ProjectsPage() {
                     ) : section.id === "videography" ? (
                       <VideographyGrid
                         playLabel={t.projectsPage.playVideo}
+                        titles={t.projectsPage.videos}
                         onPlay={setActiveVideo}
                       />
                     ) : section.id === "voixOff" ? (
                       <VoixOffGrid
                         playLabel={t.projectsPage.playVideo}
+                        titles={t.projectsPage.videos}
                         onPlay={setActiveVideo}
                       />
                     ) : section.id === "photography" ? (
@@ -227,7 +229,9 @@ function ProjectsPage() {
           )}
         >
           <DialogTitle className="sr-only">
-            {t.projectsPage.playVideo}
+            {activeVideo
+              ? (t.projectsPage.videos[activeVideo.id] ?? t.projectsPage.playVideo)
+              : t.projectsPage.playVideo}
           </DialogTitle>
           <DialogDescription className="sr-only">
             {t.projectsPage.playVideo}
@@ -389,9 +393,11 @@ function UpcomingStudios() {
 
 function VideographyGrid({
   playLabel,
+  titles,
   onPlay,
 }: {
   playLabel: string;
+  titles: Record<string, string>;
   onPlay: (video: VideoProject) => void;
 }) {
   const landscape = videographyProjects.filter((v) => v.orientation === "landscape");
@@ -402,14 +408,24 @@ function VideographyGrid({
       <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
         {landscape.map((video, i) => (
           <Reveal key={video.id} delay={0.04 + i * 0.06}>
-            <VideoCard video={video} playLabel={playLabel} onPlay={() => onPlay(video)} />
+            <VideoCard
+              video={video}
+              title={titles[video.id] ?? playLabel}
+              playLabel={playLabel}
+              onPlay={() => onPlay(video)}
+            />
           </Reveal>
         ))}
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {portrait.map((video, i) => (
           <Reveal key={video.id} delay={0.08 + i * 0.05}>
-            <VideoCard video={video} playLabel={playLabel} onPlay={() => onPlay(video)} />
+            <VideoCard
+              video={video}
+              title={titles[video.id] ?? playLabel}
+              playLabel={playLabel}
+              onPlay={() => onPlay(video)}
+            />
           </Reveal>
         ))}
       </div>
@@ -419,16 +435,23 @@ function VideographyGrid({
 
 function VoixOffGrid({
   playLabel,
+  titles,
   onPlay,
 }: {
   playLabel: string;
+  titles: Record<string, string>;
   onPlay: (video: VideoProject) => void;
 }) {
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
       {voixOffProjects.map((video, i) => (
         <Reveal key={video.id} delay={0.04 + i * 0.06}>
-          <VideoCard video={video} playLabel={playLabel} onPlay={() => onPlay(video)} />
+          <VideoCard
+            video={video}
+            title={titles[video.id] ?? playLabel}
+            playLabel={playLabel}
+            onPlay={() => onPlay(video)}
+          />
         </Reveal>
       ))}
     </div>
@@ -523,10 +546,12 @@ function ProjectCard({
 
 function VideoCard({
   video,
+  title,
   playLabel,
   onPlay,
 }: {
   video: VideoProject;
+  title: string;
   playLabel: string;
   onPlay: () => void;
 }) {
@@ -534,7 +559,7 @@ function VideoCard({
     <button
       type="button"
       onClick={onPlay}
-      aria-label={playLabel}
+      aria-label={`${playLabel}: ${title}`}
       className="group relative block w-full overflow-hidden rounded-2xl text-start"
     >
       <span
@@ -549,9 +574,14 @@ function VideoCard({
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
-        <span className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+        <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
         <span className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/95 text-foreground shadow-[var(--shadow-elegant)] transition-transform duration-300 group-hover:scale-110">
           <Play size={22} fill="currentColor" className="ml-0.5" />
+        </span>
+        <span className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+          <span className="font-display text-base font-semibold tracking-tight text-white sm:text-lg">
+            {title}
+          </span>
         </span>
       </span>
     </button>

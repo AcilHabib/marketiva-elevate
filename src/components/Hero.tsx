@@ -8,21 +8,21 @@ const heroCopy: Record<
   { line1: string; line2: string; accent: string; positioning: string }
 > = {
   fr: {
-    line1: "Marketing intelligent.",
-    line2: "Croissance",
-    accent: "réelle.",
+    line1: "Le meilleur marketing",
+    line2: "ne ressemble pas à",
+    accent: "du marketing.",
     positioning: "STRATÉGIE · CRÉATIVITÉ · PERFORMANCE",
   },
   en: {
-    line1: "Intelligent marketing.",
-    line2: "Real",
-    accent: "growth.",
+    line1: "The best marketing",
+    line2: "doesn't look like",
+    accent: "marketing.",
     positioning: "STRATEGY · CREATIVITY · PERFORMANCE",
   },
   ar: {
-    line1: "تسويق ذكي.",
-    line2: "نمو",
-    accent: "حقيقي.",
+    line1: "أفضل تسويق",
+    line2: "لا يشبه",
+    accent: "التسويق.",
     positioning: "استراتيجية · إبداع · أداء",
   },
 };

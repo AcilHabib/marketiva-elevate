@@ -119,6 +119,7 @@ export type Dict = {
     comingSoon: string;
     viewAll: string;
     upcoming: { eyebrow: string; subtitle: string };
+    videos: Record<string, string>;
     sections: {
       software: { title: string; description: string };
       videography: { title: string; description: string };
@@ -500,6 +501,22 @@ export const translations: Record<Lang, Dict> = {
         eyebrow: "Prochainement",
         subtitle: "Ces univers sont en préparation. Le portfolio s’étoffe.",
       },
+      videos: {
+        "design-interieur": "Présentation design",
+        "ak-agency": "Visite de bureau",
+        "costa-azhar": "Prise de vue drone",
+        "drone-voix-off": "Film industriel",
+        detaunet: "Publicité produit",
+        "valise-musculation": "Showcase fitness",
+        "tadj-ben-aarab": "Visite de showroom",
+        burger: "Vidéo food",
+        "video-global": "Visite showroom meubles",
+        "gs-immo": "Promo immobilière",
+        "reel-1": "Présentation showroom",
+        "creme-hydratante": "Pub crème hydratante",
+        "kit-5-en-1": "Pub kit coiffure",
+        "invention-marketing": "Spot marketing",
+      },
       sections: {
         software: {
           title: "Software",
@@ -868,6 +885,22 @@ export const translations: Record<Lang, Dict> = {
       upcoming: {
         eyebrow: "قريباً",
         subtitle: "هذه العوالم قيد التحضير. المعرض يتوسّع.",
+      },
+      videos: {
+        "design-interieur": "عرض تقديمي للتصميم",
+        "ak-agency": "جولة في المكتب",
+        "costa-azhar": "تصوير بطائرة درون",
+        "drone-voix-off": "فيلم صناعي",
+        detaunet: "إعلان منتج",
+        "valise-musculation": "عرض معدات رياضية",
+        "tadj-ben-aarab": "جولة في صالة العرض",
+        burger: "فيديو طعام",
+        "video-global": "جولة صالة أثاث",
+        "gs-immo": "ترويج عقاري",
+        "reel-1": "عرض في صالة العرض",
+        "creme-hydratante": "إعلان كريم مرطب",
+        "kit-5-en-1": "إعلان طقم تصفيف",
+        "invention-marketing": "إعلان تسويقي",
       },
       sections: {
         software: {
@@ -1248,6 +1281,22 @@ export const translations: Record<Lang, Dict> = {
       upcoming: {
         eyebrow: "Coming next",
         subtitle: "These studios are in preparation. The portfolio is expanding.",
+      },
+      videos: {
+        "design-interieur": "Design presentation",
+        "ak-agency": "Office tour",
+        "costa-azhar": "Drone shot",
+        "drone-voix-off": "Industrial film",
+        detaunet: "Product commercial",
+        "valise-musculation": "Fitness showcase",
+        "tadj-ben-aarab": "Showroom tour",
+        burger: "Food video",
+        "video-global": "Furniture showroom tour",
+        "gs-immo": "Real estate promo",
+        "reel-1": "Showroom presentation",
+        "creme-hydratante": "Moisturizer commercial",
+        "kit-5-en-1": "Hair kit commercial",
+        "invention-marketing": "Marketing spot",
       },
       sections: {
         software: {
