@@ -4,6 +4,7 @@ import type {
   AdminState,
   AdminTestimonial,
   GalleryCategory,
+  ReorderCollection,
   Subcategory,
   TrustedBrand,
 } from "./types";
@@ -87,6 +88,13 @@ export function apiUpsertStaff(member: AdminStaffMember) {
 export function apiRemoveStaff(id: string) {
   return request<{ ok: true }>(`/api/admin/staff?id=${encodeURIComponent(id)}`, {
     method: "DELETE",
+  });
+}
+
+export function apiReorder(collection: ReorderCollection, orderedIds: string[]) {
+  return request<{ ok: true }>("/api/admin/reorder", {
+    method: "POST",
+    body: JSON.stringify({ collection, orderedIds }),
   });
 }
 

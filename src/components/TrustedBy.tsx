@@ -6,12 +6,12 @@ import type { TrustedBrand } from "@/admin/types";
 
 function ClientLogo({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="group flex h-[4.75rem] w-40 shrink-0 items-center justify-center px-4 sm:h-[5.25rem] sm:w-48 sm:px-5">
+    <div className="group flex h-[7rem] w-52 shrink-0 items-center justify-center px-5 sm:h-[8rem] sm:w-64 sm:px-6">
       <img
         src={logo}
         alt={name}
         loading="lazy"
-        className="max-h-12 max-w-[min(100%,148px)] rounded-lg object-contain opacity-70 grayscale-[25%] transition-all duration-500 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0 sm:max-h-14 sm:max-w-[168px] sm:rounded-xl"
+        className="max-h-[4.5rem] max-w-[min(100%,200px)] rounded-lg object-contain opacity-75 grayscale-[20%] transition-all duration-500 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0 sm:max-h-[5.25rem] sm:max-w-[220px] sm:rounded-xl"
       />
     </div>
   );
@@ -47,7 +47,7 @@ export function TrustedBy({ brands }: { brands: TrustedBrand[] }) {
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-24" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-24" />
 
-            <div className="flex w-max animate-[marquee_42s_linear_infinite] items-center gap-1 sm:gap-2">
+            <div className="flex w-max animate-[marquee_48s_linear_infinite] items-center gap-2 sm:gap-3">
               {row.map((c, i) => (
                 <ClientLogo key={`${c.id}-${i}`} name={c.name} logo={c.logoUrl} />
               ))}

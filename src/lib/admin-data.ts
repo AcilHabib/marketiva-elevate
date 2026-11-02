@@ -1,9 +1,11 @@
 import { buildSeedState } from "@/admin/seed";
+import { compareBySortOrder } from "@/admin/sort";
 import type {
   AdminProject,
   AdminStaffMember,
   AdminState,
   AdminTestimonial,
+  ReorderCollection,
   Subcategory,
   TrustedBrand,
 } from "@/admin/types";
@@ -16,27 +18,79 @@ import {
   TestimonialModel,
 } from "@/models/content";
 
+type WithId = { id: string; sortOrder?: number | null; createdAt?: string; _id?: unknown };
+
 function leanId<T extends { id: string }>(docs: Array<T & { _id?: unknown }>): T[] {
   return docs.map(({ _id, ...rest }) => rest as T);
+}
+
+const reorderModels = {
+  projects: ProjectModel,
+  brands: BrandModel,
+  testimonials: TestimonialModel,
+  staff: StaffModel,
+} as const;
+
+async function normalizeSortOrder<T extends WithId>(
+  model: (typeof reorderModels)[ReorderCollection],
+  docs: T[],
+): Promise<T[]> {
+  const sorted = [...docs].sort(compareBySortOrder);
+  const needsBackfill = sorted.some(
+    (doc) =>
+      doc.sortOrder === undefined || doc.sortOrder === null || !Number.isFinite(doc.sortOrder),
+  );
+
+  if (needsBackfill) {
+    await Promise.all(
+      sorted.map((doc, index) => model.updateOne({ id: doc.id }, { $set: { sortOrder: index } })),
+    );
+    return leanId(sorted.map((doc, index) => ({ ...doc, sortOrder: index })));
+  }
+
+  return leanId(sorted.map((doc) => ({ ...doc, sortOrder: doc.sortOrder as number })));
 }
 
 export async function getAdminContent(): Promise<AdminState> {
   await connectMongo();
   const [projects, subcategories, brands, testimonials, staff] = await Promise.all([
-    ProjectModel.find().sort({ updatedAt: -1 }).lean(),
+    ProjectModel.find().lean(),
     SubcategoryModel.find().lean(),
-    BrandModel.find().sort({ updatedAt: -1 }).lean(),
-    TestimonialModel.find().sort({ updatedAt: -1 }).lean(),
-    StaffModel.find().sort({ updatedAt: -1 }).lean(),
+    BrandModel.find().lean(),
+    TestimonialModel.find().lean(),
+    StaffModel.find().lean(),
   ]);
 
+  const [normalizedProjects, normalizedBrands, normalizedTestimonials, normalizedStaff] =
+    await Promise.all([
+      normalizeSortOrder(ProjectModel, projects as unknown as AdminProject[]),
+      normalizeSortOrder(BrandModel, brands as unknown as TrustedBrand[]),
+      normalizeSortOrder(TestimonialModel, testimonials as unknown as AdminTestimonial[]),
+      normalizeSortOrder(StaffModel, staff as unknown as AdminStaffMember[]),
+    ]);
+
   return {
-    projects: leanId(projects as unknown as AdminProject[]),
+    projects: normalizedProjects,
     subcategories: leanId(subcategories as unknown as Subcategory[]),
-    brands: leanId(brands as unknown as TrustedBrand[]),
-    testimonials: leanId(testimonials as unknown as AdminTestimonial[]),
-    staff: leanId(staff as unknown as AdminStaffMember[]),
+    brands: normalizedBrands,
+    testimonials: normalizedTestimonials,
+    staff: normalizedStaff,
   };
+}
+
+export async function reorderCollection(collection: ReorderCollection, orderedIds: string[]) {
+  await connectMongo();
+  const model = reorderModels[collection];
+  if (!model) throw new Error(`Unknown collection: ${collection}`);
+  if (!Array.isArray(orderedIds) || orderedIds.length === 0) {
+    throw new Error("orderedIds must be a non-empty array");
+  }
+
+  await Promise.all(
+    orderedIds.map((id, index) =>
+      model.updateOne({ id }, { $set: { sortOrder: index, updatedAt: new Date().toISOString() } }),
+    ),
+  );
 }
 
 export async function seedAdminContentIfEmpty() {

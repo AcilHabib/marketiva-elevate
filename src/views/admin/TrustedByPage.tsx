@@ -1,12 +1,14 @@
 "use client";
 
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { AdminShell } from "@/admin/components/AdminLayout";
 import { ConfirmDelete } from "@/admin/components/ConfirmDelete";
 import { MediaUpload } from "@/admin/components/MediaUpload";
+import { ReorderControls } from "@/admin/components/ReorderControls";
 import { createId } from "@/admin/id";
+import { compareBySortOrder, moveOrderedIds, nextSortOrder } from "@/admin/sort";
 import { useAdminStoreApi } from "@/admin/store";
 import type { TrustedBrand } from "@/admin/types";
 import { Button } from "@/components/ui/button";
@@ -28,11 +30,28 @@ type BrandForm = {
 };
 
 export function AdminTrustedByPage() {
-  const { state, upsertBrand, removeBrand, loading } = useAdminStoreApi();
-  const brands = state.brands;
+  const { state, upsertBrand, removeBrand, reorder, loading } = useAdminStoreApi();
+  const brands = useMemo(() => [...state.brands].sort(compareBySortOrder), [state.brands]);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<BrandForm>({ name: "", logoUrl: "" });
   const [saving, setSaving] = useState(false);
+  const [reordering, setReordering] = useState(false);
+
+  async function moveBrand(index: number, direction: "up" | "down") {
+    const orderedIds = moveOrderedIds(
+      brands.map((b) => b.id),
+      index,
+      direction,
+    );
+    setReordering(true);
+    try {
+      await reorder("brands", orderedIds);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to reorder");
+    } finally {
+      setReordering(false);
+    }
+  }
 
   function openCreate() {
     setForm({ name: "", logoUrl: "" });
@@ -61,6 +80,7 @@ export function AdminTrustedByPage() {
       id: form.id ?? createId("brand"),
       name: form.name.trim(),
       logoUrl: form.logoUrl.trim(),
+      sortOrder: existing?.sortOrder ?? nextSortOrder(brands),
       createdAt: existing?.createdAt ?? stamp,
       updatedAt: stamp,
     };
@@ -98,7 +118,7 @@ export function AdminTrustedByPage() {
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {brands.map((brand) => (
+          {brands.map((brand, index) => (
             <div
               key={brand.id}
               className="group rounded-2xl border border-border bg-card/50 p-4 transition-colors hover:border-primary/30"
@@ -115,7 +135,14 @@ export function AdminTrustedByPage() {
                   <p className="truncate text-sm font-medium">{brand.name}</p>
                   <p className="text-[11px] text-muted-foreground">Staff label · not displayed</p>
                 </div>
-                <div className="flex shrink-0 gap-1">
+                <div className="flex shrink-0 items-start gap-1">
+                  <ReorderControls
+                    canMoveUp={index > 0}
+                    canMoveDown={index < brands.length - 1}
+                    disabled={reordering}
+                    onMoveUp={() => void moveBrand(index, "up")}
+                    onMoveDown={() => void moveBrand(index, "down")}
+                  />
                   <Button type="button" size="icon" variant="ghost" onClick={() => openEdit(brand)}>
                     <Pencil className="h-4 w-4" />
                   </Button>

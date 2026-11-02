@@ -1,11 +1,13 @@
 "use client";
 
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { AdminShell } from "@/admin/components/AdminLayout";
 import { ConfirmDelete } from "@/admin/components/ConfirmDelete";
+import { ReorderControls } from "@/admin/components/ReorderControls";
 import { createId } from "@/admin/id";
+import { compareBySortOrder, moveOrderedIds, nextSortOrder } from "@/admin/sort";
 import { useAdminStoreApi } from "@/admin/store";
 import type { AdminTestimonial } from "@/admin/types";
 import { Button } from "@/components/ui/button";
@@ -37,11 +39,31 @@ const emptyForm = (): TestimonialForm => ({
 });
 
 export function AdminTestimonialsPage() {
-  const { state, upsertTestimonial, removeTestimonial, loading } = useAdminStoreApi();
-  const testimonials = state.testimonials;
+  const { state, upsertTestimonial, removeTestimonial, reorder, loading } = useAdminStoreApi();
+  const testimonials = useMemo(
+    () => [...state.testimonials].sort(compareBySortOrder),
+    [state.testimonials],
+  );
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<TestimonialForm>(emptyForm());
   const [saving, setSaving] = useState(false);
+  const [reordering, setReordering] = useState(false);
+
+  async function moveTestimonial(index: number, direction: "up" | "down") {
+    const orderedIds = moveOrderedIds(
+      testimonials.map((t) => t.id),
+      index,
+      direction,
+    );
+    setReordering(true);
+    try {
+      await reorder("testimonials", orderedIds);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to reorder");
+    } finally {
+      setReordering(false);
+    }
+  }
 
   function openCreate() {
     setForm(emptyForm());
@@ -78,6 +100,7 @@ export function AdminTestimonialsPage() {
       quote: form.quote.trim(),
       occupation: form.occupation.trim(),
       company: form.company.trim(),
+      sortOrder: existing?.sortOrder ?? nextSortOrder(testimonials),
       createdAt: existing?.createdAt ?? stamp,
       updatedAt: stamp,
     };
@@ -115,7 +138,7 @@ export function AdminTestimonialsPage() {
         </div>
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
-          {testimonials.map((item) => (
+          {testimonials.map((item, index) => (
             <article
               key={item.id}
               className="rounded-2xl border border-border bg-card/50 p-5 transition-colors hover:border-primary/30"
@@ -130,7 +153,14 @@ export function AdminTestimonialsPage() {
                     {item.occupation} · {item.company}
                   </p>
                 </div>
-                <div className="flex shrink-0 gap-1">
+                <div className="flex shrink-0 items-end gap-1">
+                  <ReorderControls
+                    canMoveUp={index > 0}
+                    canMoveDown={index < testimonials.length - 1}
+                    disabled={reordering}
+                    onMoveUp={() => void moveTestimonial(index, "up")}
+                    onMoveDown={() => void moveTestimonial(index, "down")}
+                  />
                   <Button type="button" size="icon" variant="ghost" onClick={() => openEdit(item)}>
                     <Pencil className="h-4 w-4" />
                   </Button>

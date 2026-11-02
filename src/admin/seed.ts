@@ -61,6 +61,7 @@ export function buildSeedState(): AdminState {
       name: item.name,
       description: item.domain,
       category: "software",
+      sortOrder: projects.length,
       logoUrl: item.logo,
       linkUrl: item.url,
       createdAt: stamp,
@@ -74,6 +75,7 @@ export function buildSeedState(): AdminState {
       name: videoTitles[item.id] ?? item.id,
       description: "",
       category: "videography",
+      sortOrder: projects.length,
       videoUrl: item.src,
       thumbnailUrl: item.poster,
       orientation: item.orientation,
@@ -88,6 +90,7 @@ export function buildSeedState(): AdminState {
       name: videoTitles[item.id] ?? item.id,
       description: "",
       category: "voixOff",
+      sortOrder: projects.length,
       videoUrl: item.src,
       thumbnailUrl: item.poster,
       orientation: item.orientation,
@@ -103,6 +106,7 @@ export function buildSeedState(): AdminState {
       name: item.name,
       description: item.client,
       category: "design",
+      sortOrder: projects.length,
       imageUrl: item.src,
       subcategoryId,
       orientation: item.orientation,
@@ -122,6 +126,7 @@ export function buildSeedState(): AdminState {
       name: item.name,
       description: item.client,
       category: "photography",
+      sortOrder: projects.length,
       imageUrl: item.src,
       subcategoryId,
       orientation: item.orientation,
@@ -132,15 +137,16 @@ export function buildSeedState(): AdminState {
 
   const brands: TrustedBrand[] = clients
     .filter((c): c is typeof c & { logo: string } => Boolean(c.logo))
-    .map((c) => ({
+    .map((c, index) => ({
       id: c.id,
       name: c.name,
       logoUrl: c.logo,
+      sortOrder: index,
       createdAt: stamp,
       updatedAt: stamp,
     }));
 
-  const testimonials: AdminTestimonial[] = testimonialsMeta.map((meta) => {
+  const testimonials: AdminTestimonial[] = testimonialsMeta.map((meta, index) => {
     const item = testimonialCopy[meta.id];
     return {
       id: meta.id,
@@ -148,12 +154,13 @@ export function buildSeedState(): AdminState {
       quote: item?.quote ?? "",
       occupation: item?.role ?? "",
       company: item?.company ?? "",
+      sortOrder: index,
       createdAt: stamp,
       updatedAt: stamp,
     };
   });
 
-  const staff: AdminStaffMember[] = team.map((member) => {
+  const staff: AdminStaffMember[] = team.map((member, index) => {
     const experienceLabel = NO_EXPERIENCE.has(member.id)
       ? undefined
       : (teamCopy.experienceByMember[member.id] ?? teamCopy.experienceDefault);
@@ -163,6 +170,7 @@ export function buildSeedState(): AdminState {
       skill: teamCopy.roles[member.id] ?? "",
       yearsExperience: parseYears(experienceLabel),
       photoUrl: member.photo ?? "",
+      sortOrder: index,
       createdAt: stamp,
       updatedAt: stamp,
     };

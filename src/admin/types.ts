@@ -16,6 +16,8 @@ export type AdminProject = {
   name: string;
   description: string;
   category: ProjectCategory;
+  /** Lower numbers appear first on the site and in admin lists */
+  sortOrder: number;
   createdAt: string;
   updatedAt: string;
   /** Software */
@@ -34,6 +36,8 @@ export type TrustedBrand = {
   id: string;
   name: string;
   logoUrl: string;
+  /** Lower numbers appear first on the site and in admin lists */
+  sortOrder: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -44,6 +48,8 @@ export type AdminTestimonial = {
   quote: string;
   occupation: string;
   company: string;
+  /** Lower numbers appear first on the site and in admin lists */
+  sortOrder: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -56,9 +62,13 @@ export type AdminStaffMember = {
   /** Years of experience; null hides the experience line */
   yearsExperience: number | null;
   photoUrl: string;
+  /** Lower numbers appear first on the site and in admin lists */
+  sortOrder: number;
   createdAt: string;
   updatedAt: string;
 };
+
+export type ReorderCollection = "projects" | "brands" | "testimonials" | "staff";
 
 export type AdminState = {
   projects: AdminProject[];

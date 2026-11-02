@@ -1,12 +1,14 @@
 "use client";
 
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { AdminShell } from "@/admin/components/AdminLayout";
 import { ConfirmDelete } from "@/admin/components/ConfirmDelete";
 import { MediaUpload } from "@/admin/components/MediaUpload";
+import { ReorderControls } from "@/admin/components/ReorderControls";
 import { createId } from "@/admin/id";
+import { compareBySortOrder, moveOrderedIds, nextSortOrder } from "@/admin/sort";
 import { useAdminStoreApi } from "@/admin/store";
 import type { AdminStaffMember } from "@/admin/types";
 import { Button } from "@/components/ui/button";
@@ -42,11 +44,29 @@ function formatExperience(years: number | null) {
 }
 
 export function AdminStaffPage() {
-  const { state, upsertStaffMember, removeStaffMember, loading } = useAdminStoreApi();
-  const staff = state.staff;
+  const { state, upsertStaffMember, removeStaffMember, reorder, loading } = useAdminStoreApi();
+  const staff = useMemo(() => [...state.staff].sort(compareBySortOrder), [state.staff]);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<StaffForm>(emptyForm());
   const [saving, setSaving] = useState(false);
+  const [reordering, setReordering] = useState(false);
+
+  async function moveStaff(index: number, direction: "up" | "down") {
+    const orderedIds = moveOrderedIds(
+      staff.map((m) => m.id),
+      index,
+      direction,
+    );
+    if (orderedIds === staff.map((m) => m.id)) return;
+    setReordering(true);
+    try {
+      await reorder("staff", orderedIds);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to reorder");
+    } finally {
+      setReordering(false);
+    }
+  }
 
   function openCreate() {
     setForm(emptyForm());
@@ -101,6 +121,7 @@ export function AdminStaffPage() {
       skill: form.skill.trim(),
       yearsExperience,
       photoUrl: form.photoUrl.trim(),
+      sortOrder: existing?.sortOrder ?? nextSortOrder(staff),
       createdAt: existing?.createdAt ?? stamp,
       updatedAt: stamp,
     };
@@ -139,7 +160,7 @@ export function AdminStaffPage() {
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {staff.map((member) => (
+          {staff.map((member, index) => (
             <article
               key={member.id}
               className="overflow-hidden rounded-2xl border border-border bg-card/50 transition-colors hover:border-primary/30"
@@ -165,7 +186,14 @@ export function AdminStaffPage() {
                     {formatExperience(member.yearsExperience)}
                   </p>
                 </div>
-                <div className="flex shrink-0 gap-1">
+                <div className="flex shrink-0 items-start gap-1">
+                  <ReorderControls
+                    canMoveUp={index > 0}
+                    canMoveDown={index < staff.length - 1}
+                    disabled={reordering}
+                    onMoveUp={() => void moveStaff(index, "up")}
+                    onMoveDown={() => void moveStaff(index, "down")}
+                  />
                   <Button
                     type="button"
                     size="icon"

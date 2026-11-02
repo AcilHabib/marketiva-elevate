@@ -6,9 +6,11 @@ import { toast } from "sonner";
 import { AdminShell } from "@/admin/components/AdminLayout";
 import { ConfirmDelete } from "@/admin/components/ConfirmDelete";
 import { MediaUpload } from "@/admin/components/MediaUpload";
+import { ReorderControls } from "@/admin/components/ReorderControls";
 import { SubcategoryManager } from "@/admin/components/SubcategoryManager";
 import { createId } from "@/admin/id";
 import { readVideoAsObjectUrl } from "@/admin/media";
+import { compareBySortOrder, moveOrderedIds, nextSortOrder } from "@/admin/sort";
 import { useAdminStoreApi } from "@/admin/store";
 import {
   PROJECT_CATEGORIES,
@@ -91,17 +93,34 @@ function previewFor(project: AdminProject): string | undefined {
 }
 
 export function AdminProjectsPage() {
-  const { state, upsertProject, removeProject, loading, error } = useAdminStoreApi();
+  const { state, upsertProject, removeProject, reorder, loading, error } = useAdminStoreApi();
   const [filter, setFilter] = useState<ProjectCategory | "all">("all");
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<ProjectFormState>(emptyForm());
   const [saving, setSaving] = useState(false);
+  const [reordering, setReordering] = useState(false);
 
   const filtered = useMemo(() => {
     const list =
       filter === "all" ? state.projects : state.projects.filter((p) => p.category === filter);
-    return [...list].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+    return [...list].sort(compareBySortOrder);
   }, [state.projects, filter]);
+
+  async function moveProject(index: number, direction: "up" | "down") {
+    const orderedIds = moveOrderedIds(
+      filtered.map((p) => p.id),
+      index,
+      direction,
+    );
+    setReordering(true);
+    try {
+      await reorder("projects", orderedIds);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to reorder");
+    } finally {
+      setReordering(false);
+    }
+  }
 
   const subcategoryName = (id?: string) =>
     state.subcategories.find((s) => s.id === id)?.name ?? "—";
@@ -164,14 +183,18 @@ export function AdminProjectsPage() {
     }
 
     const stamp = new Date().toISOString();
+    const existing = form.id ? state.projects.find((p) => p.id === form.id) : undefined;
+    const peers =
+      filter === "all" || form.category === filter
+        ? filtered
+        : state.projects.filter((p) => p.category === form.category);
     const project: AdminProject = {
       id: form.id ?? createId("project"),
       name: form.name.trim(),
       description: form.description.trim(),
       category: form.category,
-      createdAt: form.id
-        ? (state.projects.find((p) => p.id === form.id)?.createdAt ?? stamp)
-        : stamp,
+      sortOrder: existing?.sortOrder ?? nextSortOrder(peers),
+      createdAt: existing?.createdAt ?? stamp,
       updatedAt: stamp,
     };
 
@@ -268,7 +291,7 @@ export function AdminProjectsPage() {
             <span className="text-right">Actions</span>
           </div>
           <ul className="divide-y divide-border">
-            {filtered.map((project) => {
+            {filtered.map((project, index) => {
               const preview = previewFor(project);
               const categoryLabel =
                 PROJECT_CATEGORIES.find((c) => c.id === project.category)?.label ??
@@ -301,6 +324,13 @@ export function AdminProjectsPage() {
                       : "—"}
                   </p>
                   <div className="flex items-center justify-end gap-1">
+                    <ReorderControls
+                      canMoveUp={index > 0}
+                      canMoveDown={index < filtered.length - 1}
+                      disabled={reordering}
+                      onMoveUp={() => void moveProject(index, "up")}
+                      onMoveDown={() => void moveProject(index, "down")}
+                    />
                     <Button
                       type="button"
                       size="icon"

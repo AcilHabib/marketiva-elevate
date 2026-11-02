@@ -17,6 +17,7 @@ import {
   apiRemoveSubcategory,
   apiRemoveTestimonial,
   apiRenameSubcategory,
+  apiReorder,
   apiUpsertBrand,
   apiUpsertProject,
   apiUpsertStaff,
@@ -29,6 +30,7 @@ import type {
   AdminState,
   AdminTestimonial,
   GalleryCategory,
+  ReorderCollection,
   Subcategory,
   TrustedBrand,
 } from "./types";
@@ -54,6 +56,7 @@ type AdminStoreContextValue = {
   removeTestimonial: (id: string) => Promise<void>;
   upsertStaffMember: (member: AdminStaffMember) => Promise<void>;
   removeStaffMember: (id: string) => Promise<void>;
+  reorder: (collection: ReorderCollection, orderedIds: string[]) => Promise<void>;
   addSubcategory: (category: GalleryCategory, name: string) => Promise<Subcategory>;
   renameSubcategory: (id: string, name: string) => Promise<void>;
   removeSubcategory: (id: string) => Promise<void>;
@@ -131,6 +134,10 @@ export function AdminStoreProvider({
       },
       async removeStaffMember(id) {
         await apiRemoveStaff(id);
+        await refresh();
+      },
+      async reorder(collection, orderedIds) {
+        await apiReorder(collection, orderedIds);
         await refresh();
       },
       async addSubcategory(category, name) {
