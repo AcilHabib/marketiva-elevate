@@ -1,7 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useRouterState } from "@tanstack/react-router";
+import { usePathname } from "next/navigation";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
@@ -46,7 +48,7 @@ const navCopy: Record<
 export function Navbar() {
   const { lang } = useI18n();
   const copy = navCopy[lang];
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = usePathname();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);

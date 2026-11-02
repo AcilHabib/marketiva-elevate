@@ -1,4 +1,7 @@
-import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
   FolderKanban,
   LayoutDashboard,
@@ -6,6 +9,7 @@ import {
   Menu,
   MessageSquareQuote,
   Shield,
+  UserRound,
   Users,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
@@ -16,15 +20,21 @@ import { cn } from "@/lib/utils";
 import { useAdminAuth } from "../auth";
 
 const navItems: {
-  to: "/admin" | "/admin/projects" | "/admin/trusted-by" | "/admin/testimonials";
+  href:
+    | "/admin"
+    | "/admin/projects"
+    | "/admin/trusted-by"
+    | "/admin/testimonials"
+    | "/admin/staff";
   label: string;
   icon: typeof LayoutDashboard;
   exact?: boolean;
 }[] = [
-  { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
-  { to: "/admin/projects", label: "Projects", icon: FolderKanban },
-  { to: "/admin/trusted-by", label: "Trusted By", icon: Users },
-  { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+  { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
+  { href: "/admin/projects", label: "Projects", icon: FolderKanban },
+  { href: "/admin/trusted-by", label: "Trusted By", icon: Users },
+  { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+  { href: "/admin/staff", label: "The People", icon: UserRound },
 ];
 
 function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
@@ -32,13 +42,13 @@ function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () 
     <nav className="flex flex-col gap-1">
       {navItems.map((item) => {
         const active = item.exact
-          ? pathname === item.to
-          : pathname === item.to || pathname.startsWith(`${item.to}/`);
+          ? pathname === item.href
+          : pathname === item.href || pathname.startsWith(`${item.href}/`);
         const Icon = item.icon;
         return (
           <Link
-            key={item.to}
-            to={item.to}
+            key={item.href}
+            href={item.href}
             onClick={onNavigate}
             className={cn(
               "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
@@ -110,18 +120,18 @@ export function AdminShell({
   actions?: ReactNode;
   children: ReactNode;
 }) {
-  const { isAuthenticated, username, logout } = useAdminAuth();
-  const navigate = useNavigate();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { isAuthenticated, checking, username, logout } = useAdminAuth();
+  const router = useRouter();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      void navigate({ to: "/admin/login" });
+    if (!checking && !isAuthenticated) {
+      router.replace("/admin/login");
     }
-  }, [isAuthenticated, navigate]);
+  }, [checking, isAuthenticated, router]);
 
-  if (!isAuthenticated) {
+  if (checking || !isAuthenticated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background text-sm text-muted-foreground">
         Checking session…
@@ -129,9 +139,9 @@ export function AdminShell({
     );
   }
 
-  function handleLogout() {
-    logout();
-    void navigate({ to: "/admin/login" });
+  async function handleLogout() {
+    await logout();
+    router.push("/admin/login");
   }
 
   return (

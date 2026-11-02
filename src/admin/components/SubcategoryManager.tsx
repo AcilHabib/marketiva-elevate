@@ -1,9 +1,11 @@
+"use client";
+
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { addSubcategory, renameSubcategory, removeSubcategory } from "../store";
+import { useAdminStoreApi } from "../store";
 import type { GalleryCategory, Subcategory } from "../types";
 import { ConfirmDelete } from "./ConfirmDelete";
 
@@ -14,18 +16,27 @@ export function SubcategoryManager({
   category: GalleryCategory;
   subcategories: Subcategory[];
 }) {
+  const { addSubcategory, renameSubcategory, removeSubcategory } = useAdminStoreApi();
   const [name, setName] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const items = subcategories.filter((s) => s.category === category);
 
-  function onAdd() {
+  async function onAdd() {
     const trimmed = name.trim();
-    if (!trimmed) return;
-    addSubcategory(category, trimmed);
-    setName("");
-    toast.success("Subcategory added");
+    if (!trimmed || busy) return;
+    setBusy(true);
+    try {
+      await addSubcategory(category, trimmed);
+      setName("");
+      toast.success("Subcategory added");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to add subcategory");
+    } finally {
+      setBusy(false);
+    }
   }
 
   function startEdit(item: Subcategory) {
@@ -33,12 +44,19 @@ export function SubcategoryManager({
     setEditName(item.name);
   }
 
-  function saveEdit() {
-    if (!editingId || !editName.trim()) return;
-    renameSubcategory(editingId, editName);
-    setEditingId(null);
-    setEditName("");
-    toast.success("Subcategory renamed");
+  async function saveEdit() {
+    if (!editingId || !editName.trim() || busy) return;
+    setBusy(true);
+    try {
+      await renameSubcategory(editingId, editName);
+      setEditingId(null);
+      setEditName("");
+      toast.success("Subcategory renamed");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to rename subcategory");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
@@ -55,11 +73,11 @@ export function SubcategoryManager({
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
-              onAdd();
+              void onAdd();
             }
           }}
         />
-        <Button type="button" size="sm" onClick={onAdd}>
+        <Button type="button" size="sm" onClick={() => void onAdd()} disabled={busy}>
           <Plus className="h-4 w-4" />
           Add
         </Button>
@@ -81,7 +99,7 @@ export function SubcategoryManager({
                     className="h-8"
                     autoFocus
                   />
-                  <Button type="button" size="sm" onClick={saveEdit}>
+                  <Button type="button" size="sm" onClick={() => void saveEdit()} disabled={busy}>
                     Save
                   </Button>
                   <Button
@@ -108,8 +126,16 @@ export function SubcategoryManager({
                   <ConfirmDelete
                     description={`Delete subcategory “${item.name}”? Images using it will become uncategorized.`}
                     onConfirm={() => {
-                      removeSubcategory(item.id);
-                      toast.success("Subcategory deleted");
+                      void (async () => {
+                        try {
+                          await removeSubcategory(item.id);
+                          toast.success("Subcategory deleted");
+                        } catch (error) {
+                          toast.error(
+                            error instanceof Error ? error.message : "Failed to delete subcategory",
+                          );
+                        }
+                      })();
                     }}
                   >
                     <Button

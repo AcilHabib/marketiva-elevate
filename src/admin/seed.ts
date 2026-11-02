@@ -1,4 +1,4 @@
-import { clients, testimonialsMeta } from "@/components/content";
+import { clients, team, testimonialsMeta } from "@/components/content";
 import {
   designProjects,
   photographyProjects,
@@ -10,6 +10,7 @@ import { translations } from "@/i18n/translations";
 import { createId, slugify } from "./id";
 import type {
   AdminProject,
+  AdminStaffMember,
   AdminState,
   AdminTestimonial,
   GalleryCategory,
@@ -19,6 +20,14 @@ import type {
 
 const videoTitles = translations.fr.projectsPage.videos;
 const testimonialCopy = translations.fr.testimonials.items;
+const teamCopy = translations.fr.team;
+const NO_EXPERIENCE = new Set(["salma", "imene", "dhouha"]);
+
+function parseYears(label?: string): number | null {
+  if (!label) return null;
+  const match = label.match(/(\d+)/);
+  return match ? Number(match[1]) : null;
+}
 
 function now() {
   return new Date().toISOString();
@@ -144,10 +153,26 @@ export function buildSeedState(): AdminState {
     };
   });
 
+  const staff: AdminStaffMember[] = team.map((member) => {
+    const experienceLabel = NO_EXPERIENCE.has(member.id)
+      ? undefined
+      : (teamCopy.experienceByMember[member.id] ?? teamCopy.experienceDefault);
+    return {
+      id: member.id,
+      name: member.name,
+      skill: teamCopy.roles[member.id] ?? "",
+      yearsExperience: parseYears(experienceLabel),
+      photoUrl: member.photo ?? "",
+      createdAt: stamp,
+      updatedAt: stamp,
+    };
+  });
+
   return {
     projects,
     subcategories: Array.from(subcategoryMap.values()),
     brands,
     testimonials,
+    staff,
   };
 }

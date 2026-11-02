@@ -1,10 +1,5 @@
 export type ProjectCategory =
-  | "software"
-  | "videography"
-  | "design"
-  | "photography"
-  | "voixOff"
-  | "prints";
+  "software" | "videography" | "design" | "photography" | "voixOff" | "prints";
 
 export type GalleryCategory = "design" | "photography" | "prints";
 
@@ -53,11 +48,24 @@ export type AdminTestimonial = {
   updatedAt: string;
 };
 
+export type AdminStaffMember = {
+  id: string;
+  name: string;
+  /** Skill / role shown under the name on The People section */
+  skill: string;
+  /** Years of experience; null hides the experience line */
+  yearsExperience: number | null;
+  photoUrl: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type AdminState = {
   projects: AdminProject[];
   subcategories: Subcategory[];
   brands: TrustedBrand[];
   testimonials: AdminTestimonial[];
+  staff: AdminStaffMember[];
 };
 
 export const PROJECT_CATEGORIES: { id: ProjectCategory; label: string }[] = [

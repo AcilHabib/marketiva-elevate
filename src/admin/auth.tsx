@@ -1,62 +1,80 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+"use client";
 
-/**
- * Temporary client-side auth for the admin UI mock.
- * Replace with real backend/session auth when MongoDB is integrated.
- * Do not trust frontend credentials in production.
- */
-const AUTH_KEY = "am-admin-auth";
-const STAFF_USERNAME = "YounesMarketiva";
-const STAFF_PASSWORD = "Algeria.Marketiva.2026";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+import { apiLogin, apiLogout, apiMe } from "./api-client";
 
 type AdminAuthContextValue = {
   isAuthenticated: boolean;
   username: string | null;
-  login: (username: string, password: string) => { ok: true } | { ok: false; error: string };
-  logout: () => void;
+  checking: boolean;
+  login: (
+    username: string,
+    password: string,
+  ) => Promise<{ ok: true } | { ok: false; error: string }>;
+  logout: () => Promise<void>;
 };
 
 const AdminAuthContext = createContext<AdminAuthContextValue | null>(null);
 
-function readSession(): { username: string } | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = sessionStorage.getItem(AUTH_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as { username?: string };
-    if (parsed?.username) return { username: parsed.username };
-  } catch {
-    return null;
-  }
-  return null;
-}
-
 export function AdminAuthProvider({ children }: { children: ReactNode }) {
-  const [session, setSession] = useState<{ username: string } | null>(() => readSession());
+  const [username, setUsername] = useState<string | null>(null);
+  const [checking, setChecking] = useState(true);
 
-  const login = useCallback((username: string, password: string) => {
-    if (username.trim() === STAFF_USERNAME && password === STAFF_PASSWORD) {
-      const next = { username: STAFF_USERNAME };
-      sessionStorage.setItem(AUTH_KEY, JSON.stringify(next));
-      setSession(next);
-      return { ok: true as const };
-    }
-    return { ok: false as const, error: "Invalid username or password." };
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const me = await apiMe();
+        if (!cancelled) setUsername(me.username);
+      } catch {
+        if (!cancelled) setUsername(null);
+      } finally {
+        if (!cancelled) setChecking(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const logout = useCallback(() => {
-    sessionStorage.removeItem(AUTH_KEY);
-    setSession(null);
+  const login = useCallback(async (user: string, password: string) => {
+    try {
+      const result = await apiLogin(user, password);
+      setUsername(result.username);
+      return { ok: true as const };
+    } catch (error) {
+      return {
+        ok: false as const,
+        error: error instanceof Error ? error.message : "Login failed",
+      };
+    }
+  }, []);
+
+  const logout = useCallback(async () => {
+    try {
+      await apiLogout();
+    } finally {
+      setUsername(null);
+    }
   }, []);
 
   const value = useMemo<AdminAuthContextValue>(
     () => ({
-      isAuthenticated: Boolean(session),
-      username: session?.username ?? null,
+      isAuthenticated: Boolean(username),
+      username,
+      checking,
       login,
       logout,
     }),
-    [session, login, logout],
+    [username, checking, login, logout],
   );
 
   return <AdminAuthContext.Provider value={value}>{children}</AdminAuthContext.Provider>;

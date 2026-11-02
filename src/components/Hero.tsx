@@ -1,7 +1,11 @@
+"use client";
+
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useI18n } from "@/i18n/I18nProvider";
 import type { Lang } from "@/i18n/translations";
+
+const heroBgSrc = typeof heroBg === "string" ? heroBg : heroBg.src;
 
 const heroCopy: Record<
   Lang,
@@ -38,7 +42,7 @@ export function Hero() {
     >
       <div className="absolute inset-0">
         <img
-          src={heroBg}
+          src={heroBgSrc}
           alt=""
           width={1536}
           height={1024}
