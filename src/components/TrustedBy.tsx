@@ -1,6 +1,8 @@
+"use client";
+
 import { SectionHeading, GradientTitle } from "./primitives";
-import { clients } from "./content";
 import { useI18n } from "@/i18n/I18nProvider";
+import type { TrustedBrand } from "@/admin/types";
 
 function ClientLogo({ name, logo }: { name: string; logo: string }) {
   return (
@@ -15,10 +17,10 @@ function ClientLogo({ name, logo }: { name: string; logo: string }) {
   );
 }
 
-export function TrustedBy() {
+export function TrustedBy({ brands }: { brands: TrustedBrand[] }) {
   const { t } = useI18n();
-  const logoClients = clients.filter((c): c is typeof c & { logo: string } => Boolean(c.logo));
-  const row = [...logoClients, ...logoClients];
+  const logoClients = brands.filter((c) => Boolean(c.logoUrl));
+  const row = logoClients.length > 0 ? [...logoClients, ...logoClients] : [];
 
   return (
     <section
@@ -36,14 +38,22 @@ export function TrustedBy() {
       </div>
 
       <div className="relative mt-8 sm:mt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-24" />
+        {row.length === 0 ? (
+          <p className="container-px mx-auto max-w-7xl text-center text-sm text-muted-foreground">
+            —
+          </p>
+        ) : (
+          <>
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-24" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-24" />
 
-        <div className="flex w-max animate-[marquee_42s_linear_infinite] items-center gap-1 sm:gap-2">
-          {row.map((c, i) => (
-            <ClientLogo key={`${c.id}-${i}`} name={c.name} logo={c.logo} />
-          ))}
-        </div>
+            <div className="flex w-max animate-[marquee_42s_linear_infinite] items-center gap-1 sm:gap-2">
+              {row.map((c, i) => (
+                <ClientLogo key={`${c.id}-${i}`} name={c.name} logo={c.logoUrl} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

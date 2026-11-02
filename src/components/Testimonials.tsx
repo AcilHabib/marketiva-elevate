@@ -1,9 +1,11 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Reveal, SectionHeading, GradientTitle } from "./primitives";
-import { testimonialsMeta } from "./content";
 import { TeamAvatar } from "./TeamAvatar";
 import { useI18n } from "@/i18n/I18nProvider";
+import type { AdminTestimonial } from "@/admin/types";
 
 function TestimonialCard({
   id,
@@ -45,14 +47,18 @@ function TestimonialCard({
   );
 }
 
-export function Testimonials() {
+export function Testimonials({ testimonials }: { testimonials: AdminTestimonial[] }) {
   const { t } = useI18n();
-  const items = testimonialsMeta.map((meta) => ({
-    ...meta,
-    ...t.testimonials.items[meta.id],
+  const items = testimonials.map((item, index) => ({
+    id: item.id,
+    avatarIndex: index % 6,
+    quote: item.quote,
+    name: item.name,
+    role: item.occupation,
+    company: item.company,
   }));
 
-  const track = [...items, ...items];
+  const track = items.length > 0 ? [...items, ...items] : [];
 
   return (
     <section id="testimonials" className="section-pad relative overflow-hidden">
@@ -66,24 +72,28 @@ export function Testimonials() {
         />
 
         <Reveal delay={0.12} className="mt-14">
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 start-0 z-10 w-16 bg-gradient-to-e from-background to-transparent sm:w-24" />
-            <div className="pointer-events-none absolute inset-y-0 end-0 z-10 w-16 bg-gradient-to-s from-background to-transparent sm:w-24" />
+          {track.length === 0 ? (
+            <p className="text-center text-sm text-muted-foreground">—</p>
+          ) : (
+            <div className="relative">
+              <div className="pointer-events-none absolute inset-y-0 start-0 z-10 w-16 bg-gradient-to-e from-background to-transparent sm:w-24" />
+              <div className="pointer-events-none absolute inset-y-0 end-0 z-10 w-16 bg-gradient-to-s from-background to-transparent sm:w-24" />
 
-            <div className="overflow-hidden">
-              <motion.div
-                className="flex w-max gap-5 py-2"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{
-                  x: { repeat: Infinity, repeatType: "loop", duration: 45, ease: "linear" },
-                }}
-              >
-                {track.map((item, i) => (
-                  <TestimonialCard key={`${item.id}-${i}`} {...item} />
-                ))}
-              </motion.div>
+              <div className="overflow-hidden">
+                <motion.div
+                  className="flex w-max gap-5 py-2"
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{
+                    x: { repeat: Infinity, repeatType: "loop", duration: 45, ease: "linear" },
+                  }}
+                >
+                  {track.map((item, i) => (
+                    <TestimonialCard key={`${item.id}-${i}`} {...item} />
+                  ))}
+                </motion.div>
+              </div>
             </div>
-          </div>
+          )}
         </Reveal>
       </div>
     </section>

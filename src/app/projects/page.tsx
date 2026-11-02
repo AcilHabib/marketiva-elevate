@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProjectsPage } from "@/views/ProjectsPage";
+import { getPublicContent } from "@/lib/public-content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Our Projects",
@@ -12,7 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
+  const content = await getPublicContent();
+
   return (
     <Suspense
       fallback={
@@ -21,7 +26,7 @@ export default function Page() {
         </div>
       }
     >
-      <ProjectsPage />
+      <ProjectsPage projects={content.projects} />
     </Suspense>
   );
 }

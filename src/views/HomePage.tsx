@@ -13,8 +13,9 @@ import { Team } from "@/components/Team";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { useTheme } from "@/i18n/ThemeProvider";
+import type { PublicContent } from "@/lib/public-content";
 
-export function HomePage() {
+export function HomePage({ content }: { content: PublicContent }) {
   const { theme } = useTheme();
 
   return (
@@ -24,11 +25,11 @@ export function HomePage() {
         <Hero />
         <About />
         <Services />
-        <TrustedBy />
-        <Testimonials />
+        <TrustedBy brands={content.brands} />
+        <Testimonials testimonials={content.testimonials} />
         <FAQ />
         <Formations />
-        <Team />
+        <Team staff={content.staff} />
         <Contact />
       </main>
       <Footer />
