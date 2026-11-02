@@ -26,22 +26,12 @@ import {
   type ProjectItem,
   type VideoProject,
 } from "@/components/projects";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { useI18n } from "@/i18n/I18nProvider";
 import { useTheme } from "@/i18n/ThemeProvider";
 import { cn } from "@/lib/utils";
 
-type LiveSectionId =
-  | "software"
-  | "videography"
-  | "design"
-  | "photography"
-  | "voixOff";
+type LiveSectionId = "software" | "videography" | "design" | "photography" | "voixOff";
 
 const liveSections: { id: LiveSectionId; icon: LucideIcon }[] = [
   { id: "software", icon: Code2 },
@@ -56,10 +46,7 @@ const upcomingSections: {
   icon: LucideIcon;
 }[] = [{ id: "impression", icon: Printer }];
 
-const SERVICE_FILTERS: Record<
-  string,
-  { live: LiveSectionId[]; showUpcoming: boolean }
-> = {
+const SERVICE_FILTERS: Record<string, { live: LiveSectionId[]; showUpcoming: boolean }> = {
   brand: { live: ["design"], showUpcoming: false },
   content: { live: ["videography", "voixOff"], showUpcoming: false },
   web: { live: ["software"], showUpcoming: false },
@@ -82,14 +69,12 @@ export const Route = createFileRoute("/projects")({
       { title: "Algeria Marketiva — Our Projects" },
       {
         name: "description",
-        content:
-          "Explore Algeria Marketiva projects across software, videography and design.",
+        content: "Explore Algeria Marketiva projects across software, videography and design.",
       },
       { property: "og:title", content: "Algeria Marketiva — Our Projects" },
       {
         property: "og:description",
-        content:
-          "A showcase of our work across software, videography and design.",
+        content: "A showcase of our work across software, videography and design.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/brand/logo-full.png" },
@@ -163,10 +148,7 @@ function ProjectsPage() {
                       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {softwareProjects.map((project, pi) => (
                           <Reveal key={project.id} delay={0.04 + pi * 0.05}>
-                            <ProjectCard
-                              project={project}
-                              visitLabel={t.projectsPage.visitSite}
-                            />
+                            <ProjectCard project={project} visitLabel={t.projectsPage.visitSite} />
                           </Reveal>
                         ))}
                       </div>
@@ -188,10 +170,7 @@ function ProjectsPage() {
                         onOpen={setActivePhoto}
                       />
                     ) : (
-                      <DesignGrid
-                        viewLabel={t.projectsPage.viewDesign}
-                        onOpen={setActiveDesign}
-                      />
+                      <DesignGrid viewLabel={t.projectsPage.viewDesign} onOpen={setActiveDesign} />
                     )}
                   </section>
                 </Reveal>
@@ -233,9 +212,7 @@ function ProjectsPage() {
               ? (t.projectsPage.videos[activeVideo.id] ?? t.projectsPage.playVideo)
               : t.projectsPage.playVideo}
           </DialogTitle>
-          <DialogDescription className="sr-only">
-            {t.projectsPage.playVideo}
-          </DialogDescription>
+          <DialogDescription className="sr-only">{t.projectsPage.playVideo}</DialogDescription>
           {activeVideo ? (
             <video
               key={activeVideo.id}
@@ -270,12 +247,8 @@ function ProjectsPage() {
               : "w-[min(92vw,34rem)] max-w-[34rem]",
           )}
         >
-          <DialogTitle className="sr-only">
-            {t.projectsPage.viewDesign}
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            {t.projectsPage.viewDesign}
-          </DialogDescription>
+          <DialogTitle className="sr-only">{t.projectsPage.viewDesign}</DialogTitle>
+          <DialogDescription className="sr-only">{t.projectsPage.viewDesign}</DialogDescription>
           {activeDesign ? (
             <img
               src={activeDesign.src}
@@ -300,12 +273,8 @@ function ProjectsPage() {
               : "w-[min(94vw,48rem)] max-w-[48rem]",
           )}
         >
-          <DialogTitle className="sr-only">
-            {t.projectsPage.viewPhoto}
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            {t.projectsPage.viewPhoto}
-          </DialogDescription>
+          <DialogTitle className="sr-only">{t.projectsPage.viewPhoto}</DialogTitle>
+          <DialogDescription className="sr-only">{t.projectsPage.viewPhoto}</DialogDescription>
           {activePhoto ? (
             <img
               src={activePhoto.src}
@@ -506,13 +475,7 @@ function PhotographyGrid({
   );
 }
 
-function ProjectCard({
-  project,
-  visitLabel,
-}: {
-  project: ProjectItem;
-  visitLabel: string;
-}) {
+function ProjectCard({ project, visitLabel }: { project: ProjectItem; visitLabel: string }) {
   return (
     <a
       href={project.url}

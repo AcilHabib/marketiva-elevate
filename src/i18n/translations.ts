@@ -6,8 +6,7 @@ export const LANGS: { code: Lang; label: string; native: string }[] = [
   { code: "en", label: "English", native: "English" },
 ];
 
-export const dirOf = (lang: Lang): "rtl" | "ltr" =>
-  lang === "ar" ? "rtl" : "ltr";
+export const dirOf = (lang: Lang): "rtl" | "ltr" => (lang === "ar" ? "rtl" : "ltr");
 
 type Title = { lead: string; accent: string; tail?: string };
 
@@ -153,7 +152,11 @@ export const translations: Record<Lang, Dict> = {
         "Nous aidons les entreprises algériennes à évoluer grâce à l'innovation, la stratégie, les médias et la technologie — en créant des solutions créatives et digitales premium qui génèrent une croissance réelle.",
       ctaPrimary: "Nous contacter",
       ctaSecondary: "Voir nos réalisations",
-      stats: { brands: "Marques de confiance", specialists: "Spécialistes experts", scope: "Créatif & Digital" },
+      stats: {
+        brands: "Marques de confiance",
+        specialists: "Spécialistes experts",
+        scope: "Créatif & Digital",
+      },
     },
     about: {
       eyebrow: "Qui sommes-nous",
@@ -161,10 +164,22 @@ export const translations: Record<Lang, Dict> = {
       p1: "Algeria Marketiva est une agence créative et digitale premium conçue pour aider les entreprises à évoluer. Nous combinons stratégie, design, médias et technologie en une seule force fluide — accompagnant les entreprises dans le branding moderne, la transformation digitale et une croissance durable.",
       p2: "Ancrés dans l'identité nationale et l'expertise du marché local, nous portons une ambition claire : élever l'entreprise algérienne à un standard de classe mondiale avec des solutions aussi raffinées qu'efficaces.",
       pillars: [
-        { title: "Innovation", text: "Des idées et technologies avant-gardistes qui maintiennent votre marque en tête." },
-        { title: "Stratégie", text: "Chaque décision appuyée par l'analyse, l'intention et des objectifs mesurables." },
-        { title: "Créativité", text: "Un design distinctif et un storytelling qui rendent votre marque inoubliable." },
-        { title: "Transformation digitale", text: "Moderniser les entreprises algériennes avec les outils pour grandir et rivaliser à l'échelle mondiale." },
+        {
+          title: "Innovation",
+          text: "Des idées et technologies avant-gardistes qui maintiennent votre marque en tête.",
+        },
+        {
+          title: "Stratégie",
+          text: "Chaque décision appuyée par l'analyse, l'intention et des objectifs mesurables.",
+        },
+        {
+          title: "Créativité",
+          text: "Un design distinctif et un storytelling qui rendent votre marque inoubliable.",
+        },
+        {
+          title: "Transformation digitale",
+          text: "Moderniser les entreprises algériennes avec les outils pour grandir et rivaliser à l'échelle mondiale.",
+        },
       ],
     },
     services: {
@@ -291,7 +306,8 @@ export const translations: Record<Lang, Dict> = {
     testimonials: {
       eyebrow: "Témoignages",
       title: { lead: "Ce que disent nos", accent: "partenaires" },
-      subtitle: "Des retours authentiques de marques algériennes qui nous font confiance au quotidien.",
+      subtitle:
+        "Des retours authentiques de marques algériennes qui nous font confiance au quotidien.",
       items: {
         t1: {
           quote:
@@ -383,12 +399,14 @@ export const translations: Record<Lang, Dict> = {
     clientsSection: {
       eyebrow: "Ils nous font confiance",
       title: { lead: "Des marques qui grandissent avec", accent: "Marketiva" },
-      subtitle: "Du retail au sport, de la logistique à l'industrie — des entreprises de toute l'Algérie et au-delà nous font confiance.",
+      subtitle:
+        "Du retail au sport, de la logistique à l'industrie — des entreprises de toute l'Algérie et au-delà nous font confiance.",
     },
     team: {
       eyebrow: "Les talents",
       title: { lead: "Rencontrez l'équipe derrière", accent: "le travail" },
-      subtitle: "Quatorze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
+      subtitle:
+        "Quatorze experts pluridisciplinaires qui transforment les idées ambitieuses en réalité raffinée.",
       experienceDefault: "5+ ans d'expérience",
       experienceByMember: {
         assil: "4+ ans d'expérience",
@@ -455,8 +473,7 @@ export const translations: Record<Lang, Dict> = {
         },
         {
           title: "Développement web & mobile",
-          description:
-            "De zéro au déploiement — sites, apps et produits digitaux performants.",
+          description: "De zéro au déploiement — sites, apps et produits digitaux performants.",
           topics: [
             "Sites web & e-commerce",
             "Applications mobiles iOS & Android",
@@ -472,7 +489,12 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Parlez-nous de votre projet et notre équipe vous répondra sous 24 heures.",
       cardTitle: "Algeria Marketiva",
       cardTagline: "Propulser les marques algériennes.",
-      labels: { phone: "Téléphone", email: "Email", location: "Localisation", locationValue: "Rue Haffad Abdelmadjid, Sétif 19000, Algérie" },
+      labels: {
+        phone: "Téléphone",
+        email: "Email",
+        location: "Localisation",
+        locationValue: "Rue Haffad Abdelmadjid, Sétif 19000, Algérie",
+      },
       form: {
         name: "Nom",
         email: "Email",
@@ -483,7 +505,11 @@ export const translations: Record<Lang, Dict> = {
         submit: "Envoyer le message",
       },
       toast: { success: "Merci ! Nous vous recontacterons sous peu." },
-      errors: { name: "Veuillez saisir votre nom", email: "Saisissez un email valide", message: "Donnez-nous un peu plus de détails" },
+      errors: {
+        name: "Veuillez saisir votre nom",
+        email: "Saisissez un email valide",
+        message: "Donnez-nous un peu plus de détails",
+      },
     },
     footer: { rights: "Tous droits réservés.", madeBy: "Réalisé par" },
     projectsPage: {
@@ -578,7 +604,10 @@ export const translations: Record<Lang, Dict> = {
         { title: "الابتكار", text: "أفكار وتقنيات استشرافية تُبقي علامتك في الصدارة." },
         { title: "الاستراتيجية", text: "كل قرار مدعوم بالرؤية والقصد وأهداف قابلة للقياس." },
         { title: "الإبداع", text: "تصميم مميز وسرد قصصي يجعل علامتك لا تُنسى." },
-        { title: "التحول الرقمي", text: "تحديث الشركات الجزائرية بالأدوات اللازمة للنمو والمنافسة عالمياً." },
+        {
+          title: "التحول الرقمي",
+          text: "تحديث الشركات الجزائرية بالأدوات اللازمة للنمو والمنافسة عالمياً.",
+        },
       ],
     },
     services: {
@@ -787,7 +816,8 @@ export const translations: Record<Lang, Dict> = {
     clientsSection: {
       eyebrow: "يثقون بنا",
       title: { lead: "علامات تنمو مع", accent: "Marketiva" },
-      subtitle: "من التجزئة والرياضة إلى اللوجستيك والصناعة — شركات من مختلف أنحاء الجزائر وخارجها تعتمد علينا.",
+      subtitle:
+        "من التجزئة والرياضة إلى اللوجستيك والصناعة — شركات من مختلف أنحاء الجزائر وخارجها تعتمد علينا.",
     },
     team: {
       eyebrow: "الأشخاص",
@@ -837,17 +867,33 @@ export const translations: Record<Lang, Dict> = {
         {
           title: "الإبداع البصري والسمعي البصري",
           description: "أتقن سلسلة الإنتاج الكاملة — من التصوير إلى المونتاج النهائي.",
-          topics: ["التصوير التجاري والمنتجات", "التصوير السينمائي والفيديو", "التصميم الجرافيكي والهوية البصرية", "مونتاج الفيديو وما بعد الإنتاج"],
+          topics: [
+            "التصوير التجاري والمنتجات",
+            "التصوير السينمائي والفيديو",
+            "التصميم الجرافيكي والهوية البصرية",
+            "مونتاج الفيديو وما بعد الإنتاج",
+          ],
         },
         {
           title: "استراتيجية التسويق",
-          description: "تعلّم بناء استراتيجيات تسويقية مبنية على البيانات تحقق نمواً قابلاً للقياس.",
-          topics: ["تحليل السوق والمنافسين", "شخصيات المشتري ومسار العميل", "استراتيجية المحتوى والإعلان", "مؤشرات الأداء والعائد والتحسين"],
+          description:
+            "تعلّم بناء استراتيجيات تسويقية مبنية على البيانات تحقق نمواً قابلاً للقياس.",
+          topics: [
+            "تحليل السوق والمنافسين",
+            "شخصيات المشتري ومسار العميل",
+            "استراتيجية المحتوى والإعلان",
+            "مؤشرات الأداء والعائد والتحسين",
+          ],
         },
         {
           title: "تطوير الويب والجوال",
           description: "من الصفر إلى الإطلاق — مواقع وتطبيقات ومنتجات رقمية عالية الأداء.",
-          topics: ["مواقع وتجارة إلكترونية", "تطبيقات iOS وAndroid", "APIs وتكاملات", "الأداء والأمان والنشر"],
+          topics: [
+            "مواقع وتجارة إلكترونية",
+            "تطبيقات iOS وAndroid",
+            "APIs وتكاملات",
+            "الأداء والأمان والنشر",
+          ],
         },
       ],
     },
@@ -857,7 +903,12 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "أخبرنا عن مشروعك وسيعاود فريقنا التواصل معك خلال 24 ساعة.",
       cardTitle: "Algeria Marketiva",
       cardTagline: "تمكين العلامات التجارية الجزائرية.",
-      labels: { phone: "الهاتف", email: "البريد الإلكتروني", location: "الموقع", locationValue: "شارع حافظ عبد المجيد، سطيف 19000، الجزائر" },
+      labels: {
+        phone: "الهاتف",
+        email: "البريد الإلكتروني",
+        location: "الموقع",
+        locationValue: "شارع حافظ عبد المجيد، سطيف 19000، الجزائر",
+      },
       form: {
         name: "الاسم",
         email: "البريد الإلكتروني",
@@ -868,7 +919,11 @@ export const translations: Record<Lang, Dict> = {
         submit: "إرسال الرسالة",
       },
       toast: { success: "شكراً لك! سنتواصل معك قريباً." },
-      errors: { name: "يرجى إدخال اسمك", email: "أدخل بريداً إلكترونياً صحيحاً", message: "أخبرنا بمزيد من التفاصيل" },
+      errors: {
+        name: "يرجى إدخال اسمك",
+        email: "أدخل بريداً إلكترونياً صحيحاً",
+        message: "أخبرنا بمزيد من التفاصيل",
+      },
     },
     footer: { rights: "جميع الحقوق محفوظة.", madeBy: "صنع بواسطة" },
     projectsPage: {
@@ -952,7 +1007,11 @@ export const translations: Record<Lang, Dict> = {
         "We help Algerian businesses evolve through innovation, strategy, media and technology — crafting premium creative and digital solutions that drive real growth.",
       ctaPrimary: "Get in Touch",
       ctaSecondary: "View Our Work",
-      stats: { brands: "Trusted Brands", specialists: "Expert Specialists", scope: "Creative & Digital" },
+      stats: {
+        brands: "Trusted Brands",
+        specialists: "Expert Specialists",
+        scope: "Creative & Digital",
+      },
     },
     about: {
       eyebrow: "Who We Are",
@@ -960,17 +1019,28 @@ export const translations: Record<Lang, Dict> = {
       p1: "Algeria Marketiva is a premium creative and digital agency built to help businesses evolve. We blend strategy, design, media and technology into one seamless force — guiding companies through modern branding, digital transformation and sustainable growth.",
       p2: "Rooted in national identity and local market expertise, we carry a clear ambition: to elevate Algerian business to a world-class standard with solutions that feel as refined as they are effective.",
       pillars: [
-        { title: "Innovation", text: "Forward-thinking ideas and technology that keep your brand ahead of the curve." },
-        { title: "Strategy", text: "Every decision backed by insight, intent and measurable business goals." },
-        { title: "Creativity", text: "Distinctive design and storytelling that makes your brand unforgettable." },
-        { title: "Digital Transformation", text: "Modernising Algerian businesses with the tools to scale and compete globally." },
+        {
+          title: "Innovation",
+          text: "Forward-thinking ideas and technology that keep your brand ahead of the curve.",
+        },
+        {
+          title: "Strategy",
+          text: "Every decision backed by insight, intent and measurable business goals.",
+        },
+        {
+          title: "Creativity",
+          text: "Distinctive design and storytelling that makes your brand unforgettable.",
+        },
+        {
+          title: "Digital Transformation",
+          text: "Modernising Algerian businesses with the tools to scale and compete globally.",
+        },
       ],
     },
     services: {
       eyebrow: "What We Do",
       title: { lead: "Premium solutions across", accent: "creative & digital" },
-      subtitle:
-        "A full-spectrum agency — click any card to explore each expertise in detail.",
+      subtitle: "A full-spectrum agency — click any card to explore each expertise in detail.",
       tapHint: "Click to explore",
       seeProjects: "See our {{name}} projects",
       items: {
@@ -1019,8 +1089,7 @@ export const translations: Record<Lang, Dict> = {
         },
         photography: {
           title: "Photography",
-          description:
-            "High-converting visual assets that elevate your products and brand image.",
+          description: "High-converting visual assets that elevate your products and brand image.",
           highlights: [
             "Product & commercial photography",
             "Branding & corporate shoots",
@@ -1043,8 +1112,7 @@ export const translations: Record<Lang, Dict> = {
         },
         web: {
           title: "Web & Application Development",
-          description:
-            "Digitise and scale your business with bespoke web and mobile solutions.",
+          description: "Digitise and scale your business with bespoke web and mobile solutions.",
           highlights: [
             "Custom websites & e-commerce platforms",
             "SaaS, web apps & mobile apps (iOS & Android)",
@@ -1054,8 +1122,7 @@ export const translations: Record<Lang, Dict> = {
         },
         community: {
           title: "Community Management",
-          description:
-            "Build loyal communities and consistent brand communication.",
+          description: "Build loyal communities and consistent brand communication.",
           highlights: [
             "Community growth",
             "Social media management & content planning",
@@ -1065,8 +1132,7 @@ export const translations: Record<Lang, Dict> = {
         },
         print: {
           title: "Printing & Branding Materials",
-          description:
-            "A complete printing and branding solution for a premium physical presence.",
+          description: "A complete printing and branding solution for a premium physical presence.",
           highlights: [
             "Business cards, flyers, brochures, catalogs",
             "Notebooks, folders, pens & custom badges",
@@ -1182,7 +1248,8 @@ export const translations: Record<Lang, Dict> = {
     clientsSection: {
       eyebrow: "Trusted By",
       title: { lead: "Brands that grow with", accent: "Marketiva" },
-      subtitle: "From retail and sports to logistics and manufacturing — businesses across Algeria and beyond rely on us.",
+      subtitle:
+        "From retail and sports to logistics and manufacturing — businesses across Algeria and beyond rely on us.",
     },
     team: {
       eyebrow: "The People",
@@ -1233,17 +1300,33 @@ export const translations: Record<Lang, Dict> = {
         {
           title: "Visual & audiovisual creation",
           description: "Master the full production pipeline — from shooting to final edit.",
-          topics: ["Commercial & product photography", "Videography & pro filming", "Graphic design & brand identity", "Video editing & post-production"],
+          topics: [
+            "Commercial & product photography",
+            "Videography & pro filming",
+            "Graphic design & brand identity",
+            "Video editing & post-production",
+          ],
         },
         {
           title: "Marketing strategy",
-          description: "Learn to build data-driven marketing strategies that deliver measurable growth.",
-          topics: ["Market & competitor analysis", "Personas & customer journey", "Content & advertising strategy", "KPIs, ROI & optimization"],
+          description:
+            "Learn to build data-driven marketing strategies that deliver measurable growth.",
+          topics: [
+            "Market & competitor analysis",
+            "Personas & customer journey",
+            "Content & advertising strategy",
+            "KPIs, ROI & optimization",
+          ],
         },
         {
           title: "Web & mobile development",
           description: "From zero to launch — high-performance sites, apps and digital products.",
-          topics: ["Websites & e-commerce", "iOS & Android apps", "APIs & integrations", "Performance, security & deployment"],
+          topics: [
+            "Websites & e-commerce",
+            "iOS & Android apps",
+            "APIs & integrations",
+            "Performance, security & deployment",
+          ],
         },
       ],
     },
@@ -1253,7 +1336,12 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Tell us about your project and our team will get back to you within 24 hours.",
       cardTitle: "Algeria Marketiva",
       cardTagline: "Empowering Algerian Brands.",
-      labels: { phone: "Phone", email: "Email", location: "Location", locationValue: "Rue Haffad Abdelmadjid, Setif 19000, Algeria" },
+      labels: {
+        phone: "Phone",
+        email: "Email",
+        location: "Location",
+        locationValue: "Rue Haffad Abdelmadjid, Setif 19000, Algeria",
+      },
       form: {
         name: "Name",
         email: "Email",
@@ -1264,7 +1352,11 @@ export const translations: Record<Lang, Dict> = {
         submit: "Send Message",
       },
       toast: { success: "Thank you! We'll be in touch shortly." },
-      errors: { name: "Please enter your name", email: "Enter a valid email", message: "Tell us a little more" },
+      errors: {
+        name: "Please enter your name",
+        email: "Enter a valid email",
+        message: "Tell us a little more",
+      },
     },
     footer: { rights: "All rights reserved.", madeBy: "Made by" },
     projectsPage: {

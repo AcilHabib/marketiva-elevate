@@ -25,9 +25,27 @@ export function Contact() {
   });
 
   const details = [
-    { icon: Phone, label: t.contact.labels.phone, value: PHONE_DISPLAY, href: `tel:${PHONE_TEL}`, external: false },
-    { icon: Mail, label: t.contact.labels.email, value: EMAIL, href: `mailto:${EMAIL}`, external: false },
-    { icon: MapPin, label: t.contact.labels.location, value: t.contact.labels.locationValue, href: LOCATION_URL, external: true },
+    {
+      icon: Phone,
+      label: t.contact.labels.phone,
+      value: PHONE_DISPLAY,
+      href: `tel:${PHONE_TEL}`,
+      external: false,
+    },
+    {
+      icon: Mail,
+      label: t.contact.labels.email,
+      value: EMAIL,
+      href: `mailto:${EMAIL}`,
+      external: false,
+    },
+    {
+      icon: MapPin,
+      label: t.contact.labels.location,
+      value: t.contact.labels.locationValue,
+      href: LOCATION_URL,
+      external: true,
+    },
   ];
 
   const onSubmit = (e: React.FormEvent) => {
@@ -69,9 +87,7 @@ export function Contact() {
               <div>
                 <BrandLogo variant="full" className="mb-4 h-16 w-auto max-w-[180px]" />
                 <h3 className="text-xl font-semibold">{t.contact.cardTitle}</h3>
-                <p className="mt-2 text-sm text-primary-foreground/85">
-                  {t.contact.cardTagline}
-                </p>
+                <p className="mt-2 text-sm text-primary-foreground/85">{t.contact.cardTagline}</p>
               </div>
               <div className="space-y-4">
                 {details.map((d) => (
@@ -146,7 +162,10 @@ export function Contact() {
                 className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5"
               >
                 {t.contact.form.submit}
-                <Send size={15} className="transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+                <Send
+                  size={15}
+                  className="transition-transform group-hover:translate-x-1 rtl:rotate-180"
+                />
               </button>
             </form>
           </Reveal>

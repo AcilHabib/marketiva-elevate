@@ -102,8 +102,7 @@ export const Route = createFileRoute("/links")({
       { property: "og:title", content: "Algeria Marketiva — Links" },
       {
         property: "og:description",
-        content:
-          "Connect with Algeria Marketiva. Website, WhatsApp, email, and more.",
+        content: "Connect with Algeria Marketiva. Website, WhatsApp, email, and more.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/brand/logo-full.png" },

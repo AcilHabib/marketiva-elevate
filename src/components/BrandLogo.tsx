@@ -90,19 +90,17 @@ export function BrandLogo({
   }
 
   if (variant === "icon") {
-    return (
-      <LogoMark
-        appearance={appearance}
-        className={cn("h-9 w-9", markClassName, className)}
-      />
-    );
+    return <LogoMark appearance={appearance} className={cn("h-9 w-9", markClassName, className)} />;
   }
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark appearance={appearance} className={cn("h-9 w-9", markClassName)} />
       {showWordmark && (
-        <Wordmark appearance={appearance} className={cn("text-base sm:text-lg", wordmarkClassName)} />
+        <Wordmark
+          appearance={appearance}
+          className={cn("text-base sm:text-lg", wordmarkClassName)}
+        />
       )}
     </span>
   );

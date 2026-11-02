@@ -36,8 +36,7 @@ const marketingStrategy: BusinessPlan = {
         "Your strengths and weaknesses",
         "Your business objectives",
       ],
-      outcome:
-        "A clear picture of your current business position and growth opportunities.",
+      outcome: "A clear picture of your current business position and growth opportunities.",
     },
     {
       title: "Target Audience Research",
@@ -64,8 +63,7 @@ const marketingStrategy: BusinessPlan = {
         "Market gaps and opportunities",
         "Potential competitive advantages",
       ],
-      outcome:
-        "A strategy that differentiates your business instead of copying competitors.",
+      outcome: "A strategy that differentiates your business instead of copying competitors.",
     },
     {
       title: "Marketing Strategy Development",
@@ -518,10 +516,7 @@ const planTemplates: Record<Lang, Record<string, BusinessPlan>> = {
       "نحن لا نجد رعاة فقط — بل نهيكل شراكات توسّع الوصول وترفع prestige العلامة.",
       "sponsoring",
     ),
-    aymen: placeholderPlan(
-      "نحن لا نطبع فقط — بل نقدّم branding مادي premium.",
-      "print",
-    ),
+    aymen: placeholderPlan("نحن لا نطبع فقط — بل نقدّم branding مادي premium.", "print"),
     salma: placeholderPlan(
       "نحن لا نقدّم فعاليات فقط — بل ننشّط تجارب علامة تجارية تلفت الجمهور وتترك انطباعاً دائماً.",
       "تنشيط",

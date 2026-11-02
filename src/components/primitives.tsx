@@ -37,13 +37,7 @@ export function SectionHeading({
   align?: "center" | "left";
 }) {
   return (
-    <div
-      className={
-        align === "center"
-          ? "mx-auto max-w-2xl text-center"
-          : "max-w-2xl text-start"
-      }
-    >
+    <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl text-start"}>
       <Reveal>
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -57,9 +51,7 @@ export function SectionHeading({
       </Reveal>
       {subtitle && (
         <Reveal delay={0.16}>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            {subtitle}
-          </p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">{subtitle}</p>
         </Reveal>
       )}
     </div>

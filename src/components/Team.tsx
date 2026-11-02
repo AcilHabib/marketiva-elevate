@@ -5,13 +5,7 @@ import { team } from "./content";
 import { TeamAvatar } from "./TeamAvatar";
 import { useI18n } from "@/i18n/I18nProvider";
 import { getBusinessPlan } from "@/i18n/businessPlans";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
 
 const NO_EXPERIENCE = new Set(["salma", "imene", "dhouha"]);
 
@@ -20,9 +14,7 @@ export function Team() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const experienceOf = (id: string) =>
-    NO_EXPERIENCE.has(id)
-      ? undefined
-      : t.team.experienceByMember[id] ?? t.team.experienceDefault;
+    NO_EXPERIENCE.has(id) ? undefined : (t.team.experienceByMember[id] ?? t.team.experienceDefault);
 
   const selected = team.find((m) => m.id === selectedId);
   const plan = selectedId ? getBusinessPlan(lang, selectedId) : undefined;
@@ -41,35 +33,33 @@ export function Team() {
           {team.map((m, i) => {
             const experience = experienceOf(m.id);
             return (
-            <Reveal key={m.id} delay={(i % 5) * 0.06}>
-              <button
-                type="button"
-                onClick={() => setSelectedId(m.id)}
-                className="group w-full overflow-hidden rounded-2xl border border-border bg-card/60 text-start backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-card)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  <div className="h-full w-full transition-transform duration-500 group-hover:scale-105">
-                    <TeamAvatar name={m.name} index={i} photo={m.photo} />
+              <Reveal key={m.id} delay={(i % 5) * 0.06}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(m.id)}
+                  className="group w-full overflow-hidden rounded-2xl border border-border bg-card/60 text-start backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-card)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <div className="relative aspect-square overflow-hidden">
+                    <div className="h-full w-full transition-transform duration-500 group-hover:scale-105">
+                      <TeamAvatar name={m.name} index={i} photo={m.photo} />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
+                    <span className="absolute bottom-3 left-3 right-3 inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider text-primary-foreground/90 opacity-0 transition-opacity group-hover:opacity-100">
+                      {t.team.viewPlan}
+                      <ChevronRight size={12} className="rtl:rotate-180" />
+                    </span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
-                  <span className="absolute bottom-3 left-3 right-3 inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider text-primary-foreground/90 opacity-0 transition-opacity group-hover:opacity-100">
-                    {t.team.viewPlan}
-                    <ChevronRight size={12} className="rtl:rotate-180" />
-                  </span>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-display text-sm font-semibold sm:text-base">{m.name}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                    {t.team.roles[m.id]}
-                  </p>
-                  {experience ? (
-                    <p className="mt-2 text-[11px] font-medium text-primary">
-                      {experience}
+                  <div className="p-4">
+                    <h3 className="font-display text-sm font-semibold sm:text-base">{m.name}</h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      {t.team.roles[m.id]}
                     </p>
-                  ) : null}
-                </div>
-              </button>
-            </Reveal>
+                    {experience ? (
+                      <p className="mt-2 text-[11px] font-medium text-primary">{experience}</p>
+                    ) : null}
+                  </div>
+                </button>
+              </Reveal>
             );
           })}
         </div>
@@ -109,13 +99,18 @@ export function Team() {
 
                 <ol className="space-y-5">
                   {plan.steps.map((step, idx) => (
-                    <li key={`${step.title}-${idx}`} className="rounded-xl border border-border bg-card/40 p-4">
+                    <li
+                      key={`${step.title}-${idx}`}
+                      className="rounded-xl border border-border bg-card/40 p-4"
+                    >
                       <h4 className="font-display text-sm font-semibold text-foreground">
                         {idx + 1}. {step.title}
                       </h4>
                       {step.preamble && <p className="mt-2 text-sm">{step.preamble}</p>}
                       {step.listLabel && (
-                        <p className="mt-2 text-xs font-medium text-foreground/80">{step.listLabel}</p>
+                        <p className="mt-2 text-xs font-medium text-foreground/80">
+                          {step.listLabel}
+                        </p>
                       )}
                       <ul className="mt-2 list-inside list-disc space-y-1.5 text-xs sm:text-sm">
                         {step.items.map((item) => (

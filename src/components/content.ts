@@ -53,18 +53,29 @@ export const clients: Client[] = [
   { id: "starrnix", name: "Star Ronix", logo: "/images/clients/star-ronix.png" },
   { id: "hamid", name: "Hamid Imou", logo: "/images/clients/hamid-imou.png" },
   { id: "tadj", name: "Tadj Ben Arab", logo: "/images/clients/tadj-ben-arab.png" },
-  { id: "tasfrites", name: "T'as la Frites", logo: "/images/clients/tas-la-frites.png" },
   { id: "emran", name: "Emran Logistics", logo: "/images/clients/emran-logistics.png" },
   { id: "lostacos", name: "Los Tacos", logo: "/images/clients/los-tacos.png" },
   { id: "novatech", name: "Nova Tech", logo: "/images/clients/nova-tech.png" },
-  { id: "amranibousaad", name: "Amrani Bousaad School", logo: "/images/clients/amrani-bousaad-school.png" },
+  {
+    id: "amranibousaad",
+    name: "Amrani Bousaad School",
+    logo: "/images/clients/amrani-bousaad-school.png",
+  },
   { id: "afiri", name: "Afiri", logo: "/images/clients/afiri.png" },
   { id: "3pindustrie", name: "3P Industrie", logo: "/images/clients/3p-industrie.png" },
-  { id: "pizzaroute66", name: "Pizza Route 66", logo: "/images/clients/pizza-route-66.png" },
-  { id: "benchallal", name: "Benchallal Immobilier", logo: "/images/clients/benchallal-immobilier.png" },
+  {
+    id: "benchallal",
+    name: "Benchallal Immobilier",
+    logo: "/images/clients/benchallal-immobilier.png",
+  },
   { id: "g9immo", name: "EURL G9 IMMO Promotion Immobiliere", logo: "/images/clients/g9-immo.png" },
-  { id: "liazidamrani", name: "Liazid Amrani Promotion Immobiliere", logo: "/images/clients/liazid-amrani.png" },
+  {
+    id: "liazidamrani",
+    name: "Liazid Amrani Promotion Immobiliere",
+    logo: "/images/clients/liazid-amrani.png",
+  },
   { id: "gkdoors", name: "GK Doors", logo: "/images/clients/gk-doors.png" },
+  { id: "gharzouli", name: "Gharzouli Meubles Modernes", logo: "/images/clients/gharzouli.png" },
 ];
 
 export type Member = {

@@ -21,7 +21,10 @@ export function TrustedBy() {
   const row = [...logoClients, ...logoClients];
 
   return (
-    <section id="clients" className="relative overflow-hidden pb-10 pt-[clamp(5rem,10vw,9rem)] sm:pb-12">
+    <section
+      id="clients"
+      className="relative overflow-hidden pb-10 pt-[clamp(5rem,10vw,9rem)] sm:pb-12"
+    >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       <div className="container-px mx-auto max-w-7xl">

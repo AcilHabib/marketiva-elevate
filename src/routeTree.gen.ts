@@ -12,7 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as LinksRouteImport } from './routes/links'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminTrustedByRouteImport } from './routes/admin/trusted-by'
+import { Route as AdminTestimonialsRouteImport } from './routes/admin/testimonials'
+import { Route as AdminProjectsRouteImport } from './routes/admin/projects'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -29,41 +35,119 @@ const LinksRoute = LinksRouteImport.update({
   path: '/links',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminTrustedByRoute = AdminTrustedByRouteImport.update({
+  id: '/trusted-by',
+  path: '/trusted-by',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/links': typeof LinksRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/trusted-by': typeof AdminTrustedByRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/links': typeof LinksRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/trusted-by': typeof AdminTrustedByRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/links': typeof LinksRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/trusted-by': typeof AdminTrustedByRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/links' | '/projects' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/links'
+    | '/projects'
+    | '/sitemap.xml'
+    | '/admin/login'
+    | '/admin/projects'
+    | '/admin/testimonials'
+    | '/admin/trusted-by'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/links' | '/projects' | '/sitemap.xml'
-  id: '__root__' | '/' | '/links' | '/projects' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/links'
+    | '/projects'
+    | '/sitemap.xml'
+    | '/admin/login'
+    | '/admin/projects'
+    | '/admin/testimonials'
+    | '/admin/trusted-by'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/links'
+    | '/projects'
+    | '/sitemap.xml'
+    | '/admin/login'
+    | '/admin/projects'
+    | '/admin/testimonials'
+    | '/admin/trusted-by'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
   LinksRoute: typeof LinksRoute
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -92,6 +176,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,11 +190,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/trusted-by': {
+      id: '/admin/trusted-by'
+      path: '/trusted-by'
+      fullPath: '/admin/trusted-by'
+      preLoaderRoute: typeof AdminTrustedByRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/testimonials': {
+      id: '/admin/testimonials'
+      path: '/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/projects': {
+      id: '/admin/projects'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
   }
 }
 
+interface AdminRouteRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminTestimonialsRoute: typeof AdminTestimonialsRoute
+  AdminTrustedByRoute: typeof AdminTrustedByRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+  AdminProjectsRoute: AdminProjectsRoute,
+  AdminTestimonialsRoute: AdminTestimonialsRoute,
+  AdminTrustedByRoute: AdminTrustedByRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
   LinksRoute: LinksRoute,
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

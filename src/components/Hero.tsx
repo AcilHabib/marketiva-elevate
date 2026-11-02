@@ -64,8 +64,7 @@ export function Hero() {
         >
           <span className="block">{copy.line1}</span>
           <span className="mt-1 block sm:mt-2">
-            {copy.line2}{" "}
-            <span className="text-[oklch(0.72_0.14_252)]">{copy.accent}</span>
+            {copy.line2} <span className="text-[oklch(0.72_0.14_252)]">{copy.accent}</span>
           </span>
         </motion.h1>
 

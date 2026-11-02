@@ -32,7 +32,10 @@ export function Formations() {
                   </p>
                   <ul className="mt-5 space-y-2 border-t border-border pt-5">
                     {course.topics.map((topic) => (
-                      <li key={topic} className="flex items-start gap-2 text-xs text-muted-foreground">
+                      <li
+                        key={topic}
+                        className="flex items-start gap-2 text-xs text-muted-foreground"
+                      >
                         <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                         {topic}
                       </li>

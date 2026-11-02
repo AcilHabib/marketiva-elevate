@@ -55,7 +55,11 @@ export function Services() {
               : null;
 
             return (
-              <Reveal key={s.id} delay={(i % 3) * 0.06} className={cn(isOpen && "sm:col-span-2 lg:col-span-3")}>
+              <Reveal
+                key={s.id}
+                delay={(i % 3) * 0.06}
+                className={cn(isOpen && "sm:col-span-2 lg:col-span-3")}
+              >
                 <motion.article
                   layout
                   data-expanded={isOpen}

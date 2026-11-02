@@ -25,9 +25,15 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
         className="relative z-10"
       >
         {isDark ? (
-          <Sun size={17} className="text-[var(--gold)] drop-shadow-[0_0_8px_oklch(0.82_0.1_85/0.5)]" />
+          <Sun
+            size={17}
+            className="text-[var(--gold)] drop-shadow-[0_0_8px_oklch(0.82_0.1_85/0.5)]"
+          />
         ) : (
-          <Moon size={17} className="text-primary drop-shadow-[0_0_8px_oklch(0.55_0.16_255/0.35)]" />
+          <Moon
+            size={17}
+            className="text-primary drop-shadow-[0_0_8px_oklch(0.55_0.16_255/0.35)]"
+          />
         )}
       </motion.span>
     </button>

@@ -16,14 +16,10 @@ export function About() {
             title={<GradientTitle {...t.about.title} />}
           />
           <Reveal delay={0.2}>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              {t.about.p1}
-            </p>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">{t.about.p1}</p>
           </Reveal>
           <Reveal delay={0.3}>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              {t.about.p2}
-            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">{t.about.p2}</p>
           </Reveal>
         </div>
 
@@ -37,9 +33,7 @@ export function About() {
                     <Icon size={22} />
                   </div>
                   <h3 className="mt-5 text-lg font-semibold">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {p.text}
-                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
                 </div>
               </Reveal>
             );
