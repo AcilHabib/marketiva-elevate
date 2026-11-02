@@ -4,6 +4,9 @@ import { requireAdmin, unauthorized } from "@/lib/auth";
 import { connectMongo } from "@/lib/mongodb";
 import { StaffModel } from "@/models/content";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export async function PUT(request: NextRequest) {
   const session = await requireAdmin(request);
   if (!session) return unauthorized();

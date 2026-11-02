@@ -19,6 +19,8 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": "off",
+      // Don't fail Vercel/production builds on formatting-only issues
+      "prettier/prettier": "warn",
     },
   },
   eslintPluginPrettier,

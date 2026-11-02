@@ -1,13 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  FolderKanban,
-  MessageSquareQuote,
-  UserRound,
-  Users,
-} from "lucide-react";
+import { ArrowUpRight, FolderKanban, MessageSquareQuote, UserRound, Users } from "lucide-react";
 import { AdminShell } from "@/admin/components/AdminLayout";
 import { useAdminStoreApi } from "@/admin/store";
 import { PROJECT_CATEGORIES } from "@/admin/types";

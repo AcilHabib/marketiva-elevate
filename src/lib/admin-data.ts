@@ -61,13 +61,16 @@ export async function seedAdminContentIfEmpty() {
     seed.staff.length ? StaffModel.insertMany(seed.staff) : Promise.resolve(),
   ]);
 
-  return { seeded: true as const, counts: {
-    projects: seed.projects.length,
-    subcategories: seed.subcategories.length,
-    brands: seed.brands.length,
-    testimonials: seed.testimonials.length,
-    staff: seed.staff.length,
-  }};
+  return {
+    seeded: true as const,
+    counts: {
+      projects: seed.projects.length,
+      subcategories: seed.subcategories.length,
+      brands: seed.brands.length,
+      testimonials: seed.testimonials.length,
+      staff: seed.staff.length,
+    },
+  };
 }
 
 export async function replaceCollection<T extends { id: string }>(

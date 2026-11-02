@@ -1,9 +1,5 @@
 import mongoose, { Schema, type InferSchemaType } from "mongoose";
-import type {
-  GalleryCategory,
-  MediaOrientation,
-  ProjectCategory,
-} from "@/admin/types";
+import type { GalleryCategory, MediaOrientation, ProjectCategory } from "@/admin/types";
 
 const { models, model } = mongoose;
 

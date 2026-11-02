@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { createAdminToken, getAdminCredentials, setAdminCookie } from "@/lib/auth";
 import { seedAdminContentIfEmpty } from "@/lib/admin-data";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { username?: string; password?: string };

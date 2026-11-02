@@ -20,12 +20,7 @@ import { cn } from "@/lib/utils";
 import { useAdminAuth } from "../auth";
 
 const navItems: {
-  href:
-    | "/admin"
-    | "/admin/projects"
-    | "/admin/trusted-by"
-    | "/admin/testimonials"
-    | "/admin/staff";
+  href: "/admin" | "/admin/projects" | "/admin/trusted-by" | "/admin/testimonials" | "/admin/staff";
   label: string;
   icon: typeof LayoutDashboard;
   exact?: boolean;

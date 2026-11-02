@@ -99,7 +99,9 @@ export function MediaUpload({
           className="h-8 flex-1 min-w-[12rem]"
         />
       </div>
-      {hint ? <p className="text-xs text-muted-foreground">{hint}</p> : null}
+      <p className="text-xs text-muted-foreground">
+        {hint ?? "Images are compressed before upload (max ~1.5 MB). Prefer under 2000px wide."}
+      </p>
       <input
         ref={inputRef}
         id={inputId}

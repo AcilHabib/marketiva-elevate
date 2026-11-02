@@ -7,9 +7,7 @@ import { AdminStoreProvider } from "@/admin/store";
 
 function AdminStoreGate({ children }: { children: ReactNode }) {
   const { isAuthenticated, checking } = useAdminAuth();
-  return (
-    <AdminStoreProvider enabled={!checking && isAuthenticated}>{children}</AdminStoreProvider>
-  );
+  return <AdminStoreProvider enabled={!checking && isAuthenticated}>{children}</AdminStoreProvider>;
 }
 
 export function AdminProviders({ children }: { children: ReactNode }) {

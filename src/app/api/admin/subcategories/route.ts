@@ -5,6 +5,9 @@ import { requireAdmin, unauthorized } from "@/lib/auth";
 import { connectMongo } from "@/lib/mongodb";
 import { ProjectModel, SubcategoryModel } from "@/models/content";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   const session = await requireAdmin(request);
   if (!session) return unauthorized();
